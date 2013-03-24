@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <List>
+#include <ctype.h>
+#include <string>
+#include <list>
 
 /**Variables de mi parseo */
 
@@ -12,11 +14,12 @@ int pos=0;
 char * palabra;
 char letra;
 char palabra1[20];
-std::list<char*> listaDePalabras;
 
 
-void Parseo() {
-	
+
+std::list<std::string>* Parseo(void) {
+
+	std::list<std::string>* listaDePalabras = new std::list<std::string>();
 	fd= fopen("prueba","r");
 
 	if (fd == NULL){
@@ -52,15 +55,13 @@ void Parseo() {
 				if ((isspace(buffer[i])) == 0) {
 					//Si no es espacio
 					palabra1[tam] = buffer[i];
-					tam++;
-				
+					tam++;			
 				} else {
-
 					palabra = (char *)(malloc(tam*sizeof(char)));
 					strcpy(palabra,palabra1);
 					printf("%d,%d,%d,%s \n",pos,documento,tam,palabra);
-//					free(palabra);
-					listaDePalabras.pushback(palabra);
+					listaDePalabras->push_back(std::string(palabra));
+					free(palabra);
 					pos++;
 					for(j=0;j<tam;j++){
 					palabra1[j]=' ';
@@ -68,30 +69,25 @@ void Parseo() {
 					tam=0;
 
 				}
-
 				}
-
-
 				free(buffer);
-
 			}
-
-
-
-
         }
-
         fclose(fd);
-
-
+        return listaDePalabras;
 }
 
-
-
+void quitarCaracteresInvalidos(std::list<std::string>* lista) {
+//Quita los caracteres invalidos al final o al comienzo de cada palabra.
+}
 
 int main()
 {
-    Parseo();
+    std::list<std::string>* listaDePalabras = Parseo();
     //printf("Hello world!\n");
+    for(std::list<std::string>::iterator it = listaDePalabras-> begin(); it != listaDePalabras -> end(); it++ ) {
+		printf("%s \n", it->c_str());
+	}
+    
     return 0;
 }
