@@ -4,13 +4,14 @@
 #include <ctype.h>
 #include <string>
 #include <list>
+#include <set>
 
 /**Variables de mi parseo */
 
 FILE * fd;
 int documento;
-int tam=0;
-int pos=0;
+unsigned int tam=0;
+unsigned int pos=0;
 char * palabra;
 char letra;
 char palabra1[20];
@@ -46,7 +47,7 @@ std::list<std::string>* Parseo(void) {
 			printf("%d",ocupacionbuffer);
 			printf("\n");
 
-			int i,j;
+			 unsigned int i,j;
 
 			/**Debo Analizar cada parrafo*/
 			for(i=0;i<ocupacionbuffer;i++){
@@ -77,8 +78,22 @@ std::list<std::string>* Parseo(void) {
         return listaDePalabras;
 }
 
-void quitarCaracteresInvalidos(std::list<std::string>* lista) {
-//Quita los caracteres invalidos al final o al comienzo de cada palabra.
+void quitarCaracters(std::string* palabra) {
+	//Quita los caracteres invalidos al comienzoy/o final de la palabra.
+	std::set<char>* conjuntoInvalidos = new std::set<char>();
+	conjuntoInvalidos->insert('.');
+	if( conjuntoInvalidos -> count(*(palabra->begin()) ) > 0 ) { //Si el primer caracter es invalido
+		//Lo borro
+		palabra -> erase( palabra -> begin());
+		printf("%s", palabra->c_str());
+
+	}
+	
+	if( conjuntoInvalidos -> count(*(palabra -> end()) ) > 0 ) { //Si el ultimo caracter es invalido
+		//Lo borro
+		palabra -> erase( palabra -> end() );
+		printf("%s", palabra->c_str());
+	}
 }
 
 int main()
@@ -86,6 +101,7 @@ int main()
     std::list<std::string>* listaDePalabras = Parseo();
     //printf("Hello world!\n");
     for(std::list<std::string>::iterator it = listaDePalabras-> begin(); it != listaDePalabras -> end(); it++ ) {
+		quitarCaracters(&(*it));
 		printf("%s \n", it->c_str());
 	}
     
