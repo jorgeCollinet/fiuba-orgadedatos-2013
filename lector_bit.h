@@ -16,7 +16,8 @@ class LectorBit {
 	unsigned char buffer;
 public:
 	LectorBit(const char* nombre_archivo);
-	/* devuelve el siguiente bit leido del archivo, es decir un 0 o un 1
+	/* Devuelve el siguiente bit leido del archivo, es decir un 0 o un 1
+	 * En caso de algún error devuelve 2
 	 * OJO: despues de leer un bit se tiene que comprobar que no se llegó
 	 *  a fin de archivo con el metodo eof(),  ver ejemplo */
 	unsigned int leer_bit();

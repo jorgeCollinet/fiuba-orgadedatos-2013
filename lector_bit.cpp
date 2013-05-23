@@ -12,10 +12,10 @@ LectorBit::LectorBit(const char* nombre_archivo):
 	contador = 8;
 	buffer = 0;
 }
-bool LectorBit::eof(){
+bool LectorBit::eof() {
 	return arch.eof();
 }
-unsigned int LectorBit::leer_bit(){
+unsigned int LectorBit::leer_bit() {
 	if (!arch.is_open() || arch.eof()) {
 		return 2;
 	}

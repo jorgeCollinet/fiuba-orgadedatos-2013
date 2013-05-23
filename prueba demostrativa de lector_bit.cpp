@@ -7,11 +7,61 @@
 
 
 #include "lector_bit.h"
+#include "escritor_bit.h"
 using namespace std;
 // caso de muestra de como usar lector_bit.h
 /*
 int main(){
-	LectorBit lector("ejemplo de archivo usado en prueba de lector_bit.txt");
+
+	Escritor_bit escritor ("mi prueba.txt");
+	/*
+	 * si se quiere probar este , comentar el otro metodo
+	 * NUNCA USAR LOS DOS AL MISMO TIEMPO
+	escritor.escribir_bit_desde_abajo(1);
+	escritor.escribir_bit_desde_abajo(1);
+	escritor.escribir_bit_desde_abajo(1);
+	escritor.escribir_bit_desde_abajo(1);
+	escritor.escribir_bit_desde_abajo(1);
+	escritor.escribir_bit_desde_abajo(1);
+	escritor.escribir_bit_desde_abajo(1);
+	escritor.escribir_bit_desde_abajo(0);
+
+	escritor.escribir_bit_desde_abajo(0);
+	escritor.escribir_bit_desde_abajo(1);
+	escritor.escribir_bit_desde_abajo(1);
+	escritor.escribir_bit_desde_abajo(1);
+	escritor.escribir_bit_desde_abajo(1);
+	escritor.escribir_bit_desde_abajo(1);
+	escritor.escribir_bit_desde_abajo(1);
+	escritor.escribir_bit_desde_abajo(1);
+	*/
+	escritor.escribir_bit_desde_arriba(1);
+	escritor.escribir_bit_desde_arriba(1);
+	escritor.escribir_bit_desde_arriba(1);
+	escritor.escribir_bit_desde_arriba(1);
+	escritor.escribir_bit_desde_arriba(1);
+	escritor.escribir_bit_desde_arriba(1);
+	escritor.escribir_bit_desde_arriba(1);
+	escritor.escribir_bit_desde_arriba(0);
+
+	escritor.escribir_bit_desde_arriba(0);
+	escritor.escribir_bit_desde_arriba(1);
+	escritor.escribir_bit_desde_arriba(1);
+	escritor.escribir_bit_desde_arriba(1);
+	escritor.escribir_bit_desde_arriba(1);
+	escritor.escribir_bit_desde_arriba(1);
+	escritor.escribir_bit_desde_arriba(1);
+	escritor.escribir_bit_desde_arriba(1);
+
+	// aca pruebo q a pesar de no completar los bits el resto se llena de ceros
+	escritor.escribir_bit_desde_arriba(1);
+
+	escritor.cerrar_escritor();
+
+//------------------------------------------------------------
+
+	// leo lo que anter escribí
+	LectorBit lector("mi prueba.txt");
 	cout<<"prueba: "<<endl;
 	int cont=1;
 	int num=0;
