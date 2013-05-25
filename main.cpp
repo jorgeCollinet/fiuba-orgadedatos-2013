@@ -1,8 +1,9 @@
+#define parseo
+#ifndef parseo
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <List>
-
+#include <list>
 /**Variables de mi parseo */
 
 FILE * fd;
@@ -45,7 +46,7 @@ void Parseo() {
 
 			int i,j;
 
-			/**Debo Analizar cada parrafo*/
+			//Debo Analizar cada parrafo
 			for(i=0;i<ocupacionbuffer;i++){
 
 				//Si no encuentro un espacio lo guardo en la palabra1
@@ -59,7 +60,7 @@ void Parseo() {
 					palabra = (char *)(malloc(tam*sizeof(char)));
 					strcpy(palabra,palabra1);
 					printf("%d,%d,%d,%s \n",pos,documento,tam,palabra);
-//					free(palabra);
+					free(palabra);
 					listaDePalabras.pushback(palabra);
 					pos++;
 					for(j=0;j<tam;j++){
@@ -95,3 +96,5 @@ int main()
     //printf("Hello world!\n");
     return 0;
 }
+
+#endif
