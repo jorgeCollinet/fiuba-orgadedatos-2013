@@ -26,5 +26,7 @@ public:
   void abrirEscritura(const std::string& miruta);
 
   bool leerunalinea(std::string& micadena);
+
+
 };
 #endif /* MANEJADORARCHIVOS_H_ */

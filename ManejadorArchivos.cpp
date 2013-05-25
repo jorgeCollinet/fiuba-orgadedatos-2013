@@ -38,7 +38,8 @@ void ManejadorArchivos::abrirEscritura(const std::string& miruta){
 
 
 }
-
+// Lo que lee lo guardo en micadena
+//Retorna true si pudo leer una linea, o false en caso contrario
 bool ManejadorArchivos::leerunalinea(std::string& micadena){
 
 	char linea[256];
@@ -57,9 +58,9 @@ bool ManejadorArchivos::leerunalinea(std::string& micadena){
 
 
 
-
-
 }
+
+
 
 
 
