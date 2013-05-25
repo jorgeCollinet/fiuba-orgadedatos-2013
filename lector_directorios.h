@@ -18,3 +18,5 @@ class lector_directorios{
 	char** leer_dir(char* ruta);
 
 };
+
+#endif /* LECTOR_DIRECTORIOS_H_ */
