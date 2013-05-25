@@ -24,7 +24,7 @@ char palabra1[20];
  */
 void Parser(char* archivo) {
 
-	fd= fopen("archivo","r");
+	fd= fopen(archivo,"r");
 
 	if (fd == NULL){
 

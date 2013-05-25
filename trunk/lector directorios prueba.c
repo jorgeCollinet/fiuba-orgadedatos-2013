@@ -1,3 +1,6 @@
+
+#define lector_directorios_prueba
+#ifndef lector_directorios_prueba
 #include<stdio.h>
 #include<sys/types.h>
 #include<sys/stat.h>
@@ -17,7 +20,7 @@ int main()
         if(dir)
         {
                 printf("Archivos:\n");
-                while(drnt = readdir(dir))
+                while((drnt = readdir(dir)))
                 {
                         printf("%-20s\t\n", drnt->d_name);
 
@@ -31,3 +34,4 @@ int main()
 
         return 0;
 }
+#endif

@@ -5,15 +5,17 @@
  *      Author: jorge
  */
 
-
+#define sacar_esto_para_correr_la_prueba
+#ifndef sacar_esto_para_correr_la_prueba
 #include "lector_bit.h"
 #include "escritor_bit.h"
 using namespace std;
 // caso de muestra de como usar lector_bit.h
-/*
+
 int main(){
 
 	Escritor_bit escritor ("mi prueba.txt");
+
 	/*
 	 * si se quiere probar este , comentar el otro metodo
 	 * NUNCA USAR LOS DOS AL MISMO TIEMPO
@@ -84,4 +86,4 @@ int main(){
 	}
 
 }
-*/
+#endif
