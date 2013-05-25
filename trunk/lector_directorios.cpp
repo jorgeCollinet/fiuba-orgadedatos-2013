@@ -6,8 +6,8 @@ vector<string>& Lector_directorios::leer_dir(char* ruta){
 	DIR *dir = NULL;
 	struct dirent *drnt = NULL;
 	vector<string>*archivos = new vector<string>;
-	char* puntos = ".";
-	char* puntos2 = "..";
+	const char* puntos = ".";
+	const char* puntos2 = "..";
 
 	dir=opendir(ruta);
 
