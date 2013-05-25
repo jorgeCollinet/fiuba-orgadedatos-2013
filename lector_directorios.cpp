@@ -5,9 +5,9 @@ vector<string>& Lector_directorios::leer_dir(char* ruta){
 	// variables
 	DIR *dir = NULL;
 	struct dirent *drnt = NULL;
-	//char** archivos = malloc(sizeof(char**));
 	vector<string>*archivos = new vector<string>;
-	//if(!archivos) return NULL;
+	char* puntos = ".";
+	char* puntos2 = "..";
 
 	dir=opendir(ruta);
 
@@ -17,10 +17,8 @@ vector<string>& Lector_directorios::leer_dir(char* ruta){
 
 		while((drnt = readdir(dir))){
 
-			if((drnt->d_name[0] == '.')||(drnt->d_name[1] == '.')){
-				continue;
-			}
-			//archivos[i] = drnt->d_name);
+			if((strcmp(drnt->d_name,puntos)==0)||((strcmp(drnt->d_name,puntos2)==0))) continue;
+
 			stringstream ss;
 			ss<<drnt->d_name;
 			string * aux = new string(ss.str());
@@ -31,7 +29,7 @@ vector<string>& Lector_directorios::leer_dir(char* ruta){
 	    closedir(dir);
 
 	}else{
-		//free(archivos);
+
 		delete archivos;
 		// devuelve uno vacio
 		vector<string>*archivos = new vector<string>;
