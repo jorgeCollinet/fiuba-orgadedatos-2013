@@ -39,5 +39,27 @@ void ManejadorArchivos::abrirEscritura(const std::string& miruta){
 
 }
 
+bool ManejadorArchivos::leerunalinea(std::string& micadena){
+
+	char linea[256];
+
+	  // lee del archivo a la linea, hasta haber leido:
+	  // MAX_LENGTH caracteres, o un fin de linea
+	  miarchivo.getline( (char*)&linea , 256 , '\n');
+	  micadena = linea;
+
+	  if (miarchivo.fail() ) {
+	    //chequea si se ha producido un error, se devuelve false
+	    miarchivo.clear();
+	    return false;
+	  }
+	  return true;
+
+
+
+
+
+}
+
 
 
