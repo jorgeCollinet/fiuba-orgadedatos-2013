@@ -25,5 +25,8 @@ public:
 
   void abrirEscritura(const std::string& miruta);
 
+  void escribir(char c);
+
+  void escribir(const std::string& micadena);
 };
 #endif /* MANEJADORARCHIVOS_H_ */
