@@ -1,13 +1,8 @@
-/*
- * main_principal.cpp
- *
- *  Created on: 25/05/2013
- *      Author: jorge
- */
 
 #include <iostream>
 #include "lector_directorios.h"
 #include "Parser.h"
+#include <vector>
 using namespace std;
 /* la llamada al programa se hace pasandole el directorio donde están los archivos */
 int main (int args, char* argv[]){
