@@ -3,20 +3,20 @@
 
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <string>
-
+#include <vector>
 #include <dirent.h>
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 
-class lector_directorios{
+class Lector_directorios{
 
 	public:
 	// se le entrega una ruta y devuelve una lista de archivos en ese directorio
 	// devuelve NULL ante algun problema
-	char** leer_dir(char* ruta);
+	std::vector<std::string>& leer_dir(char* ruta);
 
 };
-
-#endif /* LECTOR_DIRECTORIOS_H_ */
+#endif
