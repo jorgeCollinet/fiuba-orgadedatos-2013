@@ -14,7 +14,7 @@ int main (int args, char* argv[]){
 	// se parsean los archivos
 	while(!archivos.empty()){
 		string aux = archivos.back();
-		cout<<aux<<endl;
+		cout<<"DEBUG: path archivo: "<<aux<<endl;
 		archivos.pop_back();
 		//Parser((char*)aux.c_str());
 	}
