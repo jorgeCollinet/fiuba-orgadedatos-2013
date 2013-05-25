@@ -4,7 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
-#include <string>
+#include <string.h>
 #include <vector>
 #include <dirent.h>
 #include <unistd.h>
