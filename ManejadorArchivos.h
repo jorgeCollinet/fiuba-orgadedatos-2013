@@ -11,15 +11,15 @@
 #include <fstream>
 #include <iostream>
 
-class Archivo {
+class ManejadorArchivos {
 private:
    std::fstream  miarchivo;  // mi archivo
 
 public:
 
-  ArchivoTexto();
+  ManejadorArchivos();
 
-  ~ArchivoTexto();
+  ~ManejadorArchivos();
 
   void abrirLectura(const std::string& miruta);
 
