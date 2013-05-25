@@ -32,7 +32,12 @@ void ManejadorArchivos::abrirLectura(const std::string& miruta){
 
 	}
 
+void ManejadorArchivos::abrirEscritura(const std::string& miruta){
 
+	miarchivo.open(miruta.c_str(), std::fstream::in);
+
+
+}
 
 
 
