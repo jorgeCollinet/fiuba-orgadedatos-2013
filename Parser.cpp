@@ -10,16 +10,16 @@
 using namespace std;
 
 /*
- * Dado archivo lo parsea extrayendo las palabras
+ * Dado archivo lo parsea extrayendo las palabras. Lee linea por linea hasta eof
  * usa strtok para eliminar caracteres invalidos
  *
  *Falta guardaar en estructura...
- *
+ *Retorna true si salio  bien
  */
 bool parser(std::string& archivoaParser){
 
         std::string palabra;
-        const char* carac_invalidos[CANTIDAD_TOTAL_NOPARSE] = {"¡!#$%&'( )*+,-.0123456789:;<=>¿?@[]^_`{|}~/\\\"\n"};
+        const char* carac_invalidos[CANTIDAD_TOTAL_NOPARSE] = {"¡!#$%&'( )*+,-.:;<=>¿?@[]^_`{|}~/\\\"\n"};
         ManejadorArchivos archivo;
 
         archivo.abrirLectura(archivoaParser);
