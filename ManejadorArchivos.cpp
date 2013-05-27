@@ -15,7 +15,7 @@ ManejadorArchivos::ManejadorArchivos(){};
 
 
 /**
-  * Cierra el archivo
+  * Cierra el archivo unicamente, no lo destruye
   */
 ManejadorArchivos::~ManejadorArchivos() {
   miarchivo.close();
