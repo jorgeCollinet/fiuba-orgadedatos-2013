@@ -18,9 +18,9 @@ private:
 
 public:
 
-
+  //Constructor
   ManejadorArchivos();
-
+  //Destructor
   ~ManejadorArchivos();
 
   void abrirLectura(const std::string& miruta);
