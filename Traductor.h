@@ -1,8 +1,6 @@
 #ifndef TRADUCTOR_H_
 #define TRADUCTOR_H_
-#include <iostream>
-#include <cmath>
-#include "lector_bit.h"
+
 
 class traductor{
 
