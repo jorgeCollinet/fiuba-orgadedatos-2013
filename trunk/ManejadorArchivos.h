@@ -13,9 +13,11 @@
 
 class ManejadorArchivos {
 private:
+
    std::fstream  miarchivo;  // mi archivo
 
 public:
+
 
   ManejadorArchivos();
 
@@ -27,6 +29,7 @@ public:
 
   bool leerunalinea(std::string& micadena);
 
+  void terminarlinea();
 
 };
 #endif /* MANEJADORARCHIVOS_H_ */
