@@ -4,7 +4,7 @@
 #include "lector_bit.h"
 #include "escritor_bit.h"
 
-int traductor::read_gamma(LectorBit reader){
+int traductor::read_gamma(LectorBit& reader){
 
 	int unary = 0;
 	int binary = 0;
@@ -27,7 +27,7 @@ int traductor::read_gamma(LectorBit reader){
 };
 
 
-void traductor::write_gamma(int num,Escritor_bit writer){
+void traductor::write_gamma(int num,Escritor_bit& writer){
 
 	int unary;
 	int binary;
@@ -57,7 +57,7 @@ void traductor::write_gamma(int num,Escritor_bit writer){
 };
 
 
-int traductor::read_delta(LectorBit reader){
+int traductor::read_delta(LectorBit& reader){
 
 	int gamma = 0;
 	int binary = 0;
@@ -76,7 +76,7 @@ int traductor::read_delta(LectorBit reader){
 }
 
 
-void traductor::write_delta(int num,Escritor_bit writer){
+void traductor::write_delta(int num,Escritor_bit& writer){
 
 	int gamma;
 	int binary;
