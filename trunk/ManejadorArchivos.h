@@ -10,6 +10,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <string.h>
 
 class ManejadorArchivos {
 private:
@@ -24,8 +25,6 @@ public:
   ~ManejadorArchivos();
 
   void abrirLectura(const std::string& miruta);
-
-  void abrirEscritura(const std::string& miruta);
 
   bool leerunalinea(std::string& micadena);
 
