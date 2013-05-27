@@ -1,9 +1,11 @@
+#include "Parser.h"
+#include "ManejadorArchivos.h"
 #include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <string.h>
+#include <fstream>
+#include <cstring>
+
+#ifndef CANTIDAD_TOTAL_NOPARSE
+#define CANTIDAD_TOTAL_NOPARSE 48
 
 using namespace std;
 
