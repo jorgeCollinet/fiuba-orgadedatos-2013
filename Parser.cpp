@@ -10,35 +10,32 @@
 using namespace std;
 
 /*
- * Dado un documento de texto, lo parsea (extrae los terminos relevantes)
- * y los almacena en la estructura dada.
+ * Dado archivo lo parsea extrayendo las palabras
+ * usa strtok para eliminar caracteres invalidos
  *
- * @param archivoAparsear: es el puntero al archivo a parsear.
- * @param arbol: es la estructura para guardar las palabras.
+ *Falta guardaar en estructura...
  *
- * @return true si termino bien, false caso contrario
  */
-bool parser(std::string& archivoAparsear){
+bool parser(std::string& archivoaParser){
 
         std::string palabra;
-        const char* invalidos[CANTIDAD_TOTAL_NOPARSE] = {"¡!#$%&'( )*+,-.0123456789:;<=>¿?@[]^_`{|}~/\\\"\n"};
-        ArchivoTexto archivo;
+        const char* carac_invalidos[CANTIDAD_TOTAL_NOPARSE] = {"¡!#$%&'( )*+,-.0123456789:;<=>¿?@[]^_`{|}~/\\\"\n"};
+        ManejadorArchivos archivo;
 
-        archivo.abrirParaLectura(archivoAparsear);
-        std::string auxLinea;
+        archivo.abrirLectura(archivoaParser);
+        std::string aux;
 
-        while ( archivo.leerLinea(auxLinea)){
-                char *linea = new char[CANT_MAX];
-                strcpy(linea,auxLinea.c_str());
-                char* auxPalabra = strtok(linea,*invalidos);
+        while ( archivo.leerunalinea(aux)){
+                char *linea = new char[256];
+                strcpy(linea,aux.c_str());
+                char* auxPalabra = strtok(linea,*carac_invalidos);
 
                 while ( auxPalabra != NULL ){
                         palabra = auxPalabra;
-                        //Utilidades::pasarAminusculas(palabra);
-                        //trie.insertarPalabra(palabra,direccion);
+
                         cout<<palabra<<endl;
 
-                        auxPalabra = strtok (NULL, *invalidos);
+                        auxPalabra = strtok (NULL, *carac_invalidos);
                 }
                 delete []linea;
                 delete auxPalabra;
