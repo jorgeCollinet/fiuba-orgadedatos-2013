@@ -7,6 +7,7 @@
 
 #include "ManejadorArchivos.h"
 #include <iostream>
+#include <string.h>
 
 using namespace std;
 
@@ -20,17 +21,21 @@ ManejadorArchivos::~ManejadorArchivos() {
   miarchivo.close();
 }
 
-void ManejadorArchivos::abrirLectura(const std::string& miruta){
+/*Abre el archivo pasado por parametro
+ * en modo LECTURA
+ */
+void ManejadorArchivos::abrirLectura(const std::string& nombre){
 
 
 	//intenta abrir el archivo en modo lectura
-	  miarchivo.open(miruta.c_str(), std::fstream::in);
+	  miarchivo.open(nombre.c_str(), std::fstream::in);
 
 	  if (!miarchivo.is_open())
 	          // si no se puede abrir
 	          throw std::ios_base::failure("El archivo no se abre");
 
 	}
+
 
 void ManejadorArchivos::abrirEscritura(const std::string& miruta){
 
@@ -40,7 +45,7 @@ void ManejadorArchivos::abrirEscritura(const std::string& miruta){
 }
 // Lo que lee lo guardo en micadena
 //Retorna true si pudo leer una linea, o false en caso contrario
-bool ManejadorArchivos::leerunalinea(std::string& micadena){
+bool ManejadorArchivos::leerunalinea(string& micadena){
 
 	char linea[256];
 
@@ -60,7 +65,18 @@ bool ManejadorArchivos::leerunalinea(std::string& micadena){
 
 }
 
+/**
+ * Posiciona el cursor en una nueva linea debajo de la actual
+ *
+ */
+void ManejadorArchivos::terminarlinea() {
+  // intenta escribir en el archivo
+  miarchivo << endl;
 
+  if (miarchivo.fail())
+    //si se produjo un error, arroja una excepcion
+    throw std::ios_base::failure("No se pudo terminar la linea");
+}
 
 
 
