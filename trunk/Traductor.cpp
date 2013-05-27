@@ -1,4 +1,7 @@
 #include "Traductor.h"
+#include <iostream>
+#include <cmath>
+#include "lector_bit.h"
 
 int traductor::read_gamma(LectorBit* reader){
 
