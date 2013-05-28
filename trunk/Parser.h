@@ -6,10 +6,11 @@
 #include <iostream>
 #include <fstream>
 #include "ManejadorArchivos.h"
+#include <list>
 using namespace std;
 
 
-void Parser(std::string&);
+void Parser(std::string&,list<std::string>);
 
 
 #endif /* PARSERTEX_H_ */
