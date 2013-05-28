@@ -30,6 +30,7 @@
 									<listOptionValue builtIn="false" value="/usr/include"/>
 									<listOptionValue builtIn="false" value="/usr/include/c++/4.6"/>
 									<listOptionValue builtIn="false" value="/usr/include/c++/4.6.3"/>
+									<listOptionValue builtIn="false" value="/usr/include/c++/4.6/i686-linux-gnu"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.69472118" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
