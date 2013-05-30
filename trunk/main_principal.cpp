@@ -12,36 +12,30 @@ int main (int args, char* argv[]){
 	// se buscan los archivos con los cuales trabajaremos
 	Lector_directorios lector;
 	vector<string>archivos = lector.leer_dir(argv[1]);
-	//debug que muestra que lector devolvió bien los archivos
-	for(size_t i=0;i<archivos.size();++i){
-		cout<<"DEBUG archivos: "<<archivos[i]<<endl;
-	}
 
 	// se parsean los archivos
 	while(!archivos.empty()){
-		bool exito = true;
 		string path(argv[1]);
 		path+="/";
 		path+=archivos.back();
-		cout<<path<<endl;
-		exito = parser(path);
-		if(!exito){
-			cout<<"ERROR EN PARSER !!!"<<endl;
-			return 1;
-		}
+		cout<<"Archivo: "<<path<<endl;
+		// aca el parser tendria que devolver
+		parser(path);
 		archivos.pop_back();
 	}
 
 	// se mergean los archivos
 		//auxiliar a la espera de que parcer se finalize de implementar
 		vector<string>archivos_a_mergear;
-		string path1 ("/home/jorge/Escritorio/ej tps/ej1/parser-doc1.txt");
+		string path1 ("/home/jorge/workspace2/tp DATOS/prototipo a seguir ej1/parser-doc1.txt");
 		archivos_a_mergear.push_back(path1);
-		string path2 ("/home/jorge/Escritorio/ej tps/ej1/parser-doc2.txt");
+		string path2 ("/home/jorge/workspace2/tp DATOS/prototipo a seguir ej1/parser-doc2.txt");
 		archivos_a_mergear.push_back(path2);
+		string path3 ("/home/jorge/workspace2/tp DATOS/prototipo a seguir ej1/parser-doc3.txt");
+		archivos_a_mergear.push_back(path3);
 
-	//Merge merger(archivos_a_mergear);
-	//merger.merge_2_etapas("merge-doc.txt");
+		Merge merger(archivos_a_mergear);
+		merger.merge_2_etapas("merge-doc.txt");
 
 	// se construyen los indices
 		//falta hacer

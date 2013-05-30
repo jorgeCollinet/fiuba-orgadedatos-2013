@@ -1,10 +1,3 @@
-/*
- * merge.h
- *
- *  Created on: 25/05/2013
- *      Author: jorge
- */
-
 #ifndef MERGE_H_
 #define MERGE_H_
 #include <vector>
@@ -17,6 +10,7 @@ class Merge {
 	std::vector<std::string>& arch_a_merg;
 public:
 	Merge(std::vector<std::string>& archivos_a_mergear);
+
 	bool merge_2_etapas(const char* nombre_final);
 };
 
