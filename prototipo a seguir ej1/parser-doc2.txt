@@ -1,0 +1,4 @@
+casa 2 1 4
+hola 2 1 1
+lucas 2 1 3
+pepe 2 1 2

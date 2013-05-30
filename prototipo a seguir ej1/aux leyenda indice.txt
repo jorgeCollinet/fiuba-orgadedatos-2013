@@ -1,0 +1,1 @@
+al guardar los archivos del indice no se guardan offsets , porque de la logica se sabrá cuando un termino empieza y termin (estamos hablando del archivo de documentos)

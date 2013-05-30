@@ -1,0 +1,2 @@
+/home/jorge/Escritorio/ej tps/ej1/
+ej1-doc1.txt ej1-doc2.txt ej2-doc3.txt
