@@ -1,12 +1,8 @@
-#include "Traductor.h"
-#include <iostream>
-#include <cmath>
-#include "lector_bit.h"
-#include "escritor_bit.h"
+#include "traductor.h"
 
 using namespace std;
 
-traductor::traductor(const int modo,const char* arch_destino){
+Traductor::Traductor(const int modo,const char* arch_destino){
 
 	this->modo= modo;
 
@@ -17,14 +13,12 @@ traductor::traductor(const int modo,const char* arch_destino){
 		writer = new Escritor_bit(arch_destino);
 	}
 	if((modo !=1)&&(modo !=2)){
-		cout << "Modo invalido" << endl;
-		delete this;
+		throw std::ios_base::failure("Modo invalido");
 	}
-
 }
 
 
-traductor::~traductor(){
+Traductor::~Traductor(){
 	if(modo == READ){
 		delete reader;
 	}
@@ -34,34 +28,38 @@ traductor::~traductor(){
 }
 
 
-int traductor::read_gamma(){
+int Traductor::read_gamma(){
 
-	if(modo == WRITE) return -2;
+	if(modo == WRITE){
+		throw std::ios_base::failure("se abrio en modo escritura -> no se puede leer");
+	}
 
 	int unary = 0;
 	int binary = 0;
 
 	// leo la parte unaria-1, corto en el primer 0
-	while (reader.leer_bit()==1){
+	while (reader->leer_bit()==1){
 		unary++;
-		if(reader.eof()) return -1;
+		if(reader->eof()) return -1;
 	}
 
 	//leo el resto
 	for(int i=unary;i>0;i--){
 		// decodifico la parte binaria
-		if(reader.leer_bit() == 1){
+		if(reader->leer_bit() == 1){
 			binary=binary+(int)pow((float)2, (float)(i-1));
 		}
-		if(reader.eof()) return -1;
+		if(reader->eof()) return -1;
 	}
 	return((int)pow((double)2,(double)unary)+binary);
 };
 
 
-bool traductor::write_gamma(int num){
+bool Traductor::write_gamma(int num){
 
-	if(modo == READ) return false;
+	if(modo == READ){
+		throw std::ios_base::failure("Se abrio en modo lectura -> no se puede escribir");
+	}
 
 	int unary;
 	int binary;
@@ -74,27 +72,30 @@ bool traductor::write_gamma(int num){
 
 	// escribo la parte unaria
 	for(int i=1;i<unary;i++){
-		writer.escribir_bit_desde_abajo(1);
+		writer->escribir_bit_desde_abajo(1);
 	};
-	writer.escribir_bit_desde_abajo(0);
+	writer->escribir_bit_desde_abajo(0);
 
 	// escribo la parte binaria
 	for(int i=aux;i>0;i--){
 		aux2 = (int)pow ((float)2, (float)(i-1));
 		if(aux2 <= binary){
-			writer.escribir_bit_desde_abajo(1);
+			writer->escribir_bit_desde_abajo(1);
 			binary = binary - aux2;
 		}else{
-			writer.escribir_bit_desde_abajo(0);
+			writer->escribir_bit_desde_abajo(0);
 		}
 	}
 	return true;
 };
 
 
-int traductor::read_delta(){
+int Traductor::read_delta(){
 
-	if(modo == WRITE) return -2;
+	if(modo == WRITE){
+		throw std::ios_base::failure("se abrio en modo escritura -> no se puede leer");
+
+	}
 
 	int gamma = 0;
 	int binary = 0;
@@ -104,18 +105,21 @@ int traductor::read_delta(){
 
 	for(int i=gamma;i>0;i--){
 		// decodifico la parte binaria
-		if(reader.leer_bit()){
+		if(reader->leer_bit()){
 			binary=binary+(int)pow((float)2, (float)i);
 		}
-		if(reader.eof()) return -1;
+		if(reader->eof()) return -1;
 	}
 	return((int)pow((float)2,(float)gamma)+binary);
 }
 
 
-bool traductor::write_delta(int num,){
+bool Traductor::write_delta(int num){
 
-	if(modo == READ) return false;
+	if(modo == READ){
+		throw std::ios_base::failure("Se abrio en modo lectura -> no se puede escribir");
+
+	}
 
 	int gamma;
 	int binary;
@@ -133,10 +137,10 @@ bool traductor::write_delta(int num,){
 	for(int i=aux;i>0;i--){
 		aux2 = (int)pow ((float)2, (float)(i-1));
 		if(aux2 <= binary){
-			writer.escribir_bit_desde_abajo(1);
+			writer->escribir_bit_desde_abajo(1);
 			binary = binary - aux2;
 		}else{
-			writer.escribir_bit_desde_abajo(0);
+			writer->escribir_bit_desde_abajo(0);
 		}
 	}
 
@@ -144,9 +148,12 @@ bool traductor::write_delta(int num,){
 };
 
 
-char traductor::read_char(){
+char Traductor::read_char(){
 
-	if(modo == WRITE) return NULL;
+	if(modo == WRITE){
+		throw std::ios_base::failure("se abrio en modo escritura -> no se puede leer");
+
+	}
 
 	char letra;
 	int bin = 0;
@@ -154,10 +161,10 @@ char traductor::read_char(){
 	//leo el resto
 	for(int i=7;i>=0;i--){
 		// decodifico la parte binaria
-		if(reader.leer_bit() == 1){
+		if(reader->leer_bit() == 1){
 			bin=bin+(int)pow((float)2, (float)i);
 		}
-		if(reader.eof()) return NULL;
+		//if(reader.eof()) return NULL;
 	}
 
 	letra =  static_cast<char>(bin);
@@ -165,9 +172,12 @@ char traductor::read_char(){
 }
 
 
-bool traductor::write_char(char letra){
+bool Traductor::write_char(char letra){
 
-	if(modo == READ) return false;
+	if(modo == READ){
+		throw std::ios_base::failure("Se abrio en modo lectura -> no se puede escribir");
+
+	}
 
 	int bin = static_cast<int>(letra);
 	int aux;
@@ -176,16 +186,16 @@ bool traductor::write_char(char letra){
 	for(int i=7;i>=0;i--){
 		aux = (int)pow((float)2, (float)(i));
 		if(aux <= bin){
-			writer.escribir_bit_desde_abajo(1)
+			writer->escribir_bit_desde_abajo(1);
 			bin = bin - aux;
 		}else{
-			writer.escribir_bit_desde_abajo(0);
+			writer->escribir_bit_desde_abajo(0);
 		}
 	}
 	return true;
 }
 
 
-const int traductor::mode(){
+const int Traductor::mode(){
 	return modo;
 }

@@ -2,21 +2,25 @@
 #define TRADUCTOR_H_
 #include "lector_bit.h"
 #include "escritor_bit.h"
+#include <iostream>
+#include <cmath>
+#include "lector_bit.h"
+#include "escritor_bit.h"
 
 #define READ 1
 #define WRITE 2
 
-class traductor{
+class Traductor{
 
 private:
-	LectorBit reader;
-	Escritor_bit writer;
-	const int modo;
+	LectorBit* reader;
+	Escritor_bit* writer;
+	int modo;
 
 public:
 
 	// indicar el modo y el archivo
-	traductor::traductor(int modo,char* arch_destino);
+	Traductor(const int modo,const char* arch_destino);
 
 	// lee el siguiente gamma. -1 para error.
 	int read_gamma();
@@ -35,7 +39,9 @@ public:
 	bool write_char(char letra);
 
 	// indica el modo
-	const int traductor::mode();
+	const int mode();
+
+	~Traductor();
 
 };
 #endif
