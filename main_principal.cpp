@@ -20,7 +20,11 @@ int main (int args, char* argv[]){
 	// se parsean los archivos
 	while(!archivos.empty()){
 		bool exito = true;
-		exito = parser(archivos.back().append(argv[1]));
+		string path(argv[1]);
+		path+="/";
+		path+=archivos.back();
+		cout<<path<<endl;
+		exito = parser(path);
 		if(!exito){
 			cout<<"ERROR EN PARSER !!!"<<endl;
 			return 1;
