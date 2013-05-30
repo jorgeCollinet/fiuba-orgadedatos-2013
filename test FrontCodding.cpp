@@ -1,3 +1,5 @@
+#define prueba_para_la_estructura_de_front_codding
+#ifndef prueba_para_la_estructura_de_front_codding
 /*Esto es una prueba para la estructura de front codding, se espera que no pinche(por ahora)*/
 #include "front_codding.h"
 
@@ -28,3 +30,4 @@ int main(void){
 	delete(palabra);
 	delete (fc2);
 };
+#endif
