@@ -14,7 +14,7 @@
 
 //using namespace std;
 
-Front_codding::Front_codding(char* unNombreArchivo) {
+Front_codding::Front_codding(const char* unNombreArchivo) {
 	//Crea la clase y guarda el nombre del archivo a usar.
 	nombreArchivo = std::string(unNombreArchivo);
 	this -> cantidadPalabras = 0;
@@ -43,7 +43,7 @@ void Front_codding::modo_escritura(void) {
 	}
 }
 
-int Front_codding::agregar_palabra(char* unaPalabra) {
+int Front_codding::agregar_palabra(const char* unaPalabra) {
 	if ( modo == LECTURA) return ERRORMODO; //no pongo el define porque por alguna razon no compila
 	std::string palabra (unaPalabra);
 	unsigned int i = 0;

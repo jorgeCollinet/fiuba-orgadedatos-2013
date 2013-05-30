@@ -37,12 +37,12 @@ void ManejadorArchivos::abrirLectura(const std::string& nombre){
 	}
 
 
-void ManejadorArchivos::abrirEscritura(const std::string& miruta){
+//void ManejadorArchivos::abrirEscritura(const std::string& miruta){
 
-	miarchivo.open(miruta.c_str(), std::fstream::in);
+//	miarchivo.open(miruta.c_str(), std::fstream::in);
 
 
-}
+//}
 // Lo que lee lo guardo en micadena
 //Retorna true si pudo leer una linea, o false en caso contrario
 bool ManejadorArchivos::leerunalinea(string& micadena){

@@ -16,10 +16,10 @@ using namespace std;
 class Front_codding {
 
 public:
-	Front_codding(char* unNombreArchivo);
+	Front_codding(const char* unNombreArchivo);
 	void modo_lectura(void);
 	void modo_escritura(void);
-	int agregar_palabra(char* unaPalabra);
+	int agregar_palabra(const char* unaPalabra);
 	char* leer_proxima_palabra(void);
 	~Front_codding();
 
