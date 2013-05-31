@@ -11,6 +11,9 @@
 #ifndef FRONTCODDING_H_
 #define FRONTCODDING_H_
 
+#include "traductor.h"
+
+
 using namespace std;
 
 class Front_codding {
@@ -20,11 +23,11 @@ public:
 	void modo_lectura(void);
 	void modo_escritura(void);
 	int agregar_palabra(const char* unaPalabra);
-	char* leer_proxima_palabra(void);
+	string leer_proxima_palabra(void);
 	~Front_codding();
 
 private:
-	fstream archivo;
+	Traductor* unTraductor;
 	unsigned int cantidadPalabras;
 	int modo;
 	std::string ultimaPalabra;

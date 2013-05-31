@@ -14,20 +14,9 @@ int main(void){
 	delete (fc);
 	Front_codding* fc2 = new Front_codding("archivo.dat");
 	fc2->modo_lectura();
-	char* palabra;
-	// Ojo que la función devuelve un char*, hay que hacer un delete!
-	palabra = fc2 -> leer_proxima_palabra();
-	cout << palabra << std::endl;
-	delete(palabra);
-	palabra = fc2 -> leer_proxima_palabra();
-	cout << palabra << std::endl;
-	delete(palabra);
-	palabra = fc2 -> leer_proxima_palabra();
-	cout << palabra << std::endl;
-	delete(palabra);
-	palabra = fc2 -> leer_proxima_palabra();
-	cout << palabra << std::endl;
-	delete(palabra);
+	for (int i=0; i < 4; i++)
+		cout << fc2 -> leer_proxima_palabra() << std::endl;
+
 	delete (fc2);
-};
+}
 #endif
