@@ -16,7 +16,7 @@
 int FoldAdd(char* palabra,int espaciodirecc){
 
 	int tam = strlen(palabra);
-	int letra1,letra2,i,sumaparcial,sumatotal;
+	int letra1,letra2,i,sumaparcial=0,sumatotal=0;
 
 	for(i=0;i<tam;i++){
 

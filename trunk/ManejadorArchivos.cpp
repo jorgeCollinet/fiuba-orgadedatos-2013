@@ -11,7 +11,7 @@
 
 using namespace std;
 
-ManejadorArchivos::ManejadorArchivos(){};
+ManejadorArchivos::ManejadorArchivos(){}
 
 
 /**

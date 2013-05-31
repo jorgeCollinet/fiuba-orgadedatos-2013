@@ -38,6 +38,10 @@ public:
 
 	bool write_char(char letra);
 
+	//Escribe una palabra en modo bit
+	bool write_string(std::string palabra);
+
+
 	// indica el modo
 	const int mode();
 

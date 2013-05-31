@@ -24,4 +24,14 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<variableList>
+		<variable>
+			<name>OtrasVarPath</name>
+			<value>file:/usr/include</value>
+		</variable>
+		<variable>
+			<name>PathComun</name>
+			<value>file:/usr/include/c++</value>
+		</variable>
+	</variableList>
 </projectDescription>
