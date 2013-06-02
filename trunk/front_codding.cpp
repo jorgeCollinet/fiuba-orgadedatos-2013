@@ -34,14 +34,14 @@ void Front_codding::modo_escritura(void) {
 }
 
 int Front_codding::agregar_palabra(const char* unaPalabra) {
-	if ( modo == LECTURA) return ERRORMODO; //no pongo el define porque por alguna razon no compila
+	if ( modo == LECTURA) return ERRORMODO;
 	std::string palabra (unaPalabra);
 	unsigned int i = 0;
 	if (cantidadPalabras == 0) {
 		// Como es la primera guardamos toda la plabra;
 		if (!unTraductor -> write_gamma(0)) return ERROR;
 		if (!unTraductor -> write_gamma(palabra.length())) return ERROR;
-		if (!unTraductor-> write_string(unaPalabra)) return ERROR;
+		if (!unTraductor-> write_string(palabra)) return ERROR;
 	} else {
 		/* En este momento debemos revisar la última palabra escrita y ver cuantos de las caracteres se pueden omitir.
 		 * Busco la repetición contigua máxima
@@ -53,9 +53,6 @@ int Front_codding::agregar_palabra(const char* unaPalabra) {
 			}
 		}
 		// Tengo la longitud de la repetición;
-		/*archivo << i << " "; // Caracteres iguales
-		archivo << (palabra.length() - i) << " "; // Distintos
-		archivo << (unaPalabra + i) << " "; // Resto de la plabra*/
 		unTraductor -> write_gamma(i);
 		unTraductor -> write_gamma(palabra.length() - i);
 		unTraductor -> write_string(palabra.substr(i, palabra.length()-1));
@@ -73,12 +70,18 @@ std::string Front_codding::leer_proxima_palabra(void) {
 	iguales = unTraductor -> read_gamma();
 	distintos = unTraductor -> read_gamma();
 	for (int j = 0; j < distintos; j++) {
-		palabraDist = palabraDist + unTraductor -> read_char();
+		palabraDist += unTraductor -> read_char();
 	}
 	if ( cantidadPalabras == 0 ) {
-		ultimaPalabra = palabra;
+		ultimaPalabra = palabraDist;
 	} else {
-		palabra = ultimaPalabra.substr(0, iguales-1);
+		if (iguales == 1) {
+			palabra = ultimaPalabra[0];
+		} else if (iguales == 0) {
+			palabra.clear();
+		} else {
+			palabra = ultimaPalabra.substr(0, iguales);
+		}
 		ultimaPalabra = palabra + palabraDist;
 	}
 	cantidadPalabras++;

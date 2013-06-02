@@ -30,6 +30,7 @@ Traductor::~Traductor(){
 
 
 int Traductor::read_gamma(){
+	/* Recordar que se lee gamma + +1 porque no se puede guardar el 0. */
 
 	if(modo == WRITE){
 		throw std::ios_base::failure("se abrio en modo escritura -> no se puede leer");
@@ -58,16 +59,19 @@ int Traductor::read_gamma(){
 		if(reader->eof()) return -1;
 	}
 	//cout << endl;
-	return (int) (binary + pow((double)2, (double) unary));
+	int aux = (int) (binary + pow((double)2, (double) unary));
+	return --aux;
 }
 
 
 bool Traductor::write_gamma(int num){
-
+	/* Se guarda num + 1 para evitar representar el 0. Es fácil ver que para número mayores a 1 esto no representa un
+	 * incremento notorio en la cantidad de bits a almacenar.
+	 */
 	if(modo == READ){
 		throw std::ios_base::failure("Se abrio en modo lectura -> no se puede escribir");
 	}
-
+	num++;
 	int unary;
 	int binary;
 	int aux,aux2;
@@ -191,7 +195,6 @@ bool Traductor::write_char(char letra){
 		throw std::ios_base::failure("Se abrio en modo lectura -> no se puede escribir");
 
 	}
-
 	int bin = static_cast<int>(letra);
 	int aux;
 
