@@ -5,7 +5,7 @@
  *      Author: jorge
  */
 
-//#define sacar_esto_para_correr_la_prueba_traductor
+#define sacar_esto_para_correr_la_prueba_traductor
 #ifndef sacar_esto_para_correr_la_prueba_traductor
 #include "traductor.h"
 
