@@ -20,9 +20,12 @@ public:
 	 * En caso de algún error devuelve 2
 	 * OJO: despues de leer un bit se tiene que comprobar que no se llegó
 	 *  a fin de archivo con el metodo eof(),  ver ejemplo */
+	~LectorBit();
+	// Cierra el archivo y libera la memoria.
 	unsigned int leer_bit();
 	/* si se llegó al final del archivo devuelve true caso contrario devuelve false */
 	bool eof();
+
 };
 
 
