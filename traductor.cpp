@@ -79,20 +79,20 @@ bool Traductor::write_gamma(int num){
 
 	// escribo la parte unaria
 	for(int i=1;i<unary;i++){
-		writer->escribir_bit_desde_abajo(1);
+		writer->escribir_bit_desde_arriba(1);
 		cout << "1";
 	};
-	writer->escribir_bit_desde_abajo(0);
+	writer->escribir_bit_desde_arriba(0);
 	cout << "0";
 	// escribo la parte binaria
 	for(int i=aux;i>0;i--){
 		aux2 = (int)pow ((float)2, (float)(i-1));
 		if(aux2 <= binary){
-			writer->escribir_bit_desde_abajo(1);
+			writer->escribir_bit_desde_arriba(1);
 			cout << "1";
 			binary = binary - aux2;
 		}else{
-			writer->escribir_bit_desde_abajo(0);
+			writer->escribir_bit_desde_arriba(0);
 			cout << "0";
 		}
 	}
@@ -148,10 +148,10 @@ bool Traductor::write_delta(int num){
 	for(int i=aux;i>0;i--){
 		aux2 = (int)pow ((float)2, (float)(i-1));
 		if(aux2 <= binary){
-			writer->escribir_bit_desde_abajo(1);
+			writer->escribir_bit_desde_arriba(1);
 			binary = binary - aux2;
 		}else{
-			writer->escribir_bit_desde_abajo(0);
+			writer->escribir_bit_desde_arriba(0);
 		}
 	}
 
@@ -197,10 +197,10 @@ bool Traductor::write_char(char letra){
 	for(int i=7;i>=0;i--){
 		aux = (int)pow((float)2, (float)(i));
 		if(aux <= bin){
-			writer->escribir_bit_desde_abajo(1);
+			writer->escribir_bit_desde_arriba(1);
 			bin = bin - aux;
 		}else{
-			writer->escribir_bit_desde_abajo(0);
+			writer->escribir_bit_desde_arriba(0);
 		}
 	}
 	return true;
