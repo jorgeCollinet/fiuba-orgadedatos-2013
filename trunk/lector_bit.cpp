@@ -41,3 +41,7 @@ unsigned int LectorBit::leer_bit() {
 	}
 	return 2;
 }
+
+LectorBit::~LectorBit() {
+	arch.close();
+}

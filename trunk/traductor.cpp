@@ -23,6 +23,7 @@ Traductor::~Traductor(){
 		delete reader;
 	}
 	if(modo == WRITE){
+		writer->cerrar_escritor();
 		delete writer;
 	}
 }
@@ -38,20 +39,26 @@ int Traductor::read_gamma(){
 	int binary = 0;
 
 	// leo la parte unaria-1, corto en el primer 0
-	while (reader->leer_bit()==1){
+	while (reader->leer_bit() == 1){
 		unary++;
+		cout << "1";
 		if(reader->eof()) return -1;
 	}
+	cout << "0";
 
 	//leo el resto
 	for(int i=unary;i>0;i--){
 		// decodifico la parte binaria
 		if(reader->leer_bit() == 1){
-			binary=binary+(int)pow((float)2, (float)(i-1));
+			binary = binary+(int)pow((float)2, (float)(i-1));
+			cout << "1";
+		} else {
+			cout << "0";
 		}
 		if(reader->eof()) return -1;
 	}
-	return((int)pow((double)2,(double)unary)+binary);
+	cout << endl;
+	return (int) (binary + pow((double)2, (double) unary));
 }
 
 
@@ -73,19 +80,23 @@ bool Traductor::write_gamma(int num){
 	// escribo la parte unaria
 	for(int i=1;i<unary;i++){
 		writer->escribir_bit_desde_abajo(1);
+		cout << "1";
 	};
 	writer->escribir_bit_desde_abajo(0);
-
+	cout << "0";
 	// escribo la parte binaria
 	for(int i=aux;i>0;i--){
 		aux2 = (int)pow ((float)2, (float)(i-1));
 		if(aux2 <= binary){
 			writer->escribir_bit_desde_abajo(1);
+			cout << "1";
 			binary = binary - aux2;
 		}else{
 			writer->escribir_bit_desde_abajo(0);
+			cout << "0";
 		}
 	}
+	cout << endl;
 	return true;
 }
 
