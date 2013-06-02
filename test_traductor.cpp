@@ -18,9 +18,10 @@ int main(void) {
 	//Prueba escribir números;
 	int num[] = {1,2,3,4,10};
 	for (int i=0; i < 5; i++) {
-		cout << num[i] << endl;
+		cout << num[i] << ",";
 		unTraductor->write_gamma(num[i]);
 	}
+	cout << endl;
 	delete unTraductor;
 	
 	//Ya están escritos
@@ -29,11 +30,12 @@ int main(void) {
 	for (int i=0; i < 5; i++) {
 		int aux = unTraductor->read_gamma();
 		if( num[i] != aux ) {
-			cout << aux << endl;
+			//cout << aux << endl;
 			res = 1;
 		}	
 	}
 	delete otroTraductor;
+
 	cout << "Escritura y lectura de gamma: ";
 	if (res == 0) {
 		cout << "corretos." << endl;
@@ -44,7 +46,7 @@ int main(void) {
 	//Pruebas delta
 	unTraductor = new Traductor(WRITE, "pTraductor2.dat");
 	for (int i=0; i < 5; i++) {
-			unTraductor->write_delta(num[i]);
+			unTraductor -> write_delta(num[i]);
 	}
 	delete unTraductor;
 
