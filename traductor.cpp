@@ -173,10 +173,10 @@ char Traductor::read_char(){
 	//leo el resto
 	for(int i=7;i>=0;i--){
 		// decodifico la parte binaria
+		if(reader->eof()) return '~';
 		if(reader->leer_bit() == 1){
 			bin=bin+(int)pow((float)2, (float)i);
 		}
-		//if(reader.eof()) return NULL;
 	}
 
 	letra =  static_cast<char>(bin);

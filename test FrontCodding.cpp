@@ -11,10 +11,11 @@ int main(void){
 	fc->agregar_palabra("perritos");
 	fc->agregar_palabra("puchache");
 	fc->agregar_palabra("yAhora");
+	fc->agregar_palabra("yAhora?QueHacemos?");
 	delete (fc);
 	Front_codding* fc2 = new Front_codding("archivo.dat");
 	fc2->modo_lectura();
-	for (int i=0; i < 4; i++)
+	for (int i=0; i < 5; i++)
 		cout << fc2 -> leer_proxima_palabra() << std::endl;
 
 	delete (fc2);
