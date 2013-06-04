@@ -11,6 +11,7 @@
 #define ESCRITURA 2
 #define ERRORMODO (-1)
 #define ERROR (-2)
+#define CERO (100) //se define por la imposibilidad de guardar el 0 en gamma
 
 
 //using namespace std;
@@ -39,7 +40,7 @@ int Front_codding::agregar_palabra(const char* unaPalabra) {
 	unsigned int i = 0;
 	if (cantidadPalabras == 0) {
 		// Como es la primera guardamos toda la plabra;
-		if (!unTraductor -> write_gamma(0)) return ERROR;
+		if (!unTraductor -> write_gamma(CERO)) return ERROR;
 		if (!unTraductor -> write_gamma(palabra.length())) return ERROR;
 		if (!unTraductor-> write_string(palabra)) return ERROR;
 	} else {
@@ -53,7 +54,8 @@ int Front_codding::agregar_palabra(const char* unaPalabra) {
 			}
 		}
 		// Tengo la longitud de la repetición;
-		unTraductor -> write_gamma(i);
+		if (i == 0) unTraductor -> write_gamma(CERO);
+		else unTraductor -> write_gamma(i);
 		unTraductor -> write_gamma(palabra.length() - i);
 		unTraductor -> write_string(palabra.substr(i, palabra.length()-1));
 	}
@@ -68,6 +70,7 @@ std::string Front_codding::leer_proxima_palabra(void) {
 	// Leo la cantidad de iguales y distintos y en base a la ultima palabra leida armo la nueva.
 	int distintos, iguales;
 	iguales = unTraductor -> read_gamma();
+	if (iguales == CERO) iguales = 0;
 	distintos = unTraductor -> read_gamma();
 	for (int j = 0; j < distintos; j++) {
 		palabraDist += unTraductor -> read_char();
