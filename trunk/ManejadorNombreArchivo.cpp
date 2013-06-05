@@ -6,7 +6,7 @@
  */
 
 #include "ManejadorNombreArchivo.h"
-#define CLASEENPRUEBA
+//#define CLASEENPRUEBA
 #ifndef CLASEENPRUEBA
 ManejadorNombreArchivo::ManejadorNombreArchivo() {
 	nombres = new std::vector<std::string>();
@@ -19,10 +19,8 @@ ManejadorNombreArchivo::~ManejadorNombreArchivo() {
 
 int ManejadorNombreArchivo::agregarNombre(std::string unNombre) {
 	// Agrega un nombre y devuelve el entero que lo representa.
-	if ( nombres->push_back(unNombre) )
-		return nombres->size() - 1;
-	else
-		return -1;
+	nombres->push_back(unNombre);
+	return nombres->size() - 1;
 }
 
 std::string ManejadorNombreArchivo::obtenerNombre(int unEntero) {
