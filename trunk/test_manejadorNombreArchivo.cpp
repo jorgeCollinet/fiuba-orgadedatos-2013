@@ -26,6 +26,7 @@ int main(void) {
 	std::cout << "Prueba escritura y lectura de nombre en el manejador de nombres: ";
 	if (res) std::cout << "correcto.";
 	else std::cout << "incorrecto";
+	delete (manejador);
 }
 #endif
 
