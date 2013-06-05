@@ -14,10 +14,11 @@ int main(void) {
 	std::string str1("hola"),str2("esto"),str3("es"),str4("una"),str5("prueba.");
 	std::string palabras[]={str1,str2,str3,str4,str5};
 	ManejadorNombreArchivo* manejador = new ManejadorNombreArchivo();
-	for( unsigned int i = 0; i< 5; i++) {
-		manejador->agregarNombre(palabras[i]);
-	}
 	bool res = true;
+	for( unsigned int i = 0; i< 5; i++) {
+		if (i != (unsigned int)manejador->agregarNombre(palabras[i]))
+			res = false;
+	}
 	for( unsigned int i = 0; i< 5; i++) {
 			if (palabras[i] != manejador->obtenerNombre(i))
 				res = false;
