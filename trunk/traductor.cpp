@@ -206,6 +206,7 @@ bool Traductor::write_char(char letra){
 	return true;
 }
 
+
 bool Traductor::write_string(std::string unaPalabra) {
 	for (unsigned int i = 0; i < unaPalabra.length(); i++) {
 		if(!this->write_char(unaPalabra[i]))
@@ -213,6 +214,7 @@ bool Traductor::write_string(std::string unaPalabra) {
 	}
 	return true;
 }
+
 
 const int Traductor::mode(){
 	return modo;
