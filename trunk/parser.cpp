@@ -48,12 +48,14 @@ bool Parseador::parser(){
 
 	                while ( auxPalabra != NULL ){
 	                        palabra = auxPalabra;
+	                        pasarAminusculas(palabra);
+
 	                        termino term;
 
 	                        term.term=palabra;
 	                        term.posi=pos;
 
-	                        //Utilidades::pasarAminusculas(palabra);
+
 	                        //trie.insertarPalabra(palabra,direccion);
 	                        cout<<term.term<<" "<<term.posi<<endl;
 	                        //cout<<palabra<<" "<<pos<<endl;
@@ -84,7 +86,8 @@ std::string Parseador::getnombre(){
 
 }
 
-//Devuelve el nombre del archivo final dps de parsear y ordenar.
+//Devuelve el nombre del archivo final dps de parsear y ordenar(va a hacer el nombre del archivo
+//donde se va a grabar al final)
 std::string Parseador::getnombrearchivofinal(){
 
 

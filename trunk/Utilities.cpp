@@ -35,6 +35,8 @@ int FoldAdd(char* palabra,int espaciodirecc){
 
 
 }
-
+void pasarAminusculas(std::string& str){
+     std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+}
 
 
