@@ -11,6 +11,7 @@
 #include <iostream>
 #include <fstream>
 #include "ManejadorArchivos.h"
+#include "Utilities.h"
 #include <list>
 using namespace std;
 
