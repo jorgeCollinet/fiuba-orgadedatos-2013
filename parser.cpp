@@ -7,6 +7,7 @@
 
 #include "parser.h"
 #include "ManejadorArchivos.h"
+#include "Utilities.h"
 #include <iostream>
 #include <fstream>
 #include <cstring>
