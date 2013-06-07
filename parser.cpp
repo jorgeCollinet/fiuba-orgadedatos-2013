@@ -1,3 +1,10 @@
+/*
+ * ParserTex.h
+ *
+ *  Created on: 06/06/2013
+ *      Author: pablo
+ */
+
 #include "parser.h"
 #include "ManejadorArchivos.h"
 #include <iostream>
