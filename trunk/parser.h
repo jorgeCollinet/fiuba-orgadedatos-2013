@@ -9,11 +9,14 @@
 #include <list>
 using namespace std;
 
+//Estructura para guardar los terminos
 struct termino{
 
 	std::string term;
 	int posi;
 };
+
+
 class Parseador{
 
 private:
