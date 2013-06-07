@@ -23,7 +23,19 @@ int main (int args, char* argv[]){
 		parser(path);
 		archivos.pop_back();
 	}
+	//PARSER
+	/*//Archivo a parsear
+	string archivo = "texto.txt";
+	//Esta lista es la que va a ir llenando el parser con los nombres de los archivos parseados +
+	//sufijo para darse cuenta que lo parseo.
+	std::list<std::string> listadirect;
 
+	parser(archivo,listadirect);
+	 *
+	 *
+	 *
+	 *
+	 *
 	// se mergean los archivos
 		//auxiliar a la espera de que parcer se finalize de implementar
 		vector<string>archivos_a_mergear;
