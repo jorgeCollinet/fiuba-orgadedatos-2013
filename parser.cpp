@@ -56,10 +56,9 @@ bool Parseador::parser(){
 	                        term.term=palabra;
 	                        term.posi=pos;
 
-
 	                        //trie.insertarPalabra(palabra,direccion);
 	                        cout<<term.term<<" "<<term.posi<<endl;
-	                        //cout<<palabra<<" "<<pos<<endl;
+
 	                        pos++;
 	                        auxPalabra = strtok (NULL, *invalidos);
 	                }
