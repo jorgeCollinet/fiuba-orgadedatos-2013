@@ -59,20 +59,36 @@ bool Parseador::parser(){
 
 
 
-	       int i = 1;
-	       ostringstream os;
-
-	       os << this->nombrearchivo << i;
-
 
 	        //mylist.push_back(os.str());
-	        cout<<os.str();
+
 	        //delete archivo; // cierra el archivo, no lo borra
 	        //delete direccion;
-	        i++;
+
 	        return true;
 	 }
 
+
+//Devuelve el nombre de mi archivo parseado
+std::string Parseador::getnombre(){
+
+	return this->nombrearchivo;
+
+
+}
+
+//Devuelve el nombre del archivo final dps de parsear y ordenar.
+std::string Parseador::getnombrearchivofinal(){
+
+
+	ostringstream os;
+
+	os << this->nombrearchivo << "final";
+
+	return os.str();
+
+
+}
 
 
 

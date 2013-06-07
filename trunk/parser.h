@@ -34,6 +34,9 @@ public:
 	// Parsea el archivo extrayendo terminos importante y su ubicacion
 	bool parser();
 
+	std::string  getnombre();
+
+	std::string getnombrearchivofinal();
 
 
 };
