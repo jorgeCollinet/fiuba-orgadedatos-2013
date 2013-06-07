@@ -20,14 +20,18 @@ struct termino{
 class Parseador{
 
 private:
-	list<termino> milista;
-	std::string nombrearchivo;
+
+	list<termino> milista; //Lista donde se guardaran los terminos
+	std::string nombrearchivo; // GUardara el nombre del archivo a parsearse
 
 
 public:
-	Parseador(std::string& archivoaparsear);
-	~Parseador();
 
+	//Constructor. Inicializa el nombre del archivo a parsear
+	Parseador(std::string& archivoaparsear);
+
+	~Parseador();
+	// Parsea el archivo extrayendo terminos importante y su ubicacion
 	bool parser();
 
 

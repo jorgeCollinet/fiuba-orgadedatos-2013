@@ -10,18 +10,17 @@
 #define CANTIDAD_DE_SEPARADORES 38
 
 
-//Setea el archivo a parsear en el constructor de la clase
+
 Parseador::Parseador(std::string& archivo){
 
 	this->nombrearchivo=archivo;
-
 }
+
 
 Parseador::~Parseador(){
 
-
-
 }
+
 
 //Parsea el documento de texto extrayendo los terminos(filtrados) y su ubicacion en el mismo
 bool Parseador::parser(){
