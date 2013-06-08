@@ -132,3 +132,11 @@ void Parseador::mostrarlista(){
 
 
 }
+
+//Ordeno mi lista con mi metodo de ordenamiento prefijado
+void Parseador::ordenarlistaposta(){
+
+	this->milista.sort(&ordenamiento);
+
+}
+

@@ -46,10 +46,11 @@ public:
 
 	int cantidadpalabras();
 
-	bool ordenamiento(termino const& izq,termino const& der);
+	static bool ordenamiento(termino const& izq,termino const& der);
 
 	void mostrarlista();
 
+	void ordenarlistaposta();
 };
 
 #endif /* PARSERTEX_H_ */
