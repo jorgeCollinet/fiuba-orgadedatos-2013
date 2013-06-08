@@ -26,7 +26,11 @@ int main(void){
 		cout << "incorrecto.";
 	else
 		cout << "correcto.";
+	cout << std::endl << "Inicio prueba de lectura fuera de los limites: ";
+	for (unsigned int i=0; i < 10000; i++ ) {
+		string aux = fc2->leer_proxima_palabra();
+	}
+	cout << "correcto." << std::endl;
 	delete (fc2);
-	cout << endl;
 }
 #endif
