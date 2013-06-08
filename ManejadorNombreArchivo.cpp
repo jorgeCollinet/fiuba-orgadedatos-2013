@@ -22,24 +22,28 @@ ManejadorNombreArchivo::~ManejadorNombreArchivo() {
 	delete (nombres);
 }
 
-int ManejadorNombreArchivo::agregarNombre(std::string unNombre) {
+int ManejadorNombreArchivo::agregar_nombre(std::string unNombre) {
 	// Agrega un nombre y devuelve el entero que lo representa.
 	nombres->push_back(unNombre);
 	return nombres->size() - 1;
 }
 
-std::string ManejadorNombreArchivo::obtenerNombre(int unEntero) {
+std::string ManejadorNombreArchivo::obtener_nombre(int unEntero) {
 	//Devuelve el nombre que corresponde a la posiciòn 'unEntero'
 	return (*nombres)[unEntero];
 }
 
-bool ManejadorNombreArchivo::guardarNombres(void) {
+bool ManejadorNombreArchivo::guardar_nombres(void) {
 	std::ofstream salida;
 	salida.open(nombreArchivo.c_str(),std::ios::out);
 	if (! salida.is_open()) return false;
 	for (unsigned int i= 0 ; i< nombres->size(); i++) {
 		salida << (*nombres)[i] << " ";
 	}
+	return true;
+}
+
+bool ManejadorNombreArchivo::cargar_nombres(void){
 	return true;
 }
 #endif
