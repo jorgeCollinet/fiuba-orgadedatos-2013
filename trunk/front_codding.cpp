@@ -64,6 +64,9 @@ int Front_codding::agregar_palabra(const char* unaPalabra) {
 	return 0;
 }
 
+int Front_codding::agregar_palabra(std::string unaPalabra) {
+	return agregar_palabra(unaPalabra.c_str());
+}
 std::string Front_codding::leer_proxima_palabra(void) {
 	if (modo == ESCRITURA) return NULL;
 	std::string palabra, palabraDist;
@@ -74,7 +77,7 @@ std::string Front_codding::leer_proxima_palabra(void) {
 	distintos = unTraductor -> read_gamma();
 	for (int j = 0; j < distintos; j++) {
 		char aux = unTraductor->read_char();
-		if (aux == '~') return std::string("ErrorLectura");
+		if (aux == '~') return std::string("Error_Lectura");
 		palabraDist += aux;
 	}
 	if ( cantidadPalabras == 0 ) {

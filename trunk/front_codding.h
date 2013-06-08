@@ -23,6 +23,7 @@ public:
 	void modo_lectura(void);
 	void modo_escritura(void);
 	int agregar_palabra(const char* unaPalabra);
+	int agregar_palabra(std::string unaPalabra);
 	string leer_proxima_palabra(void);
 	~Front_codding();
 
