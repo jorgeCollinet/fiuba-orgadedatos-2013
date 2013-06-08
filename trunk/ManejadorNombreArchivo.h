@@ -17,9 +17,11 @@ public:
 	ManejadorNombreArchivo();
 	ManejadorNombreArchivo(char* unNombreArchivo);
 	virtual ~ManejadorNombreArchivo();
-	int agregarNombre(std::string unNombre);
-	std::string obtenerNombre(int unEntero);
-	bool guardarNombres();
+	int agregar_nombre(std::string unNombre);
+	std::string obtener_nombre(int unEntero);
+	bool guardar_nombres();
+	bool cargar_nombres(void);
+
 
 private:
 	std::vector<std::string>* nombres;
