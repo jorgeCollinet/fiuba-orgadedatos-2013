@@ -10,16 +10,20 @@
 
 #include <vector>
 #include <string>
+#include <fstream>
 
 class ManejadorNombreArchivo {
 public:
 	ManejadorNombreArchivo();
+	ManejadorNombreArchivo(char* unNombreArchivo);
 	virtual ~ManejadorNombreArchivo();
 	int agregarNombre(std::string unNombre);
 	std::string obtenerNombre(int unEntero);
+	bool guardarNombres();
 
 private:
 	std::vector<std::string>* nombres;
+	std::string nombreArchivo;
 };
 
 #endif /* MANEJADORNOMBREARCHIVO_H_ */
