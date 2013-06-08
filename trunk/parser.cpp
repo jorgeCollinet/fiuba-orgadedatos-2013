@@ -58,7 +58,7 @@ bool Parseador::parser(){
 
 	                        //Meto en mi lista el conjunto palabra-posicion
 	                        this->milista.push_back(term);
-	                        cout<<term.term<<" "<<term.posi<<endl;
+	                        //cout<<term.term<<" "<<term.posi<<endl;
 
 	                        pos++;
 	                        auxPalabra = strtok (NULL, *invalidos);
@@ -105,6 +105,30 @@ int Parseador::cantidadpalabras(){
 
 }
 
+//Defino un ordenamiento de estructuras para mi lista
+bool Parseador::ordenamiento(termino const& izq,termino const& der){
+
+	if (izq.term != der.term)
+
+	     return (izq.term < der.term);
+
+	if (izq.posi != der.posi)
+
+	     return (izq.posi < der.posi);
+
+	else return true;
+}
+
+void Parseador::mostrarlista(){
+
+	std::list<termino>::iterator it;
+	//itero mi lista
+	for(it=this->milista.begin();it != this->milista.end(); ++it){
+
+		cout<<(*it).term<<(*it).posi<<endl;
 
 
+	}
 
+
+}
