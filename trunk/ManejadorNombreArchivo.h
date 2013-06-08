@@ -19,7 +19,7 @@ public:
 	virtual ~ManejadorNombreArchivo();
 	int agregar_nombre(std::string unNombre);
 	std::string obtener_nombre(int unEntero);
-	bool guardar_nombres();
+	bool guardar_nombres(void);
 	bool cargar_nombres(void);
 
 

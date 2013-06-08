@@ -38,12 +38,23 @@ bool ManejadorNombreArchivo::guardar_nombres(void) {
 	salida.open(nombreArchivo.c_str(),std::ios::out);
 	if (! salida.is_open()) return false;
 	for (unsigned int i= 0 ; i< nombres->size(); i++) {
-		salida << (*nombres)[i] << " ";
+		salida << (*nombres)[i] << std::endl;
 	}
+	salida.close();
 	return true;
 }
 
 bool ManejadorNombreArchivo::cargar_nombres(void){
+	std::ifstream entrada;
+	entrada.open(nombreArchivo.c_str(), std::ios::in);
+	if (! entrada.is_open()) return false;
+	while (!entrada.eof()) {
+		//Cargo todas las lineas.
+		std::string auxiliar;
+		entrada >> auxiliar;
+		this->agregar_nombre(auxiliar);
+	}
+	entrada.close();
 	return true;
 }
 #endif
