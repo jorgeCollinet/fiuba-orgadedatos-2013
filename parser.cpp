@@ -56,7 +56,8 @@ bool Parseador::parser(){
 	                        term.term=palabra;
 	                        term.posi=pos;
 
-	                        //trie.insertarPalabra(palabra,direccion);
+	                        //Meto en mi lista el conjunto palabra-posicion
+	                        this->milista.push_back(term);
 	                        cout<<term.term<<" "<<term.posi<<endl;
 
 	                        pos++;
@@ -65,8 +66,6 @@ bool Parseador::parser(){
 	                delete []linea;
 	                delete auxPalabra;
 	        }
-
-
 
 
 	        //mylist.push_back(os.str());
@@ -97,6 +96,12 @@ std::string Parseador::getnombrearchivofinal(){
 
 	return os.str();
 
+
+}
+
+int Parseador::cantidadpalabras(){
+
+	return this->milista.size();
 
 }
 

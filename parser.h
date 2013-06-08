@@ -44,6 +44,7 @@ public:
 
 	std::string getnombrearchivofinal();
 
+	int cantidadpalabras();
 
 };
 
