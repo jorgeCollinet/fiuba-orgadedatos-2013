@@ -30,7 +30,7 @@ int main(void){
 	for (unsigned int i=0; i < 10000; i++ ) {
 		string aux = fc2->leer_proxima_palabra();
 	}
-	cout << "correcto." << std::endl;
+	cout << "correcto." << std::endl << fc2->leer_proxima_palabra();
 	delete (fc2);
 }
 #endif
