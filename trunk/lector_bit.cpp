@@ -44,11 +44,11 @@ unsigned int LectorBit::leer_bit() {
 
 double LectorBit::devolver_offset_de_byte(void) {
 	return arch.tellg();
-};
+}
 
 short LectorBit::devolver_offset_de_bit(void) {
 	return contador;
-};
+}
 
 LectorBit::~LectorBit() {
 	arch.close();
