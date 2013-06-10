@@ -12,8 +12,9 @@
 #include <vector>
 #include <fstream>
 #include "front_codding.h"
+#include "traductor.h"
 using namespace std;
-#define Ocurrencia pair<string, pair<double, char> >
+#define Ocurrencia pair<string, pair<double, short> >
 
 class ResolvedorConsultas {
 public:
@@ -21,9 +22,10 @@ public:
 	ResolvedorConsultas(std::string unNombreArchivo);
 	virtual ~ResolvedorConsultas();
 	bool cargar_lexico(void);
+	bool cargar_ocurrencias(void);
 	int cantidad(void);
+	// Uso para debug
 	void mostrar_ocurrencias(void);
-
 
 private:
 	string nombreArchivo;
