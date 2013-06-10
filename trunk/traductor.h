@@ -41,6 +41,9 @@ public:
 	//Escribe una palabra en modo bit
 	bool write_string(std::string palabra);
 
+	size_t read_uint();
+
+	bool write_uint(size_t num);
 
 	// indica el modo
 	const int mode();
