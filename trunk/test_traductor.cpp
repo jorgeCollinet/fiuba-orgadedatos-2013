@@ -26,9 +26,10 @@ int main(void) {
 	
 	//Ya están escritos
 	Traductor* otroTraductor = new Traductor(READ, "pTraductor.dat");
-	int res = 0;
-	for (int i=0; i < 5; i++) {
+	int res = 0,i;
+	for ( i=0; i < 100; i++) {
 		int aux = unTraductor->read_gamma();
+		if (aux == -1) break;
 		if( num[i] != aux ) {
 			//cout << aux << endl;
 			res = 1;
@@ -54,8 +55,9 @@ int main(void) {
 	otroTraductor = new Traductor(READ, "pTraductor2.dat");
 
 	res = 0;
-	for (int i=0; i < 5; i++) {
+	for (i=0; i < 100; i++) {
 		int aux = unTraductor->read_delta();
+		if (aux == -1) break;
 		if( num[i] != aux ) {
 			cout << aux << endl;
 			res = 1;
@@ -68,6 +70,9 @@ int main(void) {
 	} else {
 		cout << "incorrectos." << endl;
 	}
+	cout << "Lectura fuera de rango: ";
+	if (i<100) cout << "correcto." << endl;
+	else cout << "incorrecto." << endl;
 
 	return 0;
 }
