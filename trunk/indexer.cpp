@@ -9,6 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "front_codding.h"
 #define NOMBRE_FC = "index_fc.txt";
 
 using namespace std;
@@ -33,11 +34,11 @@ void indexer::indexar(const char* archivo_fuente) {
 	fc_codder.modo_escritura();
 
 	const char* nombreoffsets = "index_offsets.txt";
-	Doc_offsets docs(nombrefc);
+	// Doc_offsets docs(nombreoffsets);
 
 	char aux;
 
-	while(fuente.good()){
+	while(fuente.eof()){
 		// leo una palabra
 		string palabra;
 		aux = fuente.get();
@@ -48,12 +49,12 @@ void indexer::indexar(const char* archivo_fuente) {
 		// la mando a front codding
 		/** modificar para que se le puedan poner strings**/
 		fc_codder.agregar_palabra(palabra.c_str());
-
+		/**
 		//leer hasta el eol
 		string offsets = fuente.getline();
 		// mando sus offsets a documentos
 		docs.agregar_offsets(offsets);
-
+		**/
 
 	}
 
