@@ -19,7 +19,7 @@ int main (int args, char* argv[]){
 		path+="/";
 		path+=archivos.back();
 		cout<<"Archivo: "<<path<<endl;
-		// aca el parser tendria que devolver
+		// aca el parser tendria que devolver el nombre del archivo en donde guardo el parceo
 		parser(path);
 		archivos.pop_back();
 	}
@@ -29,6 +29,8 @@ int main (int args, char* argv[]){
 	//Esta lista es la que va a ir llenando el parser con los nombres de los archivos parseados +
 	//sufijo para darse cuenta que lo parseo.
 	std::list<std::string> listadirect;
+	
+
 
 	parser(archivo,listadirect);
 	 *
@@ -36,6 +38,7 @@ int main (int args, char* argv[]){
 	 *
 	 *
 	 *
+	*/
 	// se mergean los archivos
 		//auxiliar a la espera de que parcer se finalize de implementar
 		vector<string>archivos_a_mergear;
@@ -46,9 +49,11 @@ int main (int args, char* argv[]){
 		string path3 ("/home/jorge/workspace2/tp DATOS/prototipo a seguir ej1/parser-doc3.txt");
 		archivos_a_mergear.push_back(path3);
 
-		Merge merger(archivos_a_mergear);
-		merger.merge_2_etapas("merge-doc.txt");
-
+		Merge merger;
+		string path (argv[1]);
+		path +="/merge-doc.txt";
+		merger.merge_n_archivos(path.c_str(),archivos_a_mergear);
+		cout<<"termino el merge"<<endl;
 	// se construyen los indices
 		//falta hacer
 
