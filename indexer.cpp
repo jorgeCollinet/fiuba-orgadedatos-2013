@@ -41,7 +41,7 @@ void indexer::indexar(const char* archivo_fuente) {
 	int doc;
 	int pos;
 
-	while(fuente.eof()){
+	while(!fuente.eof()){
 		// leo una palabra
 		string palabra;
 		fuente >> palabra;
