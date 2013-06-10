@@ -7,11 +7,10 @@
 #include <iostream>
 #include <fstream>
 class Merge {
-	std::vector<std::string>& arch_a_merg;
+	//std::vector<std::string>& arch_a_merg;
 public:
-	Merge(std::vector<std::string>& archivos_a_mergear);
 
-	bool merge_2_etapas(const char* nombre_final);
+	bool merge_n_archivos(const char* nombre_final, std::vector<std::string>& arch_a_merg);
 };
 
 #endif /* MERGE_H_ */

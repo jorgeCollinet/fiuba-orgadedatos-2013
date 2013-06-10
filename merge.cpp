@@ -1,6 +1,5 @@
-
 #include "merge.h"
-#include <iostream>
+
 using namespace std;
 
 class Palabra {
@@ -44,40 +43,33 @@ public:
 			this->datos.push_back(pal.datos.back());
 			pal.datos.pop_back();
 		}
-
 	}
 };
 
-class cmp {
-	bool al_reves;
+class Cmp {
 public:
-	cmp(bool al_reves) {
-		this->al_reves = al_reves;
-	}
 	bool operator()(const Palabra& pal1, const Palabra& pal2) {
-		if (al_reves) {
-			if((pal1.get_pal() == pal2.get_pal())){
-				return (pal1.get_arch()<=pal2.get_arch());
-			}
-			return ((pal1.get_pal() >= pal2.get_pal()) > 0);
+
+		if ((pal1.get_pal() == pal2.get_pal())) {
+			return (pal1.get_arch() <= pal2.get_arch());
 		}
-		return ((pal1.get_pal() >= pal2.get_pal()) < 0);
+		return ((pal1.get_pal() >= pal2.get_pal()) > 0);
 	}
 };
-Merge::Merge(std::vector<std::string>& archivos_a_mergear) :
-		arch_a_merg(archivos_a_mergear) {
-}
-void mostar_vector(vector<string>& vec){
-	for(size_t i=0;i<vec.size();++i){
+
+void mostar_vector(vector<string>& vec) {
+	for(size_t i=0;i<vec.size();++i) {
 		cout << vec[i]<<":";
 	}
 }
-bool Merge::merge_2_etapas(const char* nombre_final) {
+bool Merge::merge_n_archivos(const char* nombre_final,std::vector<std::string>& arch_a_merg) {
 	string dir(nombre_final);
-	ostream& arhch_dest = cout;
+	//ostream& arch_dest = cout;
+	ofstream arch_dest_aux(nombre_final, ofstream::out);
+	ostream& arch_dest = arch_dest_aux;
 	size_t cant_archivos = arch_a_merg.size();
 
-	priority_queue<Palabra, vector<Palabra>, cmp> cola_pri(cmp(true));
+	priority_queue<Palabra, vector<Palabra>, Cmp> cola_pri;
 
 	vector<ifstream*> archivos(cant_archivos);
 	for (size_t i = 0; i < cant_archivos; ++i) {
@@ -116,14 +108,14 @@ bool Merge::merge_2_etapas(const char* nombre_final) {
 			}
 		}
 		// escribo en archivo a la palabra
-		arhch_dest<<"EN archivo: "<<palabra_sacada.get_pal();
-		arhch_dest<<"-"<<palabra_sacada.get_datos().size()<<"-";
+		arch_dest<<"EN archivo: "<<palabra_sacada.get_pal();
+		arch_dest<<"-"<<palabra_sacada.get_datos().size()<<"-";
 		while(!palabra_sacada.get_datos().empty()){
-			arhch_dest<<palabra_sacada.get_datos().back();
+			arch_dest<<palabra_sacada.get_datos().back();
 			palabra_sacada.get_datos().pop_back();
-			arhch_dest<<":";
+			arch_dest<<":";
 		}
-		arhch_dest.put('\n');
+		arch_dest.put('\n');
 
 		// leo otra palabra del mismo de la palanra que estoy tratando
 		ifstream* archivo = palabra_sacada.get_ifstream();
@@ -133,6 +125,11 @@ bool Merge::merge_2_etapas(const char* nombre_final) {
 		}
 
 
+	}
+	arch_dest_aux.close();
+	for(size_t i;i<archivos.size();++i){
+		archivos[i]->close();
+		delete archivos[i];
 	}
 	return true;
 
