@@ -25,6 +25,10 @@ public:
 	unsigned int leer_bit();
 	/* si se llegó al final del archivo devuelve true caso contrario devuelve false */
 	bool eof();
+	//Devuelve el offset de bytes en el que se encuentra.
+	double devolver_offset_de_byte(void);
+	//Devuelve el offset de bit en el que se encuentra.
+	short devolver_offset_de_bit(void);
 
 };
 
