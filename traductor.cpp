@@ -216,14 +216,61 @@ bool Traductor::write_string(std::string unaPalabra) {
 }
 
 
+size_t Traductor::read_uint(){
+
+	if(modo == WRITE){
+		throw std::ios_base::failure("se abrio en modo escritura -> no se puede leer");
+		return -1;
+	}
+	size_t bin = 0;
+	size_t tam = sizeof(size_t);
+
+	for(int i=tam;i>=0;i--){
+		// decodifico la parte binaria
+		if(reader->eof()) return -1;
+
+		if(reader->leer_bit() == 1){
+			bin=bin+(int)pow((float)2, (float)i);
+		}
+	}
+
+
+	return bin;
+
+}
+
+
+bool Traductor::write_uint(size_t num){
+
+	if(modo == READ) return false;
+
+	size_t bin = num;
+	int tam = sizeof(size_t);
+	int aux;
+
+	for (int i=tam;i>=0;i--){
+		aux = (int)pow((float)2, (float)(i));
+		if(aux <= bin){
+			writer->escribir_bit_desde_arriba(1);
+			bin = bin - aux;
+		}else{
+			writer->escribir_bit_desde_arriba(0);
+		}
+	}
+	return true;
+}
+
+
 const int Traductor::mode(){
 	return modo;
 }
+
 
 double Traductor::devolver_offset_de_byte(void) {
 	if (modo == READ) return reader->devolver_offset_de_byte();
 	return 0;
 }
+
 
 short Traductor::devolver_offset_de_bit(void) {
 	if (modo == READ) return reader->devolver_offset_de_bit();
