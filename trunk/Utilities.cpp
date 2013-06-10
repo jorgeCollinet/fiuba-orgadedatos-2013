@@ -7,6 +7,8 @@
 
 
 #include <string.h>
+#include <string>
+#include <algorithm>
 #include <stdio.h>
 #include <ctype.h>
 

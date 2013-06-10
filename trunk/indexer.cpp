@@ -6,6 +6,7 @@
  */
 
 #include "indexer.h"
+#include "doc_offsets.h"
 #include <iostream>
 #include <fstream>
 #include <string>

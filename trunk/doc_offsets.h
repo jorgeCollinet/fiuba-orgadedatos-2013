@@ -8,6 +8,7 @@
 #ifndef DOC_OFFSETS_H_
 #define DOC_OFFSETS_H_
 #include <vector>
+#include "traductor.h"
 
 using namespace std;
 
