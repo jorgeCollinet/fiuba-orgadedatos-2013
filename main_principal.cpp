@@ -1,4 +1,4 @@
-//#define papa
+#define papa
 #ifndef papa
 #include <iostream>
 #include "lector_directorios.h"
@@ -55,7 +55,7 @@ int main (int args, char* argv[]){
 	// se reciben consultas
 		//falta hacer
 
-
+*/
 }
 
 

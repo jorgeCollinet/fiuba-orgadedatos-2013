@@ -49,7 +49,7 @@ bool Parseador::parser(){
 
 	                while ( auxPalabra != NULL ){
 	                        palabra = auxPalabra;
-	                        pasarAminusculas(palabra);
+	                        //Utilities.pasarAminusculas(palabra);
 
 	                        termino term;
 
