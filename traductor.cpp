@@ -219,3 +219,13 @@ bool Traductor::write_string(std::string unaPalabra) {
 const int Traductor::mode(){
 	return modo;
 }
+
+double Traductor::devolver_offset_de_byte(void) {
+	if (modo == READ) return reader->devolver_offset_de_byte();
+	return 0;
+}
+
+short Traductor::devolver_offset_de_bit(void) {
+	if (modo == READ) return reader->devolver_offset_de_bit();
+	return 0;
+}

@@ -45,6 +45,10 @@ public:
 	// indica el modo
 	const int mode();
 
+	double devolver_offset_de_byte(void);
+
+	short devolver_offset_de_bit(void);
+
 	~Traductor();
 
 };
