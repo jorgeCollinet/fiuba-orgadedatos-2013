@@ -34,28 +34,43 @@ void indexer::indexar(const char* archivo_fuente) {
 	fc_codder.modo_escritura();
 
 	const char* nombreoffsets = "index_offsets.txt";
-	// Doc_offsets docs(nombreoffsets);
+	Doc_offsets docs(nombreoffsets);
 
-	char aux;
+	int cant_docs;
+	int frec;
+	int doc;
+	int pos;
 
 	while(fuente.eof()){
 		// leo una palabra
 		string palabra;
-		aux = fuente.get();
-		while(aux != ' '){
-			aux = fuente.get();
-			palabra.append(&aux);
-		}
+		fuente >> palabra;
 		// la mando a front codding
-		/** modificar para que se le puedan poner strings**/
-		fc_codder.agregar_palabra(palabra.c_str());
-		/**
-		//leer hasta el eol
-		string offsets = fuente.getline();
-		// mando sus offsets a documentos
-		docs.agregar_offsets(offsets);
-		**/
+		fc_codder.agregar_palabra(palabra);
 
+		// tomo la cantidad de documentos en donde aparece.
+		fuente >> cant_docs;
+		docs.add_cant_doc(cant_docs);
+
+		// por cada documeto
+		for(int i=0;i<cant_docs;i++){
+
+			// leo el num de doc
+			fuente >> doc;
+			docs.add_num_doc(doc);
+
+			// leo la frec.
+			fuente >> frec;
+			docs.add_frec(frec);
+
+			vector<int> offsets;
+			//tomo cada aparicion
+			for (int j = 0; j < frec; j++) {
+				fuente >> pos;
+				offsets.push_back(pos);
+			}
+			docs.add_offsets(offsets);
+		}
 	}
 
 
