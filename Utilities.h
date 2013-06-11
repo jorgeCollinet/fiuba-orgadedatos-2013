@@ -16,6 +16,6 @@
 
 int FoldAdd(char* palabra,int espaciodirecc);
 
-static void pasarAminusculas(std::string& str);
+//static void pasarAminusculas(std::string& str);
 
 #endif /* UTILITIES_H_ */
