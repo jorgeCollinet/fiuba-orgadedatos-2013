@@ -105,7 +105,7 @@ std::string Parseador::getnombrearchivofinal(){
 
 	ostringstream os;
 
-	os << this->nombrearchivo << "final";
+	os << this->nombrearchivo << "final.txt";
 
 	return os.str();
 
