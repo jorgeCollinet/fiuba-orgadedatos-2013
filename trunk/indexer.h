@@ -8,6 +8,7 @@
 #ifndef INDEXER_H_
 #define INDEXER_H_
 #include <vector>
+#include <string>
 
 class indexer {
 public:
