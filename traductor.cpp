@@ -42,7 +42,7 @@ int Traductor::read_gamma(){
 	while (reader->leer_bit() == 1){
 		unary++;
 		//cout << "1";
-		if(reader->eof()) return -1;
+		if(reader->eof()) return (-1);
 	}
 	//cout << "0";
 
@@ -55,7 +55,7 @@ int Traductor::read_gamma(){
 		} else {
 			//cout << "0";
 		}
-		if(reader->eof()) return -1;
+		if(reader->eof()) return (-1);
 	}
 	//cout << endl;
 	return (int) (binary + pow((double)2, (double) unary));
@@ -112,6 +112,7 @@ int Traductor::read_delta(){
 
 	// decodifico la parte gamma
 	gamma = (read_gamma() - 1);
+	if (gamma == -2) return (-1);
 
 	for(int i=gamma;i>0;i--){
 		// decodifico la parte binaria
