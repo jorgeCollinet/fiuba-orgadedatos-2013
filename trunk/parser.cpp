@@ -40,16 +40,18 @@ bool Parseador::parser(std::string& archivoaparsear){
 				ofstream archivofinal;
 				archivofinal.open(nombrearchivofinal.c_str(),std::ofstream::out); //creacion del archivo
 
-			int pos=0; // Posicion de la palabra en el documento actual
 
-	        std::string palabra;
-	        const char* invalidos[CANTIDAD_DE_SEPARADORES] = {"¡!#$%&'( )*+,-.:;<=>¿?@[]^_`{|}~/\\\"\n"};
-	        ManejadorArchivos archivo;
+				int pos=0; // Posicion de la palabra en el documento actual
+				//int doc; // QUE DOC USO? PONGO EL NOMBRE DEL ARCHIVO?? MMM
+				std::string palabra;
 
-	        archivo.abrirLectura(this->nombrearchivo);
-	        std::string auxLinea;
+				const char* invalidos[CANTIDAD_DE_SEPARADORES] = {"¡!#$%&'( )*+,-.:;<=>¿?@[]^_`{|}~/\\\"\n"};
+				ManejadorArchivos archivo;
 
-	        while ( archivo.leerunalinea(auxLinea)){
+				archivo.abrirLectura(archivoaparsear);
+				std::string auxLinea;
+
+				while ( archivo.leerunalinea(auxLinea)){
 	                char *linea = new char[256];
 	                strcpy(linea,auxLinea.c_str());
 	                char* auxPalabra = strtok(linea,*invalidos);
