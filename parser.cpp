@@ -31,7 +31,7 @@ Parseador::~Parseador(){
 
 
 //Parsea el documento de texto extrayendo los terminos(filtrados) y su ubicacion en el mismo
-bool Parseador::parser(std::string& archivoaparsear){
+std::string Parseador::parser(std::string& archivoaparsear){
 
 				this->nombrearchivo=archivoaparsear;//guardo el nombre
 
@@ -86,7 +86,7 @@ bool Parseador::parser(std::string& archivoaparsear){
 		//delete direccion;
 		//i++;
 
-	      return true;
+	      return nombrearchivofinal;
 	 }
 
 
