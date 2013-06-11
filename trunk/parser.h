@@ -32,16 +32,6 @@ private:
 	list<termino> milista; //Lista donde se guardaran los terminos
 	std::string nombrearchivo; // GUardara el nombre del archivo a parsearse
 
-
-public:
-
-	//Constructor. Inicializa el nombre del archivo a parsear
-	Parseador(std::string& archivoaparsear);
-
-	~Parseador();
-	// Parsea el archivo extrayendo terminos importante y su ubicacion
-	bool parser();
-
 	std::string  getnombre();
 
 	std::string getnombrearchivofinal();
@@ -57,6 +47,19 @@ public:
 	void acomodador(std::ofstream&);
 
 	void posicionadistancia(std::list<int>&,std::ofstream&);
+
+
+public:
+
+	//Constructor. Inicializa el nombre del archivo a parsear
+	Parseador(std::string& archivoaparsear);
+
+	~Parseador();
+
+	// Parsea el archivo extrayendo terminos importante y su ubicacion
+	bool parser();
+
+
 };
 
 #endif /* PARSERTEX_H_ */
