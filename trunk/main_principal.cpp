@@ -4,6 +4,7 @@
 #include "lector_directorios.h"
 #include "parser.h"
 #include "merge.h"
+#include "indexer.h"
 #include <vector>
 using namespace std;
 /* la llamada al programa se hace pasandole el directorio donde están los archivos */
@@ -55,7 +56,9 @@ int main (int args, char* argv[]){
 		merger.merge_n_archivos(path.c_str(),archivos_a_mergear);
 		cout<<"termino el merge"<<endl;
 	// se construyen los indices
-		//falta hacer
+		indexer _idx;
+		_idx.indexar(path.c_str());/* supongo que es esta la ruta; */
+		cout << "se indexaron los archivos\n";
 
 	// se reciben consultas
 		//falta hacer
