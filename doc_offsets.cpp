@@ -20,15 +20,15 @@ Doc_offsets::~Doc_offsets() {
 }
 
 void Doc_offsets::add_cant_doc(int cant){
-	unTraductor->write_uint(cant);
+	unTraductor->write_delta(cant);
 }
 
 void Doc_offsets::add_num_doc(int doc){
-	unTraductor->write_uint(doc);
+	unTraductor->write_delta(doc);
 }
 
 void Doc_offsets::add_frec(int frec){
-	unTraductor->write_uint(frec);
+	unTraductor->write_delta(frec);
 }
 
 void Doc_offsets::add_offsets(vector<int> offsets){
@@ -50,4 +50,3 @@ void Doc_offsets::add_offsets(vector<int> offsets){
 		ant = doc;
 	}
 }
-

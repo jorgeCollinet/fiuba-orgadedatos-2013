@@ -21,6 +21,7 @@ public:
 	void add_num_doc(int doc);
 	void add_frec(int frec);
 	void add_offsets(vector<int> offsets);
+	void add_tabla(int doc);
 private:
 	Traductor* unTraductor;
 };
