@@ -54,7 +54,7 @@ private:
 public:
 
 	//Constructor. Inicializa el nombre del archivo a parsear
-	Parseador(std::string& archivoaparsear);
+	Parseador();
 
 	~Parseador();
 

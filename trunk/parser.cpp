@@ -31,7 +31,14 @@ Parseador::~Parseador(){
 
 
 //Parsea el documento de texto extrayendo los terminos(filtrados) y su ubicacion en el mismo
-bool Parseador::parser(){
+bool Parseador::parser(std::string& archivoaparsear){
+
+				this->nombrearchivo=archivoaparsear;//guardo el nombre
+
+				std::string nombrearchivofinal;//archivo a devolver
+				nombrearchivofinal=this->getnombrearchivofinal();//nombre del archivo a crear
+				ofstream archivofinal;
+				archivofinal.open(nombrearchivofinal.c_str(),std::ofstream::out); //creacion del archivo
 
 			int pos=0; // Posicion de la palabra en el documento actual
 
