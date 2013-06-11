@@ -12,7 +12,7 @@ int main (int args, char* argv[]){
 	cout<<"esto es el main del programa"<<endl;
 	// se buscan los archivos con los cuales trabajaremos
 	Lector_directorios lector;
-	vector<string>archivos = lector.leer_dir(argv[1]);
+	vector<string> archivos = lector.leer_dir(argv[1]);
 
 	// se parsean los archivos
 	while(!archivos.empty()){
@@ -63,6 +63,8 @@ int main (int args, char* argv[]){
 	// se reciben consultas
 		//falta hacer
 
+
+		delete archivos;
 */
 }
 
