@@ -4,7 +4,7 @@
  *  Created on: 09/06/2013
  *      Author: juan
  */
-#define TESTCONSULTAS
+//#define TESTCONSULTAS
 #ifndef TESTCONSULTAS
 #include "front_codding.h"
 #include "ResolvedorConsultas.h"
@@ -32,7 +32,7 @@ int main(void) {
 		if (numero == (-1)) break;
 		cout << numero << ",";
 	}
-	//rs->cargar_ocurrencias();
+	rs->cargar_ocurrencias();
 	rs->mostrar_ocurrencias();
 	cout << "Fin pruebas." << endl;
 	delete rs;
