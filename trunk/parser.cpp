@@ -13,15 +13,15 @@
 #include <cstring>
 #include <sstream>
 #include <list>
+#include <algorithm>
 
 //#ifndef CANTIDAD_DE_SEPARADORES
 #define CANTIDAD_DE_SEPARADORES 38
 
 
 
-Parseador::Parseador(std::string& archivo){
+Parseador::Parseador(){
 
-	this->nombrearchivo=archivo;
 }
 
 
