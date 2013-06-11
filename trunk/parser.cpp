@@ -58,7 +58,7 @@ bool Parseador::parser(std::string& archivoaparsear){
 
 	                while ( auxPalabra != NULL ){
 	                        palabra = auxPalabra;
-	                        //Utilities.pasarAminusculas(palabra);
+	                        this->pasarAminusculas(palabra);
 
 	                        termino term;
 
@@ -67,13 +67,14 @@ bool Parseador::parser(std::string& archivoaparsear){
 
 	                        //Meto en mi lista el conjunto palabra-posicion
 	                        this->milista.push_back(term);
-	                        //cout<<term.term<<" "<<term.posi<<endl;
+
 
 	                        pos++;
 	                        auxPalabra = strtok (NULL, *invalidos);
 	                }
 	                delete []linea;
 	                delete auxPalabra;
+	                pos--;
 	        }
 
 
