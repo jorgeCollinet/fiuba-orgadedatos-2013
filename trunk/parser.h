@@ -59,7 +59,7 @@ public:
 	~Parseador();
 
 	// Parsea el archivo extrayendo terminos importante y su ubicacion
-	bool parser(std::string& archivoaparsear);
+	std::string parser(std::string& archivoaparsear);
 
 
 };
