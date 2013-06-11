@@ -205,6 +205,36 @@ void Parseador::acomodador(std::ofstream& of){
 
 
 	}
+}
+
+	//Agarra una lista de offset y la pasa a distancia
+void Parseador::posicionadistancia(std::list<int>& lista,std::ofstream& of){
+
+		std::list<int>::iterator it;
+		int primer=0;
+		int offanterior;
+		for(it=lista.begin();it != lista.end(); ++it){
+
+			if(primer==0) {
+				of<<(*it)<<" ";
+				offanterior=(*it);
+
+			}
+
+			else{
+
+				of<<((*it)-offanterior)<<" ";
+				offanterior=(*it);
+
+			}
+
+
+			primer++;
+
+		}
+
+	}
+
 
 
 
