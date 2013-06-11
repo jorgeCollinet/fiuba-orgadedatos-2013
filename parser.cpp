@@ -77,13 +77,16 @@ bool Parseador::parser(std::string& archivoaparsear){
 	                pos--;
 	        }
 
+		//Comienza etapa de ordenar, calcular distancias y escribir en archivo
 
-	        //mylist.push_back(os.str());
+		    this->ordenarlistaposta();
+		    this->acomodador(archivofinal);
+		    archivofinal.close();
+		//delete archivo; // cierra el archivo, no lo borra
+		//delete direccion;
+		//i++;
 
-	        //delete archivo; // cierra el archivo, no lo borra
-	        //delete direccion;
-
-	        return true;
+	      return true;
 	 }
 
 
