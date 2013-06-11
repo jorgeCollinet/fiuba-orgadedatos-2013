@@ -13,6 +13,8 @@
 #include "ManejadorArchivos.h"
 #include "Utilities.h"
 #include <list>
+#include <stdint.h>
+#include <algorithm>
 using namespace std;
 
 //Estructura para guardar los terminos
@@ -51,6 +53,10 @@ public:
 	void mostrarlista();
 
 	void ordenarlistaposta();
+
+	void acomodador(std::ofstream&);
+
+	void posicionadistancia(std::list<int>&,std::ofstream&);
 };
 
 #endif /* PARSERTEX_H_ */
