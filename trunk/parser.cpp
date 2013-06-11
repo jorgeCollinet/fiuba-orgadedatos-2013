@@ -157,3 +157,55 @@ void Parseador::ordenarlistaposta(){
 
 }
 
+// Manda al archivo la estructura final para el merge)
+// Lo escribe como termino - ndoc - frec - offs en dist
+void Parseador::acomodador(std::ofstream& of){
+
+	std::list<int> lista_aux;// lista para guardar las posiciones de un mismo termino
+	std::list<termino>::iterator it; // para iterar toda mi lista
+	string palabraanterior; // para comparar con la palabra actual
+	int frec = 1;
+	int contador=0;
+	//Itero toda la lista
+	for(it=this->milista.begin();it != this->milista.end(); ++it){
+
+		//Si es el primer termino, lo guardo y uso ese para empezar comparar
+		if(contador==0){
+
+			lista_aux.push_back((*it).posi);
+			palabraanterior=(*it).term;
+
+		} else
+
+		if(palabraanterior==(*it).term && contador!=0){
+
+			frec++;
+			lista_aux.push_back((*it).posi);
+
+
+
+		}
+
+		else if(palabraanterior!=(*it).term && contador!=0) {
+			of<<palabraanterior<<" "<<frec<<" ";
+			posicionadistancia(lista_aux,of);
+			of<<endl;
+
+
+			frec=1;
+			palabraanterior=(*it).term;
+			lista_aux.clear();
+			lista_aux.push_back((*it).posi);
+
+
+		}
+
+		contador++;
+
+
+
+	}
+
+
+
+
