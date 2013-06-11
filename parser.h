@@ -36,6 +36,8 @@ private:
 
 	std::string getnombrearchivofinal();
 
+	static void pasarAminusculas(std::string& str);
+
 	int cantidadpalabras();
 
 	static bool ordenamiento(termino const& izq,termino const& der);
@@ -57,7 +59,7 @@ public:
 	~Parseador();
 
 	// Parsea el archivo extrayendo terminos importante y su ubicacion
-	bool parser();
+	bool parser(std::string& archivoaparsear);
 
 
 };
