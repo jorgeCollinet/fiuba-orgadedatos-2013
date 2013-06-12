@@ -4,7 +4,7 @@
  *  Created on: 09/06/2013
  *      Author: juan
  */
-//#define TESTCONSULTAS
+#define TESTCONSULTAS
 #ifndef TESTCONSULTAS
 #include "front_codding.h"
 #include "ResolvedorConsultas.h"
