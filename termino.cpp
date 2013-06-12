@@ -26,7 +26,15 @@ bool Termino::tiene_doc(size_t nro_doc){
 	}
 	return false;
 }
-
+bool Termino::antecede ( Termino& termino, size_t nro_doc, size_t lugar_offset){
+		cout<<"entro a anetecedeeeeeeeeeeeeeeeeeeeeeeeeee"<<endl;
+		size_t off_mio = this->get_offset(nro_doc,lugar_offset);
+		size_t off_otro = termino.get_offset(nro_doc,lugar_offset);
+		if(off_mio+1 == off_otro){
+			return true;
+		}
+		return false;
+}
 size_t Termino::get_max_offset(size_t nro_doc){
 	for(size_t i=0; i<vector_docs.size();++i){
 		if(vector_docs[i].first == nro_doc) {
@@ -37,19 +45,38 @@ size_t Termino::get_max_offset(size_t nro_doc){
 	return -1;
 }
 
-size_t Termino::get_next_offset(size_t nro_doc, size_t lugar_ant_offst) {
+size_t Termino::get_offset(size_t nro_doc, size_t lugar_offst) {
 	for(size_t i=0; i<vector_docs.size();++i){
+		cout<<"doc_actual: "<<vector_docs[i].first<<endl;
+		cout<<"doc_buscado: "<<nro_doc<<endl;
 		if(vector_docs[i].first == nro_doc) {
-			if(lugar_ant_offst+1 == vector_docs[i].second.size()){
-				throw ios_base::failure ("Termino::get_next_offset: nro de offset requerido excede la cantidad de offsets");
+			cout<<"Entro!!"<<endl;
+			cout<<"lugar_offset: "<<lugar_offst<<endl;
+			cout<<"max_tam: "<<vector_docs[i].second.size()<<endl;
+			if(lugar_offst >= vector_docs[i].second.size()){
+				cout<<"lugar_offset: "<<lugar_offst<<endl;
+				cout<<"max_tam: "<<vector_docs[i].second.size()<<endl;
+				throw ios_base::failure ("Termino::get_offset: nro de offset requerido excede la cantidad de offsets");
 			}
-			return vector_docs[i].second[lugar_ant_offst+1];
+			return vector_docs[i].second[lugar_offst];
+		}else{
+			cout<<"NO entro :("<<endl;
 		}
 	}
-	throw ios_base::failure ("Termino::get_max_offset: nro de doc no encontrado para termino");
+	throw ios_base::failure ("Termino::get_offset: nro de doc no encontrado para termino");
 	return -1;
 
 }
+size_t Termino::get_cant_offsets(size_t nro_doc) {
+	for(size_t i=0; i<vector_docs.size();++i){
+		if(vector_docs[i].first == nro_doc) {
+			return vector_docs[i].second.size();
+		}
+	}
+	throw ios_base::failure ("Termino::get_cant_offsets: nro de doc no encontrado para termino");
+	return -1;
+}
+
 ostream& operator<<(ostream& os, Termino& ter) {
 
 	os << "termino: " << ter.get_termino() << endl;

@@ -9,7 +9,7 @@
 #define TERMINO_H_
 #include <string>
 #include <vector>
-#include <ostream>
+#include <iostream>
 class Termino {
 	std::string termino;
 	//					    nro_doc   offsets en el doc
@@ -29,7 +29,9 @@ public:
 
 	size_t get_max_offset(size_t nro_doc);
 
-	size_t get_next_offset(size_t nro_doc, size_t lugar_ant_offst);
+	size_t get_offset(size_t nro_doc, size_t lugar_ant_offst);
+
+	size_t get_cant_offsets(size_t nro_doc);
 };
 
 std::ostream& operator<<(std::ostream& os, Termino& mod);
@@ -48,29 +50,34 @@ class ResolvedorDeConsultas {
 		if(exito == true){
 			return;
 		}
-		if(nro_termino == terminos.size()-1 && terminos[nro_termino].antecede(terminos[nro_termino+1], nro_doc, estado[nro_termino])) {
+		Termino& termino_act = terminos[nro_termino];
+
+		if(nro_termino == terminos.size()-1 && termino_act.antecede(terminos[nro_termino+1], nro_doc, estado[nro_termino])) {
 			exito = true;
 			return;
 
 		}
-
-		for(size_t i=estado[nro_termino]; i<= terminos[nro_termino].get_max_offset(nro_doc);++i) {
+		for(size_t i=estado[nro_termino]; i!= termino_act.get_cant_offsets(nro_doc); i++) {
 			std::vector<size_t> estado_aux = estado;
-			estado_aux[nro_termino] = terminos[nro_termino].get_next_offset(nro_doc, estado[nro_termino]);
 			recursive_comprobar_precedencia(exito, terminos, nro_termino,nro_doc,estado);
+			estado_aux[nro_termino]++;
 		}
-
 
 	}
 
 	bool comprobar_precedencia(std::vector<Termino>& terminos,size_t nro_doc) {
-		if(terminos.size() ==0){
+		if(terminos.size() == 0){
 			throw std::ios_base::failure("ResolvedorDeConsultas.comprobar_precedencia: He loco me mandaste un vector<Termino> vacio !!! ");
 		}
 		std::vector<size_t> estado (terminos.size(),0);
-		size_t nro_termino =0;
+		std::cout<<"estado inicial vector estado: ";
+		for(size_t i=0;i<estado.size();i++){
+			std::cout<<estado[i];
+		}
+		std::cout<<std::endl;
+		size_t nro_termino = 0;
 		bool exito = false;
-		recursive_comprobar_precedencia(exito,terminos, nro_termino, nro_doc, estado);
+		recursive_comprobar_precedencia(exito, terminos, nro_termino, nro_doc, estado);
 		return exito;
 	}
 public:
@@ -79,9 +86,12 @@ public:
 		std::vector<size_t> solucion;
 		for(size_t i=0;i<cant_total_docs;++i) {
 			if(todos_tienen_el_documento(terminos,i)) {
-				if(comprobar_precedencia(terminos,i)) {
+				std::cout<<"wiii todos los terminos tienen al doc: "<<i<<std::endl;
+				if(terminos.size()==1 || comprobar_precedencia(terminos,i)) {
 					solucion.push_back(i);
 				}
+			}else{
+				std::cout<<"ningun termino tiene doc: "<<i<<std::endl;
 			}
 		}
 		return solucion;
