@@ -12,6 +12,7 @@ class Escritor_bit {
 	std::ofstream arch;
 	size_t contador;
 	unsigned char buffer;
+	unsigned char num [8];
 public:
 	Escritor_bit(const char* nombre_archivo);
 	/* escribe el bit en el archivo

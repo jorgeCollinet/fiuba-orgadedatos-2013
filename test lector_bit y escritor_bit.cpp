@@ -16,33 +16,12 @@ int main(){
 
 	Escritor_bit escritor ("mi prueba.txt");
 
-	/*
-	 * si se quiere probar este , comentar el otro metodo
-	 * NUNCA USAR LOS DOS AL MISMO TIEMPO
-	escritor.escribir_bit_desde_abajo(1);
-	escritor.escribir_bit_desde_abajo(1);
-	escritor.escribir_bit_desde_abajo(1);
-	escritor.escribir_bit_desde_abajo(1);
-	escritor.escribir_bit_desde_abajo(1);
-	escritor.escribir_bit_desde_abajo(1);
-	escritor.escribir_bit_desde_abajo(1);
-	escritor.escribir_bit_desde_abajo(0);
-
-	escritor.escribir_bit_desde_abajo(0);
-	escritor.escribir_bit_desde_abajo(1);
-	escritor.escribir_bit_desde_abajo(1);
-	escritor.escribir_bit_desde_abajo(1);
-	escritor.escribir_bit_desde_abajo(1);
-	escritor.escribir_bit_desde_abajo(1);
-	escritor.escribir_bit_desde_abajo(1);
-	escritor.escribir_bit_desde_abajo(1);
-	*/
 	escritor.escribir_bit_desde_arriba(1);
+	escritor.escribir_bit_desde_arriba(0);
 	escritor.escribir_bit_desde_arriba(1);
+	escritor.escribir_bit_desde_arriba(0);
 	escritor.escribir_bit_desde_arriba(1);
-	escritor.escribir_bit_desde_arriba(1);
-	escritor.escribir_bit_desde_arriba(1);
-	escritor.escribir_bit_desde_arriba(1);
+	escritor.escribir_bit_desde_arriba(0);
 	escritor.escribir_bit_desde_arriba(1);
 	escritor.escribir_bit_desde_arriba(0);
 
