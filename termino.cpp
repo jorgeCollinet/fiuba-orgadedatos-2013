@@ -7,52 +7,60 @@
 #include "termino.h"
 using namespace std;
 
-Termino::Termino(std::string& termino, std::vector<size_t>& nro_docs,
-		std::vector<size_t>& off_bytes, std::vector<size_t>& off_bits) {
+
+Termino::Termino(std::string& termino, std::vector<std::pair <size_t,std::vector<size_t> > > docs_y_offts) {
 
 	this->termino = termino;
-	this->nro_docs = nro_docs;
-	this->off_bytes = off_bytes;
-	this->off_bits = off_bits;
+	this->vector_docs = docs_y_offts;
 
 }
 std::string& Termino::get_termino(){
 	return termino;
 }
-std::vector<size_t>& Termino::get_docs() {
-	return nro_docs;
+
+bool Termino::tiene_doc(size_t nro_doc){
+	for(size_t i =0;i<vector_docs.size();++i){
+		if(vector_docs[i].first == nro_doc){
+			return true;
+		}
+	}
+	return false;
 }
 
-std::vector<size_t>& Termino::get_off_bytes(){
-	return off_bytes;
+size_t Termino::get_max_offset(size_t nro_doc){
+	for(size_t i=0; i<vector_docs.size();++i){
+		if(vector_docs[i].first == nro_doc) {
+			return vector_docs[i].second[vector_docs[i].second.size()-1];
+		}
+	}
+	throw ios_base::failure ("Termino::get_max_offset: nro de doc no encontrado para termino");
+	return -1;
 }
-std::vector<size_t>& Termino::get_off_bits(){
-	return off_bits;
+
+size_t Termino::get_next_offset(size_t nro_doc, size_t lugar_ant_offst) {
+	for(size_t i=0; i<vector_docs.size();++i){
+		if(vector_docs[i].first == nro_doc) {
+			if(lugar_ant_offst+1 == vector_docs[i].second.size()){
+				throw ios_base::failure ("Termino::get_next_offset: nro de offset requerido excede la cantidad de offsets");
+			}
+			return vector_docs[i].second[lugar_ant_offst+1];
+		}
+	}
+	throw ios_base::failure ("Termino::get_max_offset: nro de doc no encontrado para termino");
+	return -1;
+
 }
-
-
-
-
-
-
 ostream& operator<<(ostream& os, Termino& ter) {
 
-	os<<"termino: "<<ter.get_termino()<<endl;
-	os<<"nro de docs: ";
-	for(size_t i=0;i<ter.get_docs().size();++i){
-		os<<ter.get_docs()[i]<<" ";
-	}
-	os<<endl;
-	os<<"offts bytes: ";
-	for(size_t i=0;i<ter.get_off_bytes().size();++i){
-		os<<ter.get_off_bytes()[i]<<" ";
-	}
-	os<<endl;
+	os << "termino: " << ter.get_termino() << endl;
 
-	os<<"offts bits: ";
-	for (size_t i = 0; i < ter.get_off_bits().size(); ++i) {
-		os << ter.get_off_bits()[i] << " ";
+	for (size_t i = 0; i < ter.vector_docs.size(); ++i) {
+		os << "nro_doc: "<<ter.vector_docs[i].first <<endl;
+		os << "offsets: ";
+		for (size_t j = 0; j < ter.vector_docs[i].second.size(); ++j) {
+			os << ter.vector_docs[i].second[j] << " ";
+		}
+		os << endl;
 	}
-	os << endl;
 	return os;
 }
