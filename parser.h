@@ -22,6 +22,7 @@ struct termino{
 
 	std::string term;
 	int posi;
+	int doc;
 };
 
 
@@ -59,7 +60,7 @@ public:
 	~Parseador();
 
 	// Parsea el archivo extrayendo terminos importante y su ubicacion
-	std::string parser(std::string& archivoaparsear);
+	std::string parser(std::string& archivoaparsear,int doc);
 
 
 };

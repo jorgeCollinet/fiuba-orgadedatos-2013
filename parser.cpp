@@ -31,7 +31,7 @@ Parseador::~Parseador(){
 
 
 //Parsea el documento de texto extrayendo los terminos(filtrados) y su ubicacion en el mismo
-std::string Parseador::parser(std::string& archivoaparsear){
+std::string Parseador::parser(std::string& archivoaparsear,int doc){
 
 				this->nombrearchivo=archivoaparsear;//guardo el nombre
 
@@ -62,6 +62,7 @@ std::string Parseador::parser(std::string& archivoaparsear){
 
 	                        termino term;
 
+	                        term.doc=doc;
 	                        term.term=palabra;
 	                        term.posi=pos;
 
@@ -187,7 +188,7 @@ void Parseador::acomodador(std::ofstream& of){
 		}
 
 		else if(palabraanterior!=(*it).term && contador!=0) {
-			of<<palabraanterior<<" "<<frec<<" ";
+			of<<palabraanterior<<" "<<(*it).doc<<" "<<frec<<" ";
 			posicionadistancia(lista_aux,of);
 			of<<endl;
 
