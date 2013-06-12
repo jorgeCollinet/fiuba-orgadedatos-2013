@@ -26,7 +26,11 @@ Front_codding::Front_codding(const char* unNombreArchivo) {
 
 void Front_codding::modo_lectura(void) {
 	this -> modo = LECTURA;
-	this -> unTraductor = new Traductor(LECTURA, nombreArchivo.c_str());
+	ifstream pruebaApertura;
+	pruebaApertura.open(nombreArchivo.c_str(),std::fstream::in);
+	if (! pruebaApertura.is_open())	throw std::ios_base::failure("El archivo de front codding no se encuentra. Revise e intente nuevamente. "+nombreArchivo);
+	pruebaApertura.close();	this -> unTraductor = new Traductor(LECTURA, nombreArchivo.c_str());
+
 }
 
 void Front_codding::modo_escritura(void) {
