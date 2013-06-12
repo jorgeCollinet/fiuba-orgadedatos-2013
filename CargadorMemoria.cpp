@@ -43,6 +43,7 @@ bool CargadorMemoria::cargar_lexico(void) {
 
 bool CargadorMemoria::cargar_ocurrencias(void) {
 	string nombreOC = nombreArchivo + FINOCURRENCIAS;
+	cout << "Se cargan las ocurrencias desde el archivo: " << nombreOC << endl;
 	Traductor traductor (READ, nombreOC.c_str());
 	int numeroLeido=0, frecPalabra=0,cantDocumentos=0;
 	unsigned int numeroPalabra = 0;
@@ -54,13 +55,16 @@ bool CargadorMemoria::cargar_ocurrencias(void) {
 		if (numeroLeido == FINARCH) break;
 		//Lei la cantidad de documentos en los que aparece.
 		for (int j = 0; j < cantDocumentos; j++) {
-			traductor.read_delta(); // Leo el numero de documento, no me importa ahora.
+			numeroLeido = traductor.read_delta(); // Leo el numero de documento, no me importa ahora.
+			if (numeroLeido==FINARCH) cout << "El archivo de ocurrencias está mal formado." << endl;
 			//Estoy iterando sobre documentos
 			frecPalabra = traductor.read_delta();
 			//cout << " " << frecPalabra << " ";
+			if (frecPalabra==FINARCH) cout << "El archivo de ocurrencias está mal formado." << endl;
 			for (int k=0; k < frecPalabra; k++) {
 				//Estoy iterando sobre offsets de la misma palabra en el mismo documento.
-				traductor.read_delta();
+				numeroLeido=traductor.read_delta();
+				if (numeroLeido==FINARCH) cout << "El archivo de ocurrencias está mal formado." << endl;
 			}
 		}
 		numeroPalabra++;
