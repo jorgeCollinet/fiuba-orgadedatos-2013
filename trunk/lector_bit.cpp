@@ -43,10 +43,20 @@ unsigned int LectorBit::leer_bit() {
 }
 
 double LectorBit::devolver_offset_de_byte(void) {
+	if (contador == 8) {
+		//esta por cambiar de byte, devuelvo la el actual +1
+		int aux = arch.tellg();
+		if (aux == 0) aux--; // Salvo que sea la primer lectura, el cursor aquí esta en el comienzo del archivo.
+		return (aux+1);
+	}
 	return arch.tellg();
 }
 
 short LectorBit::devolver_offset_de_bit(void) {
+	if (contador == 8) {
+		//esta por cambiar de byte devuelvo 0
+		return 0;
+	}
 	return contador;
 }
 
