@@ -16,8 +16,8 @@ int main(void) {
 
 	Traductor* unTraductor = new Traductor(WRITE, "pTraductor.dat");
 	//Prueba escribir números;
-	int num[] = {1,2,3,4,10};
-	for (int i=0; i < 5; i++) {
+	int num[]= {1,1,1,5,1,1,1,6,3,1,1,4,2,1,4,3,2,4,1,1,2,1,1,1,1,1,1,3,1,1,3,2,1,3,3,1,6,3,1,1,2,2,1,2,3,3,1,1,1};
+	for (int i=0; i < 49; i++) {
 		cout << num[i] << ",";
 		unTraductor->write_gamma(num[i]);
 	}
@@ -46,7 +46,7 @@ int main(void) {
 
 	//Pruebas delta
 	unTraductor = new Traductor(WRITE, "pTraductor2.dat");
-	for (int i=0; i < 5; i++) {
+	for (int i=0; i < 49; i++) {
 			unTraductor -> write_delta(num[i]);
 	}
 	delete unTraductor;

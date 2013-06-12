@@ -44,17 +44,17 @@ bool CargadorMemoria::cargar_lexico(void) {
 bool CargadorMemoria::cargar_ocurrencias(void) {
 	string nombreOC = nombreArchivo + FINOCURRENCIAS;
 	Traductor traductor (READ, nombreOC.c_str());
-	int numeroLeido=0, frecPalabra=0;
+	int numeroLeido=0, frecPalabra=0,cantDocumentos=0;
 	unsigned int numeroPalabra = 0;
 	while (1 && (numeroPalabra < lexico.size())) {
 		lexico[numeroPalabra].second.first = traductor.devolver_offset_de_byte(); //Leo el offset en bytes
 		lexico[numeroPalabra].second.second = traductor.devolver_offset_de_bit(); //Leo el offset en bits
-		numeroLeido = traductor.read_delta();
+		cantDocumentos = numeroLeido = traductor.read_delta();
 		//cout << numeroLeido << " ";
 		if (numeroLeido == FINARCH) break;
 		//Lei la cantidad de documentos en los que aparece.
-		for (int j = 0; j < numeroLeido; j++) {
-			traductor.read_delta(); // Leo el numero de documento
+		for (int j = 0; j < cantDocumentos; j++) {
+			traductor.read_delta(); // Leo el numero de documento, no me importa ahora.
 			//Estoy iterando sobre documentos
 			frecPalabra = traductor.read_delta();
 			//cout << " " << frecPalabra << " ";
@@ -68,6 +68,7 @@ bool CargadorMemoria::cargar_ocurrencias(void) {
 	}
 	if (numeroPalabra != lexico.size())
 		cout << "Hubo un problema en la carga del indice." << endl;
+		return false;
 	//Una vez que estoy aquí todos los offset se han leido y la estructura quedó cargada en memoria.
 	return true;
 }
