@@ -7,6 +7,8 @@
 
 #include "CargadorMemoria.h"
 #define FINARCH (-1)
+#define FINOCURRENCIAS "OC.dat"
+#define FINFRONTCODDING "FC.dat"
 
 using namespace std;
 
@@ -21,7 +23,7 @@ CargadorMemoria::CargadorMemoria(string unNombreArchivo) {
 bool CargadorMemoria::cargar_lexico(void) {
 	//Carga el léxico en memoria, sólo las palabras no sus ocurrencias.
 	string finPalabras ("Error_Lectura");
-	string nombreFC = nombreArchivo + "FC.dat";
+	string nombreFC = nombreArchivo + FINFRONTCODDING;
 	Front_codding* fCodding = new Front_codding(nombreFC.c_str());
 	fCodding->modo_lectura();
 	cout << "Se cargaran las palabras desde el archivo: " << nombreFC << endl;
@@ -40,29 +42,29 @@ bool CargadorMemoria::cargar_lexico(void) {
 }
 
 bool CargadorMemoria::cargar_ocurrencias(void) {
-	string nombreOC = nombreArchivo + "DOC.dat";
+	string nombreOC = nombreArchivo + FINOCURRENCIAS;
 	Traductor traductor (READ, nombreOC.c_str());
-	int numeroLeido, frecPalabra;
-	unsigned int numeroPalabra=0;
+	int numeroLeido=0, frecPalabra=0;
+	unsigned int numeroPalabra = 0;
 	while (1 && (numeroPalabra < lexico.size())) {
 		lexico[numeroPalabra].second.first = traductor.devolver_offset_de_byte(); //Leo el offset en bytes
 		lexico[numeroPalabra].second.second = traductor.devolver_offset_de_bit(); //Leo el offset en bits
 		numeroLeido = traductor.read_delta();
-		cout << numeroLeido << " ";
+		//cout << numeroLeido << " ";
 		if (numeroLeido == FINARCH) break;
 		//Lei la cantidad de documentos en los que aparece.
 		for (int j = 0; j < numeroLeido; j++) {
-			cout << traductor.read_delta(); // Leo el numero de documento
+			traductor.read_delta(); // Leo el numero de documento
 			//Estoy iterando sobre documentos
 			frecPalabra = traductor.read_delta();
-			cout << " " << frecPalabra << " ";
+			//cout << " " << frecPalabra << " ";
 			for (int k=0; k < frecPalabra; k++) {
 				//Estoy iterando sobre offsets de la misma palabra en el mismo documento.
-				cout << traductor.read_delta() << " ";
+				traductor.read_delta();
 			}
 		}
 		numeroPalabra++;
-		cout << endl;
+		//cout << endl;
 	}
 	if (numeroPalabra != lexico.size())
 		cout << "Hubo un problema en la carga del indice." << endl;
@@ -70,7 +72,8 @@ bool CargadorMemoria::cargar_ocurrencias(void) {
 	return true;
 }
 
-CargadorMemoria::~CargadorMemoria() {
+CargadorMemoria::~CargadorMemoria(void) {
+	lexico.clear();
 	// TODO Auto-generated destructor stub
 }
 
