@@ -1,71 +1,54 @@
-#define papa
+//#define papa
 #ifndef papa
 #include <iostream>
 #include "lector_directorios.h"
 #include "parser.h"
-#include "merge.h"
+#include "merge2.h"
 #include "indexer.h"
 #include <vector>
+#include <stdio.h>
 using namespace std;
 /* la llamada al programa se hace pasandole el directorio donde están los archivos */
-int main (int args, char* argv[]){
-	cout<<"esto es el main del programa"<<endl;
+int main (int args, char* argv[]) {
+	if(args<2){
+		throw ios_base::failure("faltan parametros de llamada al programa");
+	}
+	// ruta donde están los archivos a trabajar
+	string path = argv[1];
 	// se buscan los archivos con los cuales trabajaremos
 	Lector_directorios lector;
-	vector<string> archivos = lector.leer_dir(argv[1]);
-
+	vector<string>& archivos = lector.leer_dir(argv[1]);
+	vector<string> archivos_a_mergear;
 	// se parsean los archivos
-	while(!archivos.empty()){
+	for(size_t i=0; i<archivos.size();i++){
 		string path(argv[1]);
 		path+="/";
-		path+=archivos.back();
-		cout<<"Archivo: "<<path<<endl;
-		// aca el parser tendria que devolver el nombre del archivo en donde guardo el parceo
-		parser(path);
-		archivos.pop_back();
+		path+=archivos[i];
+		Parseador pars;
+		archivos_a_mergear.push_back(pars.parser(path,i));
 	}
-	//PARSER
-	/*//Archivo a parsear
-	string archivo = "texto.txt";
-	//Esta lista es la que va a ir llenando el parser con los nombres de los archivos parseados +
-	//sufijo para darse cuenta que lo parseo.
-	std::list<std::string> listadirect;
-	
-
-
-	parser(archivo,listadirect);
-	 *
-	 *
-	 *
-	 *
-	 *
-	*/
+	cout<<"Archivos parseados a mergear:"<<endl;
+	for(size_t i =0;i<archivos_a_mergear.size();++i){
+		cout<<archivos_a_mergear[i]<<endl;
+	}
 	// se mergean los archivos
-		//auxiliar a la espera de que parcer se finalize de implementar
-		vector<string>archivos_a_mergear;
-		string path1 ("/home/jorge/workspace2/tp DATOS/prototipo a seguir ej1/parser-doc1.txt");
-		archivos_a_mergear.push_back(path1);
-		string path2 ("/home/jorge/workspace2/tp DATOS/prototipo a seguir ej1/parser-doc2.txt");
-		archivos_a_mergear.push_back(path2);
-		string path3 ("/home/jorge/workspace2/tp DATOS/prototipo a seguir ej1/parser-doc3.txt");
-		archivos_a_mergear.push_back(path3);
-
 		Merge merger;
-		string path (argv[1]);
-		path +="/merge-doc.txt";
-		merger.merge_n_archivos(path.c_str(),archivos_a_mergear);
+		string aux_path = path;
+		aux_path +="/merge-doc.txt";
+		merger.merge_n_archivos(archivos_a_mergear,aux_path,PRIMERA_PASADA);
 		cout<<"termino el merge"<<endl;
+
+		for(size_t i=0; i<archivos_a_mergear.size();++i){
+			remove(archivos_a_mergear[i].c_str());
+		}
 	// se construyen los indices
-		indexer _idx;
-		_idx.indexar(path.c_str());/* supongo que es esta la ruta; */
-		cout << "se indexaron los archivos\n";
+		//indexer _idx;
+		//_idx.indexar(path.c_str());/* supongo que es esta la ruta; */
+		//cout << "se indexaron los archivos\n";
 
 	// se reciben consultas
 		//falta hacer
-
-
-		delete archivos;
-*/
+	delete &archivos;
 }
 
 

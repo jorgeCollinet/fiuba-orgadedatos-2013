@@ -22,8 +22,8 @@ vector<string>& Lector_directorios::leer_dir(char* ruta){
 
 			stringstream ss;
 			ss<<drnt->d_name;
-			string * aux = new string(ss.str());
-			archivos->push_back(*aux);
+			string aux (ss.str());
+			archivos->push_back(aux);
 			i++;
 	    }
 
