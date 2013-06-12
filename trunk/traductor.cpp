@@ -247,10 +247,10 @@ bool Traductor::write_uint(size_t num){
 
 	size_t bin = num;
 	int tam = sizeof(size_t);
-	int aux;
+	size_t aux;
 
 	for (int i=tam;i>=0;i--){
-		aux = (int)pow((float)2, (float)(i));
+		aux = (unsigned int)pow((float)2, (float)(i));
 		if(aux <= bin){
 			writer->escribir_bit_desde_arriba(1);
 			bin = bin - aux;
