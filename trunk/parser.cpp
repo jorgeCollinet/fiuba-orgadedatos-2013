@@ -75,7 +75,7 @@ std::string Parseador::parser(std::string& archivoaparsear,int doc){
 	                }
 	                delete []linea;
 	                delete auxPalabra;
-	                pos--;
+	               // pos--;
 	        }
 
 		//Comienza etapa de ordenar, calcular distancias y escribir en archivo
