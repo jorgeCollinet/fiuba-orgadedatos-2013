@@ -110,9 +110,9 @@ public:
 				getline(in,dato);
 				Palabra pal (termino,nro_archivo,dato);
 
-				cout<<"termino: "<<termino<<endl;
-				cout<<"nro archivo: "<<nro_archivo<<endl;
-				cout<<"dato: "<<dato<<endl;
+				//cout<<"termino: "<<termino<<endl;
+				//cout<<"nro archivo: "<<nro_archivo<<endl;
+				//cout<<"dato: "<<dato<<endl;
 
 				if(pasada==SEGUNDA_PASADA){
 					pal.set_frec(frec);
