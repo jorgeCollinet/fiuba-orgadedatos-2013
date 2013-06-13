@@ -1,5 +1,5 @@
 
-//#define prueba_termino2
+#define prueba_termino2
 #ifndef prueba_termino2
 
 #include "termino.h"
@@ -49,9 +49,28 @@ int main(){
 
 	Termino segundo_termino(seg_palabra ,docs_y_offts_segundo);
 
+
+	// creo un tercer termino
+	string tercer_palabra = "malososos";
+	vector<pair <size_t,vector<size_t> > > docs_y_offts_tercero;
+	pair <size_t,vector<size_t> > doc_tercero;
+
+	doc_tercero.first = 870;
+	doc_tercero.second.push_back(1);
+	doc_tercero.second.push_back(10);
+	doc_tercero.second.push_back(100);
+	doc_tercero.second.push_back(10001);
+
+	docs_y_offts_tercero.push_back(doc_tercero);
+
+	Termino tercer_termino (tercer_palabra,docs_y_offts_tercero);
+
+
+	//###################################################3
 	vector<Termino> terminos;
 	terminos.push_back(ter);
 	terminos.push_back(segundo_termino);
+	terminos.push_back(tercer_termino);
 
 	ResolvedorDeConsultas rescons;
 	cout << "solucion:" << endl;
