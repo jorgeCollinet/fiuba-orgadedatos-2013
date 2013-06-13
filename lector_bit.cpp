@@ -60,6 +60,21 @@ short LectorBit::devolver_offset_de_bit(void) {
 	return contador;
 }
 
+bool LectorBit::avanzar_cursor(int unByte, char unBit) {
+	if (unByte > arch.tellg())
+		return false; //Si no se puede devuelvo falso.
+	//Me debo posicionar en el byte, contado desde el principio.
+	arch.seekg(unByte, ios::beg );
+	contador=8;
+	if (unBit != 0) {
+		this->leer_bit();
+		contador += (unBit-1); //Descarto los que no necesito
+	} //Si el bit es 0 no debo descartar nada.
+	//Descarto los bits que no me interesan
+	return true;
+}
+
 LectorBit::~LectorBit() {
 	arch.close();
 }
+

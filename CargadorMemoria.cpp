@@ -10,6 +10,7 @@
 #define FINOCURRENCIAS "OC.dat"
 #define FINFRONTCODDING "FC.dat"
 
+
 using namespace std;
 
 CargadorMemoria::CargadorMemoria(const char* unNombreArchivo) {
@@ -86,6 +87,8 @@ int CargadorMemoria::cantidad(void) {
 	return lexico.size();
 }
 
+
+
 void CargadorMemoria::mostrar_ocurrencias(void) {
 	for (int i=0; i<this->cantidad();i++) {
 		cout << lexico[i].first << " " << lexico[i].second.first << "/" << (int)lexico[i].second.second << endl;
@@ -93,3 +96,56 @@ void CargadorMemoria::mostrar_ocurrencias(void) {
 	cout << endl;
 }
 
+vector<OFFSET>* CargadorMemoria::devolver_ocurrencias_termino(string unTermino) {
+	int resultado = this->buscar_termino(unTermino);
+	if (resultado == -1) {
+		OFFSET aux;
+		aux.first=0;
+		return NULL;
+	}
+	string nombreOC = nombreArchivo + FINOCURRENCIAS;
+	Traductor traductor (READ, nombreOC.c_str());
+	int numeroLeido=0, frecPalabra=0,cantDocumentos=0;
+	if (traductor.avanzar_cursor((int)lexico[resultado].second.first, lexico[resultado].second.second)) {
+		cout << "El archivo de ocurrencias está mal formado." << endl;
+		return NULL;
+	}
+	vector<OFFSET>* valor = new vector<OFFSET>();
+	cantDocumentos = traductor.read_delta();
+	for (int k=0; k < cantDocumentos; k++) {
+		OFFSET aux;
+		numeroLeido = traductor.read_delta(); //Leo el numero del documento
+		aux.first = numeroLeido;
+		frecPalabra = traductor.read_delta();
+		for (int j = 0; j < frecPalabra; j++) {
+			numeroLeido = traductor.read_delta(); //Leo offsets
+			if (numeroLeido==FINARCH) {
+				cout << "El archivo de ocurrencias está mal formado." << endl;
+				return NULL;
+			}
+			aux.second.push_back(numeroLeido); //Guardo el offset
+		}
+		valor->push_back(aux);
+	}
+	return valor;
+}
+
+int CargadorMemoria::buscar_termino(string unTermino) {
+	int Iarriba = lexico.size()-1;
+	int Iabajo = 0;
+	int Icentro;
+	while (Iabajo <= Iarriba)
+	{
+		Icentro = (Iarriba + Iabajo)/2;
+		if (lexico[Icentro].first == unTermino){
+			return Icentro;
+		}else{
+			if (unTermino < lexico[Icentro].first)
+				Iarriba=Icentro-1;
+			else
+				Iabajo=Icentro+1;
+		}
+	return -1;
+	}
+	return -1;
+}

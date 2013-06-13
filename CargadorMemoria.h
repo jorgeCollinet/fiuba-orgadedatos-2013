@@ -15,6 +15,8 @@
 #include "traductor.h"
 using namespace std;
 #define Ocurrencia pair<string, pair<double, short> >
+#define OFFSET pair <size_t,vector<size_t> >
+
 
 class CargadorMemoria {
 public:
@@ -26,10 +28,14 @@ public:
 	int cantidad(void);
 	// Uso para debug
 	void mostrar_ocurrencias(void);
+	//Devuelve las ocurrencias de un termino
+	vector<OFFSET>* devolver_ocurrencias_termino(string unTermino);
 
 private:
 	string nombreArchivo;
 	vector < pair<string, pair<double, char> > > lexico;
+	int buscar_termino(string unTermino);
+
 };
 
 #endif /* RESOLVEDORCONSULTAS_H_ */

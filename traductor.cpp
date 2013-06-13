@@ -277,3 +277,10 @@ short Traductor::devolver_offset_de_bit(void) {
 	if (modo == READ) return reader->devolver_offset_de_bit();
 	return 0;
 }
+
+bool Traductor::avanzar_cursor(int unByte, char unBit) {
+	if (modo == READ)
+		return this->reader->avanzar_cursor(unByte, unBit);
+	return false;
+}
+

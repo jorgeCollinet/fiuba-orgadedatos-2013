@@ -29,6 +29,8 @@ public:
 	double devolver_offset_de_byte(void);
 	//Devuelve el offset de bit en el que se encuentra.
 	short devolver_offset_de_bit(void);
+	//Avanza el cursor hasta la posición indicada, devuelve falso si no se puede.
+	bool avanzar_cursor(int unByte, char unBit);
 
 };
 
