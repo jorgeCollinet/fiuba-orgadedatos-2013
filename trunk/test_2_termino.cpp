@@ -1,8 +1,9 @@
 
-#define prueba_termino2
+//#define prueba_termino2
 #ifndef prueba_termino2
 
 #include "termino.h"
+#include "CargadorMemoria.h"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -86,8 +87,32 @@ int main(){
 		cout << endl;
 	}
 
-	cout << "Fin test :)" << endl;
+	cout << "Fin test :) Harcodeado" << endl;
+	CargadorMemoria ca("archivo");
+	Termino *term1,*term2;
+	ca.cargar_lexico();
+	ca.cargar_lexico();
+	term1 = ca.devolver_ocurrencias_termino("perra");
+	term2 = ca.devolver_ocurrencias_termino("perritos");
+	vector<Termino> terminos2;
+	terminos2.push_back(*term1);
+	terminos2.push_back(*term2);
+	sol_docs.clear();
+	sol_docs = rescons.resolver_consulta(terminos, 871);
 
+	if (sol_docs.size() == 0) {
+		cout << "no hay solucion" << endl;
+	} else {
+		cout << "solucion es: ";
+		for (size_t i = 0; i < sol_docs.size(); i++) {
+			cout << sol_docs[i] << " ";
+		}
+		cout << endl;
+	}
+	cout << "Fin Pruebas!";
+	delete (term1);
+	delete (term2);
+	terminos2.clear();
 
 }
 #endif

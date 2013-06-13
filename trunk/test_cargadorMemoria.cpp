@@ -10,6 +10,7 @@
 #include "CargadorMemoria.h"
 #include "traductor.h"
 #include <iostream>
+#include "termino.h"
 using namespace std;
 
 int main(void) {
@@ -34,13 +35,13 @@ int main(void) {
 	unTraductor = new Traductor(READ, "archivoOC.dat");
 	rs->cargar_ocurrencias();
 	rs->mostrar_ocurrencias();
+	/*
 	int resEsperado[] = {1,4,2,4,3,4,1},k=0,resultado=0;
-
-	vector<OFFSET>* vector1 = rs->devolver_ocurrencias_termino("perritos");
-	for (unsigned int i=0; i<vector1->size(); i++) {
-		if((size_t)resEsperado[k++] != (*vector1)[i].first) resultado=(-1);
-		for (unsigned int j=0; j<(*vector1)[i].second.size(); j++ ) {
-			if((unsigned) resEsperado[k++] != (*vector1)[i].second[j]) resultado =(-1);
+	Termino* vector1 = rs->devolver_ocurrencias_termino("perritos");
+	for (unsigned int i=0; i<vector(); i++) {
+		if((size_t)resEsperado[k++] != vector1->vector_docs[k].first) resultado=(-1);
+		for (unsigned int j=0; j< vector1->vector_docs[k].second.size(); j++ ) {
+			if((unsigned) resEsperado[k++] != vector1->vector_docs[k].second) resultado =(-1);
 		}
 	}
 	cout << "Levantar offset de disco: ";
@@ -49,11 +50,13 @@ int main(void) {
 	} else {
 		cout << "incorrecto." << endl;
 	}
+	*/
 	cout << endl << "Fin pruebas." << endl;
 
-	delete vector1;
+	//delete vector1;
 	delete rs;
 	return 0;
+
 }
 #endif
 

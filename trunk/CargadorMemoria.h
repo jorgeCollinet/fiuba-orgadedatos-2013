@@ -13,6 +13,7 @@
 #include <fstream>
 #include "front_codding.h"
 #include "traductor.h"
+#include "termino.h"
 using namespace std;
 #define Ocurrencia pair<string, pair<double, short> >
 #define OFFSET pair <size_t,vector<size_t> >
@@ -29,7 +30,7 @@ public:
 	// Uso para debug
 	void mostrar_ocurrencias(void);
 	//Devuelve las ocurrencias de un termino
-	vector<OFFSET>* devolver_ocurrencias_termino(string unTermino);
+	Termino* devolver_ocurrencias_termino(string unTermino);
 
 private:
 	string nombreArchivo;
