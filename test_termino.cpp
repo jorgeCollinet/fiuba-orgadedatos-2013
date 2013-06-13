@@ -10,12 +10,13 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#define OFFSET pair <size_t,vector<size_t> >
 using namespace std;
 int main(){
 
 
 	string termino = "pepe";
-	vector<pair <size_t,vector<size_t> > > docs_y_offts;
+	vector<OFFSET> docs_y_offts;
 	pair <size_t,vector<size_t> > doc;
 	// numero de documento
 	doc.first = 2;

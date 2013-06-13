@@ -97,6 +97,7 @@ void CargadorMemoria::mostrar_ocurrencias(void) {
 }
 
 vector<OFFSET>* CargadorMemoria::devolver_ocurrencias_termino(string unTermino) {
+	cout << "Estoy por buscar, resultado: ";
 	int resultado = this->buscar_termino(unTermino);
 	if (resultado == -1) {
 		OFFSET aux;
@@ -106,10 +107,11 @@ vector<OFFSET>* CargadorMemoria::devolver_ocurrencias_termino(string unTermino) 
 	string nombreOC = nombreArchivo + FINOCURRENCIAS;
 	Traductor traductor (READ, nombreOC.c_str());
 	int numeroLeido=0, frecPalabra=0,cantDocumentos=0;
-	if (traductor.avanzar_cursor((int)lexico[resultado].second.first, lexico[resultado].second.second)) {
-		cout << "El archivo de ocurrencias está mal formado." << endl;
+	if (!traductor.avanzar_cursor((int)lexico[resultado].second.first, lexico[resultado].second.second)) {
+		cout << "El archivo de ocurrencias está mal formado. 1 " << endl;
 		return NULL;
 	}
+	cout << "Byte: " << traductor.devolver_offset_de_byte() << "Bit: " << traductor.devolver_offset_de_bit() << endl;
 	vector<OFFSET>* valor = new vector<OFFSET>();
 	cantDocumentos = traductor.read_delta();
 	for (int k=0; k < cantDocumentos; k++) {
@@ -138,14 +140,15 @@ int CargadorMemoria::buscar_termino(string unTermino) {
 	{
 		Icentro = (Iarriba + Iabajo)/2;
 		if (lexico[Icentro].first == unTermino){
+			cout << Icentro << endl;
 			return Icentro;
 		}else{
 			if (unTermino < lexico[Icentro].first)
-				Iarriba=Icentro-1;
+				Iarriba=(Icentro-1);
 			else
-				Iabajo=Icentro+1;
+				Iabajo=(Icentro+1);
 		}
-	return -1;
 	}
+	cout << "No lo encontre";
 	return -1;
 }
