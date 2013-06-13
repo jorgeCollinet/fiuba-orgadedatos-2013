@@ -26,12 +26,13 @@ bool Termino::tiene_doc(size_t nro_doc){
 	}
 	return false;
 }
-bool Termino::antecede(Termino& termino, size_t nro_doc, size_t lugar_offset) {
+bool Termino::antecede(Termino& termino, size_t nro_doc, size_t lugar_offset,size_t& lugar_match) {
 	cout << "entro a anetecedeeeeeeeeeeeeeeeeeeeeeeeeee" << endl;
 	size_t off_mio = this->get_offset(nro_doc, lugar_offset);
 	for (size_t i = 0; i < termino.get_cant_offsets(nro_doc); ++i) {
 		size_t off_otro = termino.get_offset(nro_doc, i);
 		if (off_mio + 1 == off_otro) {
+			lugar_match = i;
 			return true;
 		}
 	}

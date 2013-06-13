@@ -25,7 +25,7 @@ public:
 	friend std::ostream& operator<<(std::ostream& os, Termino& mod);
 	// comprueba que dado otro termino, en un determinado documento, y que el
 	// propio elemento se encuentra en el offset dado, este anteceda al termino recibido
-	bool antecede ( Termino& termino, size_t nro_doc, size_t offset);
+	bool antecede ( Termino& termino, size_t nro_doc, size_t offset, size_t& lugar_match);
 
 	size_t get_max_offset(size_t nro_doc);
 
@@ -55,8 +55,9 @@ class ResolvedorDeConsultas {
 		std::cout<<"encontro true??"<<std::endl;
 		if (nro_termino == terminos.size() - 2) {
 			std::cout<<"casi casi, nro_termino: "<<nro_termino<<std::endl;
+			size_t lugar_match; // no me importa no lo uso
 			for(size_t i=0;i<termino_act.get_cant_offsets(nro_doc);i++) {
-				if (termino_act.antecede(terminos[nro_termino + 1], nro_doc, i)) {
+				if (termino_act.antecede(terminos[nro_termino + 1], nro_doc, i,lugar_match)) {
 					exito = true;
 					std::cout<<"ssissssss encontro solucion"<<std::endl;
 					return;
@@ -68,8 +69,11 @@ class ResolvedorDeConsultas {
 			std::vector<size_t> estado_aux = estado;
 			for(size_t i=estado[nro_termino]; i< termino_act.get_cant_offsets(nro_doc); i++) {
 				//aca deveria hacer chequeo de precedencia antes de llamar
-				estado_aux[nro_termino]=i;
-				recursive_comprobar_precedencia(exito, terminos, nro_termino+1,nro_doc,estado_aux);
+				size_t lugar_match;
+				if(termino_act.antecede(terminos[nro_termino+1],nro_doc,i,lugar_match)){
+					estado_aux[nro_termino+1]=lugar_match;
+					recursive_comprobar_precedencia(exito, terminos, nro_termino+1,nro_doc,estado_aux);
+				}
 
 			}
 		}
@@ -102,7 +106,7 @@ public:
 					solucion.push_back(i);
 				}
 			}else{
-				std::cout<<"ningun termino tiene doc: "<<i<<std::endl;
+				std::cout<<"No todos los terminos tienen al doc: "<<i<<std::endl;
 			}
 		}
 		return solucion;
