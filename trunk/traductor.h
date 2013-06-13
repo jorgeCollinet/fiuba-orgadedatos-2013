@@ -52,6 +52,8 @@ public:
 
 	short devolver_offset_de_bit(void);
 
+	bool avanzar_cursor(int unByte, char unBit);
+
 	~Traductor();
 
 };
