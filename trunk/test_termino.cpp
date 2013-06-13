@@ -4,7 +4,7 @@
  *  Created on: 12/06/2013
  *      Author: jorge
  */
-//#define prueba_termino
+#define prueba_termino
 #ifndef prueba_termino
 #include "termino.h"
 #include <vector>
