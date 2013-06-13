@@ -34,7 +34,24 @@ int main(void) {
 	unTraductor = new Traductor(READ, "archivoOC.dat");
 	rs->cargar_ocurrencias();
 	rs->mostrar_ocurrencias();
-	cout << "Fin pruebas." << endl;
+	int resEsperado[] = {1,4,2,4,3,4,1},k=0,resultado=0;
+
+	vector<OFFSET>* vector1 = rs->devolver_ocurrencias_termino("perritos");
+	for (unsigned int i=0; i<vector1->size(); i++) {
+		if((size_t)resEsperado[k++] != (*vector1)[i].first) resultado=(-1);
+		for (unsigned int j=0; j<(*vector1)[i].second.size(); j++ ) {
+			if((unsigned) resEsperado[k++] != (*vector1)[i].second[j]) resultado =(-1);
+		}
+	}
+	cout << "Levantar offset de disco: ";
+	if (resultado==0) {
+		cout << "correcto." << endl;
+	} else {
+		cout << "incorrecto." << endl;
+	}
+	cout << endl << "Fin pruebas." << endl;
+
+	delete vector1;
 	delete rs;
 	return 0;
 }

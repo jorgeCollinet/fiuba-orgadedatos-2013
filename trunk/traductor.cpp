@@ -281,6 +281,7 @@ short Traductor::devolver_offset_de_bit(void) {
 bool Traductor::avanzar_cursor(int unByte, char unBit) {
 	if (modo == READ)
 		return this->reader->avanzar_cursor(unByte, unBit);
+		cout << "Byte: " << this->devolver_offset_de_byte() << "Bit: " << this->devolver_offset_de_bit() << endl;
 	return false;
 }
 

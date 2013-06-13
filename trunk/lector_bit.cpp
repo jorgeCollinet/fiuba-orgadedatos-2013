@@ -61,8 +61,14 @@ short LectorBit::devolver_offset_de_bit(void) {
 }
 
 bool LectorBit::avanzar_cursor(int unByte, char unBit) {
-	if (unByte > arch.tellg())
-		return false; //Si no se puede devuelvo falso.
+	cout << "Mirar BYte: "<<unByte<<" Mirar Bit: " << (short)unBit << endl;
+	arch.seekg(0, ios::end); // Colocar el cursor al final del fichero
+	if (unByte > arch.tellg()) {
+
+		cout << "NO pude avanzar, largo total: " << arch.tellg()<<endl;
+		return false;
+		//Si no se puede devuelvo falso.
+	}
 	//Me debo posicionar en el byte, contado desde el principio.
 	arch.seekg(unByte, ios::beg );
 	contador=8;
