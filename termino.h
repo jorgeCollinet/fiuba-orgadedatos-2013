@@ -47,20 +47,31 @@ class ResolvedorDeConsultas {
 	}
 
 	void recursive_comprobar_precedencia(bool& exito,std::vector<Termino>& terminos, size_t nro_termino, size_t nro_doc, std::vector<size_t> estado) {
+		std::cout<<"dando vueltas"<<std::endl;
 		if(exito == true){
 			return;
 		}
 		Termino& termino_act = terminos[nro_termino];
-
-		if(nro_termino == terminos.size()-1 && termino_act.antecede(terminos[nro_termino+1], nro_doc, estado[nro_termino])) {
-			exito = true;
-			return;
-
-		}
-		for(size_t i=estado[nro_termino]; i!= termino_act.get_cant_offsets(nro_doc); i++) {
+		std::cout<<"encontro true??"<<std::endl;
+		if (nro_termino == terminos.size() - 2) {
+			std::cout<<"casi casi, nro_termino: "<<nro_termino<<std::endl;
+			for(size_t i=0;i<termino_act.get_cant_offsets(nro_doc);i++) {
+				if (termino_act.antecede(terminos[nro_termino + 1], nro_doc, i)) {
+					exito = true;
+					std::cout<<"ssissssss encontro solucion"<<std::endl;
+					return;
+				}
+			}
+			std::cout<<"no, vuelvo para atras"<<std::endl;
+		}else{
+			std::cout<<"no, hago for"<<std::endl;
 			std::vector<size_t> estado_aux = estado;
-			recursive_comprobar_precedencia(exito, terminos, nro_termino,nro_doc,estado);
-			estado_aux[nro_termino]++;
+			for(size_t i=estado[nro_termino]; i< termino_act.get_cant_offsets(nro_doc); i++) {
+				//aca deveria hacer chequeo de precedencia antes de llamar
+				estado_aux[nro_termino]=i;
+				recursive_comprobar_precedencia(exito, terminos, nro_termino+1,nro_doc,estado_aux);
+
+			}
 		}
 
 	}
