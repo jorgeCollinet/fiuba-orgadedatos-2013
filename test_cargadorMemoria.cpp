@@ -32,7 +32,6 @@ int main(void) {
 	delete unTraductor;
 
 	//Ya están escritos
-	unTraductor = new Traductor(READ, "archivoOC.dat");
 	rs->cargar_ocurrencias();
 	rs->mostrar_ocurrencias();
 	/*
