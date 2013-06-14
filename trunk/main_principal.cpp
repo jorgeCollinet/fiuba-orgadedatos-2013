@@ -53,7 +53,7 @@ int main (int args, char* argv[]) {
 	// se construyen los indices
 	cout << "Se comienzan a construir los indices." << endl;
 	indexer _idx;
-	_idx.indexar(path.c_str()); /* supongo que es esta la ruta; */
+	_idx.indexar(aux_path.c_str()); /* supongo que es esta la ruta; */
 	cout << "Se indexaron los archivos." << endl;
 
 
