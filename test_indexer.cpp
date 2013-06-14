@@ -15,7 +15,7 @@ int main(){
 
 	idx.indexar("merge.dat");
 
-	cout << "exito al indexar \n";
+	// cout << "exito al indexar \n";
 
 	Front_codding fc("index_fc.txt");
 	fc.modo_lectura();
