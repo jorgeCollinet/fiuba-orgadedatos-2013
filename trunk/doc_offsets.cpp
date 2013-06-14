@@ -37,7 +37,7 @@ void Doc_offsets::add_offsets(vector<int> offsets){
 	int i = 0;
 	int tam = offsets.size();
 
-	int doc;
+	int pos;
 
 	//guardo el 1°
 	int ant = offsets.at(i); i++;
@@ -45,8 +45,8 @@ void Doc_offsets::add_offsets(vector<int> offsets){
 
 	while(i<tam){
 		// guardo la dist con el anterior
-		doc = offsets.at(i); i++;
-		unTraductor->write_delta(doc-ant);
-		ant = doc;
+		pos = offsets.at(i); i++;
+		unTraductor->write_delta(pos-ant);
+		ant = pos;
 	}
 }

@@ -1,5 +1,5 @@
 
-//#define prueba_termino2
+#define prueba_termino2
 #ifndef prueba_termino2
 
 #include "termino.h"
