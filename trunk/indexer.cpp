@@ -43,14 +43,17 @@ void indexer::indexar(const char* archivo_fuente) {
 	int pos;
 
 	while(!fuente.eof()){
+
 		// leo una palabra
 		string palabra;
 		fuente >> palabra;
+		//cout<< palabra << " ";
 		// la mando a front codding
 		fc_codder.agregar_palabra(palabra);
 
 		// tomo la cantidad de documentos en donde aparece.
 		fuente >> cant_docs;
+		// cout<< "cant_docs" << " ";
 		docs.add_cant_doc(cant_docs);
 
 		// por cada documeto
@@ -59,18 +62,19 @@ void indexer::indexar(const char* archivo_fuente) {
 			// leo el num de doc
 			fuente >> doc;
 			docs.add_num_doc(doc);
+			// cout<< "doc" << " ";
 
 			// leo la frec.
 			fuente >> frec;
 			docs.add_frec(frec);
+			// cout<< "frec" << " ";
 
-			vector<int> offsets;
 			//tomo cada aparicion
 			for (int j = 0; j < frec; j++) {
 				fuente >> pos;
-				offsets.push_back(pos);
+				docs.add_offset(pos);
 			}
-			docs.add_offsets(offsets);
+			// cout << endl;
 		}
 	}
 

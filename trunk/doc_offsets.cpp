@@ -13,6 +13,7 @@ using namespace std;
 
 Doc_offsets::Doc_offsets(const char* nombre) {
 	unTraductor = new Traductor(WRITE,nombre);
+	ant = 0;
 }
 
 Doc_offsets::~Doc_offsets() {
@@ -29,24 +30,11 @@ void Doc_offsets::add_num_doc(int doc){
 
 void Doc_offsets::add_frec(int frec){
 	unTraductor->write_delta(frec);
+	ant = 0;
 }
 
-void Doc_offsets::add_offsets(vector<int> offsets){
-
-	// iterador
-	int i = 0;
-	int tam = offsets.size();
-
-	int pos;
-
-	//guardo el 1°
-	int ant = offsets.at(i); i++;
-	unTraductor->write_delta(ant);
-
-	while(i<tam){
-		// guardo la dist con el anterior
-		pos = offsets.at(i); i++;
-		unTraductor->write_delta(pos-ant);
-		ant = pos;
-	}
+void Doc_offsets::add_offset(size_t offset){
+	unTraductor->write_delta(offset-ant);
+	ant = offset;
 }
+

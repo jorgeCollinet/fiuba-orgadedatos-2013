@@ -20,10 +20,10 @@ public:
 	void add_cant_doc(int cant);
 	void add_num_doc(int doc);
 	void add_frec(int frec);
-	void add_offsets(vector<int> offsets);
-	void add_tabla(int doc);
+	void add_offset(size_t offset);
 private:
 	Traductor* unTraductor;
+	size_t ant;
 };
 
 #endif /* DOC_OFFSETS_H_ */
