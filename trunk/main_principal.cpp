@@ -1,6 +1,7 @@
 //#define papa
 #ifndef papa
 #include <iostream>
+#include <fstream>
 #include "lector_directorios.h"
 #include "parser.h"
 #include "merge2.h"
@@ -59,6 +60,11 @@ void crear_repositorio(string& dir_archivos, string& nombre_repositorio) {
 	_idx.indexar(aux_path_merge.c_str());
 	cout << "Se indexaron los archivos." << endl;
 
+	// genero un archivo auxiliar para guardar la cantidad de documentos
+	ofstream out (".metadatos");
+	out<<archivos.size();
+	out.close();
+
 	delete &archivos;
 
 }
@@ -92,9 +98,18 @@ vector<size_t> cargar_terminos_y_resolver_consulta(string& nombre_repositorio, c
 	}
 	//Aca el resolvedor tendria que hacer la magia y escupir el resultado.
 
+	// cargo cant total de docs
+	ifstream in ;
+	string path_metadatos = nombre_repositorio;
+	path_metadatos += ".metadatos";
+	in.open(path_metadatos.c_str());
+	if(!in.is_open()){
+		throw ios_base::failure("repositorio no esta indexado");
+	}
+	size_t cant_total_docs;
+	in>>cant_total_docs;
+
 	ResolvedorDeConsultas resolvedor;
-	// FALTA HACER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	size_t cant_total_docs = 800;
 	return resolvedor.resolver_consulta(terminos, cant_total_docs);
 }
 
@@ -121,7 +136,15 @@ int main(int args, char* argv[]) {
 	}
 	string nombre_repo = argv[2];
 	const char* consulta = argv[4];
-	cargar_terminos_y_resolver_consulta(nombre_repo, consulta);
+	vector<size_t> doc_encontrados = cargar_terminos_y_resolver_consulta(nombre_repo, consulta);
+
+	// falta decir por nombre que documentos son, por ahora solo tenemos los numeros
+	cout<<"los documentos que contienen la frase son: ";
+	for(size_t i=0; i<doc_encontrados.size();++i){
+		cout << doc_encontrados[i];
+		cout<<" ";
+	}
+	cout<<endl;
 }
 
 
