@@ -16,7 +16,7 @@
 #include <algorithm>
 
 //#ifndef CANTIDAD_DE_SEPARADORES
-#define CANTIDAD_DE_SEPARADORES 38
+#define CANTIDAD_DE_SEPARADORES 52
 
 
 
@@ -45,7 +45,7 @@ std::string Parseador::parser(std::string& archivoaparsear,int doc){
 				//int doc; // QUE DOC USO? PONGO EL NOMBRE DEL ARCHIVO?? MMM
 				std::string palabra;
 
-				const char* invalidos[CANTIDAD_DE_SEPARADORES] = {"¡!#$%&'( )*+,-.:;<=>¿?@[]^_`{|}~/\\\"\n"};
+				const char* invalidos[CANTIDAD_DE_SEPARADORES] = {"¡!#$%&'( )*+,‘’0123456789”“-.:;<=>¿?@[]^_`{|}~/\\\"\n"};
 				ManejadorArchivos archivo;
 
 				archivo.abrirLectura(archivoaparsear);
@@ -175,7 +175,7 @@ void Parseador::acomodador(std::ofstream& of){
 
 			lista_aux.push_back((*it).posi);
 			palabraanterior=(*it).term;
-
+			contador++;
 		} else
 
 		if(palabraanterior==(*it).term && contador!=0){
@@ -201,7 +201,7 @@ void Parseador::acomodador(std::ofstream& of){
 
 		}
 
-		contador++;
+
 
 
 
@@ -219,7 +219,7 @@ void Parseador::posicionadistancia(std::list<int>& lista,std::ofstream& of){
 			if(primer==0) {
 				of<<(*it)<<" ";
 				offanterior=(*it);
-
+				primer++;
 			}
 
 			else{
