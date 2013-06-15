@@ -30,12 +30,12 @@ public:
 	// Uso para debug
 	void mostrar_ocurrencias(void);
 	//Devuelve las ocurrencias de un termino
-	Termino* devolver_ocurrencias_termino(string unTermino);
-
+	Termino devolver_ocurrencias_termino(string unTermino);
+	int buscar_termino(string unTermino);
 private:
 	string nombreArchivo;
 	vector < pair<string, pair<double, char> > > lexico;
-	int buscar_termino(string unTermino);
+
 
 };
 
