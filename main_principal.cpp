@@ -57,7 +57,7 @@ void crear_repositorio(string& dir_archivos, string& nombre_repositorio) {
 	// se construyen los indices
 	cout << "Se comienzan a construir los indices." << endl;
 	indexer _idx;
-	_idx.indexar(aux_path_merge.c_str());
+	_idx.indexar(aux_path_merge.c_str(),nombre_repositorio);
 	cout << "Se indexaron los archivos." << endl;
 
 	// genero un archivo auxiliar para guardar la cantidad de documentos
@@ -68,6 +68,8 @@ void crear_repositorio(string& dir_archivos, string& nombre_repositorio) {
 	delete &archivos;
 
 }
+
+
 vector<size_t> cargar_terminos_y_resolver_consulta(string& nombre_repositorio, const char* consulta) {
 	CargadorMemoria unCargador(nombre_repositorio.c_str());
 	try {
