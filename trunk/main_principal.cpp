@@ -100,10 +100,10 @@ vector<size_t> cargar_terminos_y_resolver_consulta(string& nombre_repositorio, c
 
 int main(int args, char* argv[]) {
 	if (args < 3) {
-		cout << "Faltan parametros de llamada al programa." << endl
-				<< "./programa -m 'directorio'" << endl
-				<< "El directorio es el lugar donde se encuentran los archivos."
-				<< endl << "-m es el modo: -q consultas, -r indexar" << endl;
+		cout << "Indexar el Repositorio: "<< endl << "Por linea de comandos un programa indexador recibe un nombre para el repositorio y un directorio." << endl;
+		cout << "Tpgrupo17 libros /home/TP/datos" << endl;;
+		cout << "Realizar Consultas "<< endl;
+		cout << "TpGrupo17q -r libros -q “apple” "<< endl << "TpGrupo17q -r libros -q ”New York”"<< endl<< "TpGrupo17q -r libros -q ”Call me Ishmael”"<<endl;;
 		return 0;
 	}
 	if (args == 3) {
