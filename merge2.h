@@ -38,10 +38,17 @@ public:
 	void set_frec(size_t frec){
 		this->frec=frec;
 	}
+	size_t get_nombre_arch(){
+		return this->nombre_arch;
+	}
 	const string& get_dato() const {
 		return datos;
 	}
 	void absorver_pal(Palabra& pal){
+		stringstream aux;
+		aux << pal.nombre_arch;
+		this->datos += aux.str();
+		this->datos += " ";
 		this->datos += pal.datos;
 		frec++;
 	}
@@ -137,6 +144,8 @@ public:
 			out<<pal1.get_pal();
 			out<<" ";
 			out<<pal1.get_frec();
+			out<<" ";
+			out<<pal1.get_nombre_arch();
 			out<<" ";
 			out<<pal1.get_dato();
 			out<<endl;

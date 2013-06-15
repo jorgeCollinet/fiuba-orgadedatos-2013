@@ -16,7 +16,7 @@ class Lector_directorios{
 	public:
 	// se le entrega una ruta y devuelve una lista de archivos en ese directorio
 	// devuelve NULL ante algun problema
-	std::vector<std::string>& leer_dir(char* ruta);
+	std::vector<std::string>& leer_dir(const char* ruta);
 
 };
 #endif

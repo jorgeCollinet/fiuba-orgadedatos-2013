@@ -96,18 +96,17 @@ void CargadorMemoria::mostrar_ocurrencias(void) {
 	cout << endl;
 }
 
-Termino* CargadorMemoria::devolver_ocurrencias_termino(string unTermino) {
+Termino CargadorMemoria::devolver_ocurrencias_termino(string unTermino) {
 	cout << "Estoy por buscar, resultado: ";
 	int resultado = this->buscar_termino(unTermino);
 	if (resultado == -1) {
-		return NULL;
+		throw ios_base::failure("termino no encontrado");
 	}
 	string nombreOC = nombreArchivo + FINOCURRENCIAS;
 	Traductor traductor (READ, "index_offsets.txt");
 	int numeroLeido=0, frecPalabra=0,cantDocumentos=0;
 	if (!traductor.avanzar_cursor((int)lexico[resultado].second.first, lexico[resultado].second.second)) {
-		cout << "El archivo de ocurrencias está mal formado. 1 " << endl;
-		return NULL;
+		throw ios_base::failure( "El archivo de ocurrencias está mal formado. 1 " );
 	}
 	cout << "Byte: " << traductor.devolver_offset_de_byte() << "Bit: " << traductor.devolver_offset_de_bit() << endl;
 	//std::vector<std::pair <size_t ,std::vector<size_t> > > auxiliar;
@@ -121,14 +120,13 @@ Termino* CargadorMemoria::devolver_ocurrencias_termino(string unTermino) {
 		for (int j = 0; j < frecPalabra; j++) {
 			numeroLeido = traductor.read_delta(); //Leo offsets
 			if (numeroLeido==FINARCH) {
-				cout << "El archivo de ocurrencias está mal formado." << endl;
-				return NULL;
+				throw ios_base::failure( "El archivo de ocurrencias está mal formado" );
 			}
 			offsets.second.push_back(numeroLeido); //Guardo el offset
 		}
 		valor.push_back(offsets);
 	}
-	return new Termino(unTermino, valor);
+	return Termino(unTermino, valor);
 }
 
 int CargadorMemoria::buscar_termino(string unTermino) {

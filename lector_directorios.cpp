@@ -1,7 +1,7 @@
 #include "lector_directorios.h"
 using namespace std;
 
-vector<string>& Lector_directorios::leer_dir(char* ruta){
+vector<string>& Lector_directorios::leer_dir(const char* ruta){
 
 	// variables
 	DIR *dir = NULL;
