@@ -103,7 +103,7 @@ Termino* CargadorMemoria::devolver_ocurrencias_termino(string unTermino) {
 		return NULL;
 	}
 	string nombreOC = nombreArchivo + FINOCURRENCIAS;
-	Traductor traductor (READ, nombreOC.c_str());
+	Traductor traductor (READ, "index_offsets.txt");
 	int numeroLeido=0, frecPalabra=0,cantDocumentos=0;
 	if (!traductor.avanzar_cursor((int)lexico[resultado].second.first, lexico[resultado].second.second)) {
 		cout << "El archivo de ocurrencias está mal formado. 1 " << endl;
