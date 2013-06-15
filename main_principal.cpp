@@ -9,11 +9,23 @@
 #include <vector>
 #include <stdio.h>
 
+#define INDEXAR 1
+#define CONSULTAR 2
+#define ERROR_MODO 3
+
 #define CERRAR "xCerrar"
 using namespace std;
 /* la llamada al programa se hace pasandole el directorio donde están los archivos */
 vector<string>* capturar_consultas(void) {
 	//Debe capturar las consultas y devolverlas al main.
+	vector<string>* aux = new vector<string>;
+	return aux;
+}
+
+int capturar(char modo){
+	if(modo == 'r') return INDEXAR;
+	if(modo == 'q') return CONSULTAR;
+	return ERROR_MODO;
 }
 
 int main (int args, char* argv[]) {
@@ -21,6 +33,22 @@ int main (int args, char* argv[]) {
 		cout << "Faltan parametros de llamada al programa." << endl << "./programa (directorio)" << endl
 				<< "El directorio es el lugar donde se encuentran los archivos.";
 	}
+	if(argv[0][0] != '-') return 0;
+	int modo = capturar(*argv[1]);
+
+	switch (modo){
+	case (INDEXAR):
+		cout << "indexar\n";
+		cout << argv[2];
+		break;
+	case (CONSULTAR):
+		cout << "consultar \n";
+		break;
+	default:
+		cout << "no sea pelotudo ";
+		return 0;
+	}
+
 
 	// ruta donde están los archivos a trabajar
 	string path(argv[1]);
