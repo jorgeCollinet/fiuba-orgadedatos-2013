@@ -11,7 +11,9 @@
 #include <fstream>
 #include <string>
 #include "front_codding.h"
-#define NOMBRE_FC = "index_fc.txt";
+
+#define NOMBRE_FC = ".fc";
+#define NOMBRE_OF = ".offsets";
 
 using namespace std;
 
@@ -25,17 +27,20 @@ indexer::~indexer() {
 }
 
 
-void indexer::indexar(const char* archivo_fuente) {
+void indexer::indexar(const char* archivo_fuente,string& nombre_repositorio) {
 
 	ifstream fuente;
 	fuente.open(archivo_fuente, std::ifstream::in);
 
-	const char* nombrefc = "index_fc.txt";
-	Front_codding fc_codder(nombrefc);
+	string nombrefc(nombre_repositorio);
+	nombrefc += ".fc";
+	Front_codding fc_codder(nombrefc.c_str());
 	fc_codder.modo_escritura();
 
-	const char* nombreoffsets = "index_offsets.txt";
-	Doc_offsets docs(nombreoffsets);
+
+	string nombreoffsets(nombre_repositorio);
+	nombreoffsets += ".offsets";
+	Doc_offsets docs(nombreoffsets.c_str());
 
 	int cant_docs;
 	int frec;

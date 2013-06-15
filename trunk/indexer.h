@@ -15,7 +15,7 @@ public:
 	indexer();
 	virtual ~indexer();
 	// con la salida del merge separa offsets de terminos y los guarda comprimidos
-	void indexar(const char* archivo_fuente);
+	void indexar(const char* archivo_fuente,std::string&  nombre_repositorio);
 	/** comprimir con LZW (falta)**/
 	void guardar_rutas(std::vector<std::string> rutas);
 };

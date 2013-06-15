@@ -1,4 +1,3 @@
-
 #define test_indexer
 #ifndef test_indexer
 
