@@ -30,8 +30,10 @@ int capturar(char modo){
 
 int main (int args, char* argv[]) {
 	if(args<2){
-		cout << "Faltan parametros de llamada al programa." << endl << "./programa (directorio)" << endl
-				<< "El directorio es el lugar donde se encuentran los archivos.";
+		cout << "Faltan parametros de llamada al programa." << endl << "./programa -m 'directorio'" << endl
+				<< "El directorio es el lugar donde se encuentran los archivos." << endl
+				<< "-m es el modo: -q consultas, -r indexar" << endl;
+		return 0;
 	}
 	if(argv[1][0] != '-') return 0;
 	int modo = capturar(argv[1][1]);
@@ -45,7 +47,7 @@ int main (int args, char* argv[]) {
 		cout << "consultar \n";
 		break;
 	default:
-		cout << "no sea pelotudo ";
+		cout << "No es un modo valido.";
 		return 0;
 	}
 
@@ -70,19 +72,23 @@ int main (int args, char* argv[]) {
 		cout<<archivos_a_mergear[i]<<endl;
 	}
 	// se mergean los archivos
-	Merge merger;
 	string aux_path(argv[2]);
 	aux_path +="/merge-doc.txt";
-	merger.merge_n_archivos(archivos_a_mergear,aux_path,PRIMERA_PASADA);
-	cout<<"Termino el merge."<<endl;
+	try {
+		Merge merger;
+		merger.merge_n_archivos(archivos_a_mergear,aux_path,PRIMERA_PASADA);
+		cout<<"Termino el merge."<<endl;
 
-	for(size_t i=0; i<archivos_a_mergear.size();++i){
-		remove(archivos_a_mergear[i].c_str());
+		for(size_t i=0; i<archivos_a_mergear.size();++i){
+			remove(archivos_a_mergear[i].c_str());
+		}
+	}catch (exception &e) {
+		cout << "El directorio ingresado es invalido, por favor intente con otro."<< endl;
+		return 0;
 	}
 	// se construyen los indices
 	cout << "Se comienzan a construir los indices." << endl;
 	indexer _idx;
-
 	_idx.indexar(aux_path.c_str()); /* supongo que es esta la ruta; */
 	cout << "Se indexaron los archivos." << endl;
 
