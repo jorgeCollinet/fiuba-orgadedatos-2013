@@ -33,8 +33,8 @@ int main (int args, char* argv[]) {
 		cout << "Faltan parametros de llamada al programa." << endl << "./programa (directorio)" << endl
 				<< "El directorio es el lugar donde se encuentran los archivos.";
 	}
-	if(argv[0][0] != '-') return 0;
-	int modo = capturar(*argv[1]);
+	if(argv[1][0] != '-') return 0;
+	int modo = capturar(argv[1][1]);
 
 	switch (modo){
 	case (INDEXAR):
@@ -51,14 +51,15 @@ int main (int args, char* argv[]) {
 
 
 	// ruta donde están los archivos a trabajar
-	string path(argv[1]);
+	string path(argv[2]);
 	// se buscan los archivos con los cuales trabajaremos
 	Lector_directorios lector;
-	vector<string>& archivos = lector.leer_dir(argv[1]);
+	vector<string>& archivos = lector.leer_dir(argv[2]);
 	vector<string> archivos_a_mergear;
+	cout << "Parser funcionando." << endl;
 	// se parsean los archivos
 	for(size_t i=0; i<archivos.size();i++){
-		string path(argv[1]);
+		string path(argv[2]);
 		path+="/";
 		path+=archivos[i];
 		Parseador pars;
@@ -70,7 +71,7 @@ int main (int args, char* argv[]) {
 	}
 	// se mergean los archivos
 	Merge merger;
-	string aux_path = path;
+	string aux_path(argv[2]);
 	aux_path +="/merge-doc.txt";
 	merger.merge_n_archivos(archivos_a_mergear,aux_path,PRIMERA_PASADA);
 	cout<<"Termino el merge."<<endl;
@@ -81,6 +82,7 @@ int main (int args, char* argv[]) {
 	// se construyen los indices
 	cout << "Se comienzan a construir los indices." << endl;
 	indexer _idx;
+
 	_idx.indexar(aux_path.c_str()); /* supongo que es esta la ruta; */
 	cout << "Se indexaron los archivos." << endl;
 
