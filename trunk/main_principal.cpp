@@ -71,7 +71,7 @@ void crear_repositorio(string& dir_archivos, string& nombre_repositorio) {
 
 
 vector<size_t> cargar_terminos_y_resolver_consulta(string& nombre_repositorio, const char* consulta) {
-	CargadorMemoria unCargador(nombre_repositorio.c_str());
+	CargadorMemoria unCargador(nombre_repositorio);
 	try {
 		unCargador.cargar_lexico();
 		unCargador.cargar_ocurrencias();

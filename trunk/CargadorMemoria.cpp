@@ -24,8 +24,10 @@ CargadorMemoria::CargadorMemoria(string unNombreArchivo) {
 bool CargadorMemoria::cargar_lexico(void) {
 	//Carga el léxico en memoria, sólo las palabras no sus ocurrencias.
 	string finPalabras ("Error_Lectura");
-	// string nombreFC = nombreArchivo + FINFRONTCODDING;
-	Front_codding* fCodding = new Front_codding("index_fc.txt");
+	string nombreFC(nombreArchivo);
+	nombreFC += ".fc";
+
+	Front_codding* fCodding = new Front_codding(nombreFC);
 	fCodding->modo_lectura();
 	cout << "Se cargaran las palabras desde el archivo: " << "index_fc.txt" << endl;
 	unsigned int j = 0;
@@ -43,9 +45,10 @@ bool CargadorMemoria::cargar_lexico(void) {
 }
 
 bool CargadorMemoria::cargar_ocurrencias(void) {
-	// string nombreOC = nombreArchivo + FINOCURRENCIAS;
+	string nombreOC = nombreArchivo;
+	nombreOC += ".offsets";
 	cout << "Se cargan las ocurrencias desde el archivo: " << "index_offsets.txt"<< endl;
-	Traductor traductor (READ, "index_offsets.txt");
+	Traductor traductor (READ, nombreOC);
 	int numeroLeido=0, frecPalabra=0,cantDocumentos=0;
 	unsigned int numeroPalabra = 0;
 	while (1 && (numeroPalabra < lexico.size())) {
