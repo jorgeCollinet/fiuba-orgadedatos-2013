@@ -41,7 +41,7 @@ std::string Parseador::parser(std::string& archivoaparsear,int doc){
 				archivofinal.open(nombrearchivofinal.c_str(),std::ofstream::out); //creacion del archivo
 
 
-				int pos=0; // Posicion de la palabra en el documento actual
+				int pos=1; // Posicion de la palabra en el documento actual
 				//int doc; // QUE DOC USO? PONGO EL NOMBRE DEL ARCHIVO?? MMM
 				std::string palabra;
 
@@ -167,6 +167,7 @@ void Parseador::acomodador(std::ofstream& of){
 	string palabraanterior; // para comparar con la palabra actual
 	int frec = 1;
 	int contador=0;
+	int doc;
 	//Itero toda la lista
 	for(it=this->milista.begin();it != this->milista.end(); ++it){
 
@@ -175,6 +176,7 @@ void Parseador::acomodador(std::ofstream& of){
 
 			lista_aux.push_back((*it).posi);
 			palabraanterior=(*it).term;
+			doc=(*it).doc;
 			contador++;
 		} else
 
@@ -206,6 +208,10 @@ void Parseador::acomodador(std::ofstream& of){
 
 
 	}
+	of<<palabraanterior<<" "<<doc<<" "<<frec<<" ";
+					posicionadistancia(lista_aux,of);
+					of<<endl;
+
 }
 
 	//Agarra una lista de offset y la pasa a distancia
