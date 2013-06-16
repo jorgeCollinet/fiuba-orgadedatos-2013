@@ -13,6 +13,7 @@
 #include "ManejadorArchivos.h"
 #include "Utilities.h"
 #include <list>
+#include <vector>
 #include <stdint.h>
 #include <algorithm>
 using namespace std;
@@ -61,6 +62,8 @@ public:
 
 	// Parsea el archivo extrayendo terminos importante y su ubicacion
 	std::string parser(std::string& archivoaparsear,int doc);
+
+	vector<string>* parsearlinea(std::string);
 
 
 };

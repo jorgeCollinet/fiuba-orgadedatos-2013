@@ -45,7 +45,7 @@ std::string Parseador::parser(std::string& archivoaparsear,int doc){
 				//int doc; // QUE DOC USO? PONGO EL NOMBRE DEL ARCHIVO?? MMM
 				std::string palabra;
 
-				const char* invalidos[CANTIDAD_DE_SEPARADORES] = {"¡!#$%&'( )*+,‘’0123456789”“-.:;<=>¿?@[]^_`{|}~/\\\"\n"};
+				const char* invalidos[CANTIDAD_DE_SEPARADORES] = {"¡!#$%&'(	 )*+,‘’0123456789”“-.:;<=>¿?@[]^_`{|}~/\\\"\n´~ÑÞ`"};
 				ManejadorArchivos archivo;
 
 				archivo.abrirLectura(archivoaparsear);
@@ -234,7 +234,28 @@ void Parseador::posicionadistancia(std::list<int>& lista,std::ofstream& of){
 
 		}
 
+}
+
+vector<std::string>* Parseador::parsearlinea(std::string unString) {
+	const char* invalidos[CANTIDAD_DE_SEPARADORES] = {"¡!#$%&'( )*+,‘’0123456789”“-.:;<=>¿?@[]^_`{|}~/\\\"\n´~ÑÞ`"};
+	char *linea = new char[unString.size()];
+	strcpy(linea,unString.c_str());
+	char* auxPalabra = strtok(linea,*invalidos);
+	string palabra;
+	short pos=1;
+	vector<string>* resultado = new vector<string>();
+	while ( auxPalabra != NULL ){
+			palabra = auxPalabra;
+			this->pasarAminusculas(palabra);
+			resultado->push_back(palabra);
+			pos++;
+			//delete auxPalabra;
+			auxPalabra = strtok (NULL, *invalidos);
 	}
+	delete []linea;
+	return resultado;
+   // pos--;
+}
 
 
 
