@@ -81,22 +81,22 @@ vector<size_t> cargar_terminos_y_resolver_consulta(string& nombre_repositorio, c
 		exit(1);
 	}
 	//Tomar las consultas
-
-	vector<string> consulta_parc = capturar_consultas(consulta);
-	if (consulta_parc.size() == 0) {
+	Parseador parser;
+	vector<string>* consulta_parc = parser.parsearlinea(string(consulta));
+	if (consulta_parc->size() == 0) {
 		cout<<"consulta vacia";
 		vector<size_t> vacio;
 		return vacio;
 	}
 	//Aquí hacer algo con la consulta, por ejempo:
 	vector<Termino> terminos;
-	for (size_t i = 0; i < consulta_parc.size(); i++) {
-		if(unCargador.buscar_termino(consulta_parc[i])==-1){
-			cout<<"el termino "<<consulta_parc[i]<<" no aparece en ningun documento"<<endl;
+	for (size_t i = 0; i < consulta_parc->size(); i++) {
+		if(unCargador.buscar_termino((*consulta_parc)[i])==-1){
+			cout<<"El termino: "<<(*consulta_parc)[i]<<" no aparece en ningun documento"<<endl;
 			vector<size_t> vacio;
 			return vacio;
 		}
-		terminos.push_back( unCargador.devolver_ocurrencias_termino(consulta_parc[i]) );
+		terminos.push_back( unCargador.devolver_ocurrencias_termino((*consulta_parc)[i]) );
 	}
 	//Aca el resolvedor tendria que hacer la magia y escupir el resultado.
 
@@ -111,8 +111,11 @@ vector<size_t> cargar_terminos_y_resolver_consulta(string& nombre_repositorio, c
 	size_t cant_total_docs;
 	in>>cant_total_docs;
 
+	consulta_parc->clear();
+	delete(consulta_parc);
 	ResolvedorDeConsultas resolvedor;
 	return resolvedor.resolver_consulta(terminos, cant_total_docs);
+
 }
 
 int main(int args, char* argv[]) {
