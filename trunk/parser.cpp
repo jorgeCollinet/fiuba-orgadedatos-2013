@@ -32,6 +32,7 @@ Parseador::~Parseador(){
 
 //Parsea el documento de texto extrayendo los terminos(filtrados) y su ubicacion en el mismo
 std::string Parseador::parser(std::string& archivoaparsear,int doc){
+				if(doc==0) cout << "Eaquí el problema.";
 
 				this->nombrearchivo=archivoaparsear;//guardo el nombre
 
@@ -244,7 +245,7 @@ void Parseador::posicionadistancia(std::list<int>& lista,std::ofstream& of){
 
 vector<std::string>* Parseador::parsearlinea(std::string unString) {
 	const char* invalidos[CANTIDAD_DE_SEPARADORES] = {"¡!#$%&'( )*+,‘’0123456789”“-.:;<=>¿?@[]^_`{|}~/\\\"\n´~ÑÞ`"};
-	char *linea = new char[unString.size()];
+	char *linea = new char[unString.size()+1];
 	strcpy(linea,unString.c_str());
 	char* auxPalabra = strtok(linea,*invalidos);
 	string palabra;
