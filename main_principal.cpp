@@ -37,7 +37,7 @@ void crear_repositorio(string& dir_archivos, string& nombre_repositorio) {
 		aux += "/";
 		aux += archivos[i];
 		Parseador pars;
-		archivos_a_mergear.push_back(pars.parser(aux, i));
+		archivos_a_mergear.push_back(pars.parser(aux, i+1));
 	}
 	cout << "Archivos parseados a mergear:" << endl;
 	for (size_t i = 0; i < archivos_a_mergear.size(); ++i) {
