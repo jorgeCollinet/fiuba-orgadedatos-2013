@@ -149,6 +149,6 @@ int CargadorMemoria::buscar_termino(string unTermino) {
 				Iabajo=(Icentro+1);
 		}
 	}
-	cout << "No lo encontre";
+	//cout << "No lo encontre";
 	return -1;
 }

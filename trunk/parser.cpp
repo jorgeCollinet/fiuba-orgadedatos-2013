@@ -243,18 +243,19 @@ void Parseador::posicionadistancia(std::list<int>& lista,std::ofstream& of){
 
 }
 
-vector<std::string>* Parseador::parsearlinea(std::string unString) {
+vector<std::string> Parseador::parsearlinea(std::string unString) {
 	const char* invalidos[CANTIDAD_DE_SEPARADORES] = {"¡!#$%&'( )*+,‘’0123456789”“-.:;<=>¿?@[]^_`{|}~/\\\"\n´~ÑÞ`"};
 	char *linea = new char[unString.size()+1];
+	linea[unString.size()] = '\0'; // seguro preventivo por si strcpy funciona mal
 	strcpy(linea,unString.c_str());
 	char* auxPalabra = strtok(linea,*invalidos);
 	string palabra;
 	short pos=1;
-	vector<string>* resultado = new vector<string>();
+	vector<string> resultado;
 	while ( auxPalabra != NULL ){
 			palabra = auxPalabra;
 			this->pasarAminusculas(palabra);
-			resultado->push_back(palabra);
+			resultado.push_back(palabra);
 			pos++;
 			//delete auxPalabra;
 			auxPalabra = strtok (NULL, *invalidos);

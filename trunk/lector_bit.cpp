@@ -16,18 +16,23 @@ bool LectorBit::eof() {
 	return arch.eof();
 }
 unsigned int LectorBit::leer_bit() {
-	if (!arch.is_open() || arch.eof()) {
+	if(!arch.is_open()){
+		throw ios_base::failure("ERROR en lectorBit: el archivo donde se tiene que leer el bit no está abierto");
+	}
+	if (arch.eof()) {
 		return 2;
 	}
-
 	if(contador == 8){
-		char buf;
+		char buf = 2;
 		arch.read(&buf,1);
 		buffer=buf;
 		contador = 0;
 		//cout<<"lo que deberia aparecer: "<<hex<<int(buffer)<<endl;
+		if(arch.eof()){
+			return 2;
+		}
 	}
-	unsigned char bit;
+	unsigned char bit = -1;
 
 	bit = buffer >> (7 - contador);
 	bit = bit & 1;
@@ -39,6 +44,8 @@ unsigned int LectorBit::leer_bit() {
 	if(bit == 1){
 		return 1;
 	}
+	throw ios_base::failure("ERROR en lectorBit: Se leyó mal un bit");
+
 	return 2;
 }
 

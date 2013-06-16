@@ -63,7 +63,7 @@ public:
 	// Parsea el archivo extrayendo terminos importante y su ubicacion
 	std::string parser(std::string& archivoaparsear,int doc);
 
-	vector<string>* parsearlinea(std::string);
+	vector<string> parsearlinea(std::string);
 
 
 };
