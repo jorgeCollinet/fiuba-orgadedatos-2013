@@ -29,7 +29,7 @@ bool CargadorMemoria::cargar_lexico(void) {
 
 	Front_codding* fCodding = new Front_codding(nombreFC.c_str());
 	fCodding->modo_lectura();
-	cout << "Se cargaran las palabras desde el archivo: " << "index_fc.txt" << endl;
+	cout << "Se cargaran las palabras desde el archivo: " << nombreFC << endl;
 	unsigned int j = 0;
 	while (true) {
 		string lectura;
@@ -47,7 +47,7 @@ bool CargadorMemoria::cargar_lexico(void) {
 bool CargadorMemoria::cargar_ocurrencias(void) {
 	string nombreOC = nombreArchivo;
 	nombreOC += ".offsets";
-	cout << "Se cargan las ocurrencias desde el archivo: " << "index_offsets.txt"<< endl;
+	cout << "Se cargan las ocurrencias desde el archivo: " << nombreOC << endl;
 	Traductor traductor (READ, nombreOC.c_str());
 	int numeroLeido=0, frecPalabra=0,cantDocumentos=0;
 	unsigned int numeroPalabra = 0;
@@ -105,8 +105,10 @@ Termino CargadorMemoria::devolver_ocurrencias_termino(string unTermino) {
 	if (resultado == -1) {
 		throw ios_base::failure("termino no encontrado");
 	}
-	string nombreOC = nombreArchivo + FINOCURRENCIAS;
-	Traductor traductor (READ, "index_offsets.txt");
+	string nombreOC = nombreArchivo;
+	nombreOC += ".offsets";
+	cout << "Cargar desde " << nombreOC << endl;
+	Traductor traductor (READ, nombreOC.c_str());
 	int numeroLeido=0, frecPalabra=0,cantDocumentos=0;
 	if (!traductor.avanzar_cursor((int)lexico[resultado].second.first, lexico[resultado].second.second)) {
 		throw ios_base::failure( "El archivo de ocurrencias está mal formado. 1 " );
