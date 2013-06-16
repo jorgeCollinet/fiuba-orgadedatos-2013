@@ -61,7 +61,9 @@ void crear_repositorio(string& dir_archivos, string& nombre_repositorio) {
 	cout << "Se indexaron los archivos." << endl;
 
 	// genero un archivo auxiliar para guardar la cantidad de documentos
-	ofstream out (".metadatos");
+	string nombre_aux = nombre_repositorio;
+	nombre_aux += ".metadatos";
+	ofstream out (nombre_aux.c_str());
 	out<<archivos.size();
 	out.close();
 
