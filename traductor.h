@@ -54,6 +54,8 @@ public:
 
 	bool avanzar_cursor(int unByte, char unBit);
 
+	void mostrar_archivo_delta(void);
+
 	~Traductor();
 
 };
