@@ -74,31 +74,33 @@ void crear_repositorio(string& dir_archivos, string& nombre_repositorio) {
 
 vector<size_t> cargar_terminos_y_resolver_consulta(string& nombre_repositorio, const char* consulta) {
 	CargadorMemoria unCargador(nombre_repositorio);
-	try {
-		unCargador.cargar_lexico();
-		unCargador.cargar_ocurrencias();
-	} catch (exception &e) {
-		cout << "Hubo un problema al cargar el índice, el programa se cerrará."
-				<< endl;
-		exit(1);
-	}
+
+	unCargador.cargar_lexico();
+	unCargador.cargar_ocurrencias();
+
 	//Tomar las consultas
 	Parseador parser;
-	vector<string>* consulta_parc = parser.parsearlinea(string(consulta));
-	if (consulta_parc->size() == 0) {
+	string consult = consulta;
+	vector<string> consulta_parc = parser.parsearlinea(consult);
+	cout<<"consulta parseada en terminos:--";
+	for(size_t i=0;i<consulta_parc.size();++i){
+		cout<<consulta_parc[i]<<"--";
+	}
+	cout<<endl;
+	if (consulta_parc.size() == 0) {
 		cout<<"consulta vacia";
 		vector<size_t> vacio;
 		return vacio;
 	}
 	//Aquí hacer algo con la consulta, por ejempo:
 	vector<Termino> terminos;
-	for (size_t i = 0; i < consulta_parc->size(); i++) {
-		if(unCargador.buscar_termino((*consulta_parc)[i])==-1){
-			cout<<"El termino: "<<(*consulta_parc)[i]<<" no aparece en ningun documento"<<endl;
+	for (size_t i = 0; i < consulta_parc.size(); i++) {
+		if(unCargador.buscar_termino(consulta_parc[i])==-1){
+			cout<<"El termino: "<<consulta_parc[i]<<" no aparece en ningun documento"<<endl;
 			vector<size_t> vacio;
 			return vacio;
 		}
-		terminos.push_back( unCargador.devolver_ocurrencias_termino((*consulta_parc)[i]) );
+		terminos.push_back( unCargador.devolver_ocurrencias_termino(consulta_parc[i]) );
 	}
 	//Aca el resolvedor tendria que hacer la magia y escupir el resultado.
 
@@ -113,8 +115,8 @@ vector<size_t> cargar_terminos_y_resolver_consulta(string& nombre_repositorio, c
 	size_t cant_total_docs;
 	in>>cant_total_docs;
 
-	consulta_parc->clear();
-	delete(consulta_parc);
+	//consulta_parc->clear();
+	//delete(consulta_parc);
 	ResolvedorDeConsultas resolvedor;
 	return resolvedor.resolver_consulta(terminos, cant_total_docs);
 
@@ -143,10 +145,15 @@ int main(int args, char* argv[]) {
 	}
 	string nombre_repo = argv[2];
 	const char* consulta = argv[4];
+	cout << "nombre del repositorio a consultar: " << nombre_repo << endl;
+	cout << "consulta a procesar: " << consulta << endl;
 	vector<size_t> doc_encontrados = cargar_terminos_y_resolver_consulta(nombre_repo, consulta);
 
 	// falta decir por nombre que documentos son, por ahora solo tenemos los numeros
 	cout<<"los documentos que contienen la frase son: ";
+	if(doc_encontrados.size() == 0){
+		cout<<"Ninguno";
+	}
 	for(size_t i=0; i<doc_encontrados.size();++i){
 		cout << doc_encontrados[i];
 		cout<<" ";
