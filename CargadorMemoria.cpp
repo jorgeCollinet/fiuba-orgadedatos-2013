@@ -27,7 +27,7 @@ bool CargadorMemoria::cargar_lexico(void) {
 	string nombreFC(nombreArchivo);
 	nombreFC += ".fc";
 
-	Front_codding* fCodding = new Front_codding(nombreFC);
+	Front_codding* fCodding = new Front_codding(nombreFC.c_str());
 	fCodding->modo_lectura();
 	cout << "Se cargaran las palabras desde el archivo: " << "index_fc.txt" << endl;
 	unsigned int j = 0;
@@ -48,7 +48,7 @@ bool CargadorMemoria::cargar_ocurrencias(void) {
 	string nombreOC = nombreArchivo;
 	nombreOC += ".offsets";
 	cout << "Se cargan las ocurrencias desde el archivo: " << "index_offsets.txt"<< endl;
-	Traductor traductor (READ, nombreOC);
+	Traductor traductor (READ, nombreOC.c_str());
 	int numeroLeido=0, frecPalabra=0,cantDocumentos=0;
 	unsigned int numeroPalabra = 0;
 	while (1 && (numeroPalabra < lexico.size())) {
