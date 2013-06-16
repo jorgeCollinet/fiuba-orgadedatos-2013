@@ -285,3 +285,11 @@ bool Traductor::avanzar_cursor(int unByte, char unBit) {
 	return false;
 }
 
+void Traductor::mostrar_archivo_delta(void) {
+	int aux = this->read_delta();
+	while (aux!=-1) {
+		cout << aux << " " ;
+		aux = this->read_delta();
+	}
+}
+
