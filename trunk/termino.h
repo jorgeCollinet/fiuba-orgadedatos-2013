@@ -86,9 +86,10 @@ class ResolvedorDeConsultas {
 		}
 		std::vector<size_t> estado (terminos.size(),0);
 		//std::cout<<"estado inicial vector estado: ";
+		/*
 		for(size_t i=0;i<estado.size();i++){
 			//std::cout<<estado[i];
-		}
+		}*/
 		//std::cout<<std::endl;
 		size_t nro_termino = 0;
 		bool exito = false;
@@ -101,7 +102,7 @@ public:
 		std::vector<size_t> solucion;
 		for(size_t i=1;i<cant_total_docs+1;++i) {
 			if(todos_tienen_el_documento(terminos,i)) {
-				std::cout<<"Todos los terminos tienen al doc: "<<i<<"se verificara frase en ese doc"<<std::endl;
+				std::cout<<"Todos los terminos tienen al doc: "<<i<<" se verificara frase en ese doc"<<std::endl;
 				if(terminos.size()==1 || comprobar_precedencia(terminos,i)) {
 					solucion.push_back(i);
 				}
