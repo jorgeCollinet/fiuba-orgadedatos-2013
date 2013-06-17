@@ -6,6 +6,7 @@
 #include "parser.h"
 #include "merge2.h"
 #include "CargadorMemoria.h"
+#include "ManejadorNombreArchivo.h"
 #include "indexer.h"
 #include <vector>
 #include <stdio.h>
@@ -28,11 +29,15 @@ void crear_repositorio(string& dir_archivos, string& nombre_repositorio) {
 	// ruta donde están los archivos a trabajar
 	// se buscan los archivos con los cuales trabajaremos
 	Lector_directorios lector;
+	string auxiliar("nombres."+nombre_repositorio);
+	ManejadorNombreArchivo manejadorNombres(auxiliar.c_str());
 	vector<string>& archivos = lector.leer_dir(dir_archivos.c_str());
+
 	vector<string> archivos_a_mergear;
 	cout << "Parser funcionando." << endl;
 	// se parsean los archivos
 	for (size_t i = 0; i < archivos.size(); i++) {
+		manejadorNombres.agregar_nombre(archivos[i]);
 		string aux = dir_archivos;
 		aux += "/";
 		aux += archivos[i];
@@ -66,6 +71,9 @@ void crear_repositorio(string& dir_archivos, string& nombre_repositorio) {
 	ofstream out (nombre_aux.c_str());
 	out<<archivos.size();
 	out.close();
+	if(!manejadorNombres.guardar_nombres()) {
+		cout << "Hubo un problema al guardar los nombres del directorio.";
+	}
 
 	delete &archivos;
 
@@ -119,7 +127,6 @@ vector<size_t> cargar_terminos_y_resolver_consulta(string& nombre_repositorio, c
 	//delete(consulta_parc);
 	ResolvedorDeConsultas resolvedor;
 	return resolvedor.resolver_consulta(terminos, cant_total_docs);
-
 }
 
 int main(int args, char* argv[]) {
@@ -154,8 +161,12 @@ int main(int args, char* argv[]) {
 	if(doc_encontrados.size() == 0){
 		cout<<"Ninguno";
 	}
+	string nombres("nombres.");
+	nombres += argv[2];
+	ManejadorNombreArchivo manejadorNombre(nombres.c_str());
+	manejadorNombre.cargar_nombres();
 	for(size_t i=0; i<doc_encontrados.size();++i){
-		cout << doc_encontrados[i];
+		cout << manejadorNombre.obtener_nombre(doc_encontrados[i]+1); //El +1 va por la imposibilidad de guardar 0, son distancias así que no se incrementa el tamaño
 		cout<<" ";
 	}
 	cout<<endl;

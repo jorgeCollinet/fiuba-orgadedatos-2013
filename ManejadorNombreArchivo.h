@@ -15,7 +15,7 @@
 class ManejadorNombreArchivo {
 public:
 	ManejadorNombreArchivo();
-	ManejadorNombreArchivo(char* unNombreArchivo);
+	ManejadorNombreArchivo(const char* unNombreArchivo);
 	virtual ~ManejadorNombreArchivo();
 	int agregar_nombre(std::string unNombre);
 	std::string obtener_nombre(int unEntero);
