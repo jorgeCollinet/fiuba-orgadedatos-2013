@@ -99,7 +99,7 @@ public:
 	// los terminos tienen que estar odenados en el vector en el mismo orden que estan en la consulta
 	std::vector<size_t> resolver_consulta(std::vector<Termino>& terminos, size_t cant_total_docs){
 		std::vector<size_t> solucion;
-		for(size_t i=0;i<cant_total_docs;++i) {
+		for(size_t i=1;i<cant_total_docs+1;++i) {
 			if(todos_tienen_el_documento(terminos,i)) {
 				std::cout<<"wiii todos los terminos tienen al doc: "<<i<<std::endl;
 				if(terminos.size()==1 || comprobar_precedencia(terminos,i)) {
