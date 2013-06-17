@@ -166,7 +166,7 @@ int main(int args, char* argv[]) {
 	ManejadorNombreArchivo manejadorNombre(nombres.c_str());
 	manejadorNombre.cargar_nombres();
 	for(size_t i=0; i<doc_encontrados.size();++i){
-		cout << manejadorNombre.obtener_nombre(doc_encontrados[i]+1); //El +1 va por la imposibilidad de guardar 0, son distancias así que no se incrementa el tamaño
+		cout << manejadorNombre.obtener_nombre(doc_encontrados[i]-1); //El +1 va por la imposibilidad de guardar 0, son distancias así que no se incrementa el tamaño
 		cout<<" ";
 	}
 	cout<<endl;
