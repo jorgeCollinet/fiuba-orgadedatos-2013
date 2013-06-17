@@ -116,12 +116,14 @@ Termino CargadorMemoria::devolver_ocurrencias_termino(unsigned int n_term) {
 		numeroLeido = traductor.read_delta(); //Leo el numero del documento
 		offsets.first = numeroLeido;
 		frecPalabra = traductor.read_delta();
+		int total = 0;
 		for (int j = 0; j < frecPalabra; j++) {
 			numeroLeido = traductor.read_delta(); //Leo offsets
 			if (numeroLeido==FINARCH) {
 				throw ios_base::failure( "El archivo de ocurrencias está mal formado" );
 			}
-			offsets.second.push_back(numeroLeido); //Guardo el offset
+			total += numeroLeido;
+			offsets.second.push_back(total); //Guardo el offset
 		}
 		valor.push_back(offsets);
 	}
