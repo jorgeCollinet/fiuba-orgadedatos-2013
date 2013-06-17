@@ -30,7 +30,7 @@ public:
 	// Uso para debug
 	void mostrar_ocurrencias(void);
 	//Devuelve las ocurrencias de un termino
-	Termino devolver_ocurrencias_termino(string unTermino);
+	Termino devolver_ocurrencias_termino(unsigned int n_term);
 	int buscar_termino(string unTermino);
 private:
 	string nombreArchivo;

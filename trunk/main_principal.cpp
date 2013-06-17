@@ -17,12 +17,6 @@
 
 #define CERRAR "xCerrar"
 using namespace std;
-/* la llamada al programa se hace pasandole el directorio donde están los archivos */
-vector<string> capturar_consultas(const char* consultas) {
-	//Debe capturar las consultas y devolverlas al main.
-	vector<string> aux ;
-	return aux;
-}
 
 
 void crear_repositorio(string& dir_archivos, string& nombre_repositorio) {
@@ -104,13 +98,14 @@ vector<size_t> cargar_terminos_y_resolver_consulta(string& nombre_repositorio, c
 	}
 	//Aquí hacer algo con la consulta, por ejempo:
 	vector<Termino> terminos;
+	int term;
 	for (size_t i = 0; i < consulta_parc.size(); i++) {
-		if(unCargador.buscar_termino(consulta_parc[i])==-1){
+		if((term = unCargador.buscar_termino(consulta_parc[i])==-1)){
 			cout<<"El termino: "<<consulta_parc[i]<<" no aparece en ningun documento"<<endl;
 			vector<size_t> vacio;
 			return vacio;
 		}
-		terminos.push_back( unCargador.devolver_ocurrencias_termino(consulta_parc[i]) );
+		terminos.push_back( unCargador.devolver_ocurrencias_termino(static_cast<unsigned int>(term)));
 	}
 	//Aca el resolvedor tendria que hacer la magia y escupir el resultado.
 
@@ -130,6 +125,7 @@ vector<size_t> cargar_terminos_y_resolver_consulta(string& nombre_repositorio, c
 	ResolvedorDeConsultas resolvedor;
 	return resolvedor.resolver_consulta(terminos, cant_total_docs);
 }
+
 
 int main(int args, char* argv[]) {
 	if (args < 3) {
