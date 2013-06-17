@@ -7,8 +7,6 @@
 
 #include "CargadorMemoria.h"
 #define FINARCH (-1)
-#define FINOCURRENCIAS "OC.dat"
-#define FINFRONTCODDING "FC.dat"
 
 
 using namespace std;
@@ -99,21 +97,17 @@ void CargadorMemoria::mostrar_ocurrencias(void) {
 	cout << endl;
 }
 
-Termino CargadorMemoria::devolver_ocurrencias_termino(string unTermino) {
-	cout << "Estoy por buscar, resultado: ";
-	int resultado = this->buscar_termino(unTermino);
-	if (resultado == -1) {
-		throw ios_base::failure("termino no encontrado");
-	}
+Termino CargadorMemoria::devolver_ocurrencias_termino(unsigned int n_term) {
+
 	string nombreOC = nombreArchivo;
 	nombreOC += ".offsets";
 	cout << "Cargar desde " << nombreOC << endl;
 	Traductor traductor (READ, nombreOC.c_str());
 	int numeroLeido=0, frecPalabra=0,cantDocumentos=0;
-	if (!traductor.avanzar_cursor((int)lexico[resultado].second.first, lexico[resultado].second.second)) {
+	if (!traductor.avanzar_cursor((int)lexico[n_term].second.first, lexico[n_term].second.second)) {
 		throw ios_base::failure( "El archivo de ocurrencias está mal formado. 1 " );
 	}
-	cout << "Byte: " << traductor.devolver_offset_de_byte() << "Bit: " << traductor.devolver_offset_de_bit() << endl;
+	// cout << "Byte: " << traductor.devolver_offset_de_byte() << "Bit: " << traductor.devolver_offset_de_bit() << endl;
 	//std::vector<std::pair <size_t ,std::vector<size_t> > > auxiliar;
 	cantDocumentos = traductor.read_delta();
 	std::vector<std::pair <size_t ,std::vector<size_t> > > valor;
@@ -131,7 +125,7 @@ Termino CargadorMemoria::devolver_ocurrencias_termino(string unTermino) {
 		}
 		valor.push_back(offsets);
 	}
-	return Termino(unTermino, valor);
+	return Termino(lexico.at(n_term).first, valor);
 }
 
 int CargadorMemoria::buscar_termino(string unTermino) {
