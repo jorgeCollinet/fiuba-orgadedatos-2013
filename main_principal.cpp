@@ -19,6 +19,8 @@
 using namespace std;
 
 
+
+
 void crear_repositorio(string& dir_archivos, string& nombre_repositorio) {
 	// ruta donde están los archivos a trabajar
 	// se buscan los archivos con los cuales trabajaremos
@@ -28,7 +30,7 @@ void crear_repositorio(string& dir_archivos, string& nombre_repositorio) {
 	vector<string>& archivos = lector.leer_dir(dir_archivos.c_str());
 
 	vector<string> archivos_a_mergear;
-	cout << "Parser funcionando." << endl;
+	cout << "Parser funcionando.." << endl;
 	// se parsean los archivos
 	for (size_t i = 0; i < archivos.size(); i++) {
 		manejadorNombres.agregar_nombre(archivos[i]);
