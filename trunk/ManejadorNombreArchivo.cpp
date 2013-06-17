@@ -12,7 +12,7 @@ ManejadorNombreArchivo::ManejadorNombreArchivo() {
 	nombres = new std::vector<std::string>();
 }
 
-ManejadorNombreArchivo::ManejadorNombreArchivo(char* unNombreArchivo) {
+ManejadorNombreArchivo::ManejadorNombreArchivo(const char* unNombreArchivo) {
 	nombres = new std::vector<std::string>();
 	nombreArchivo = std::string (unNombreArchivo);
 }
