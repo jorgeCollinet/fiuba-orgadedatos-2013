@@ -16,7 +16,7 @@
 #include <algorithm>
 
 //#ifndef CANTIDAD_DE_SEPARADORES
-#define CANTIDAD_DE_SEPARADORES 52
+#define CANTIDAD_DE_SEPARADORES 42
 
 
 
@@ -46,7 +46,7 @@ std::string Parseador::parser(std::string& archivoaparsear,int doc){
 				//int doc; // QUE DOC USO? PONGO EL NOMBRE DEL ARCHIVO?? MMM
 				std::string palabra;
 
-				const char* invalidos[CANTIDAD_DE_SEPARADORES] = {"¡!#$%&'(	 )*+,‘’0123456789”“-.:;<=>¿?@[]^_`{|}~/\\\"\n´~ÑÞ`"};
+				const char* invalidos[CANTIDAD_DE_SEPARADORES] = {"¡!#$%&'(	 )*+,‘’”“-.:;<=>¿?@[]^_`{|}~/\\\"\n´~ÑÞ`"};
 				ManejadorArchivos archivo;
 
 				archivo.abrirLectura(archivoaparsear);
