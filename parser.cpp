@@ -244,7 +244,7 @@ void Parseador::posicionadistancia(std::list<int>& lista,std::ofstream& of){
 }
 
 vector<std::string> Parseador::parsearlinea(std::string unString) {
-	const char* invalidos[CANTIDAD_DE_SEPARADORES] = {"¡!#$%&'( )*+,‘’0123456789”“-.:;<=>¿?@[]^_`{|}~/\\\"\n´~ÑÞ`"};
+	const char* invalidos[CANTIDAD_DE_SEPARADORES] = {"¡!#$%&'( )*+,‘’”“-.:;<=>¿?@[]^_`{|}~/\\\"\n´~ÑÞ`"};
 	char *linea = new char[unString.size()+1];
 	linea[unString.size()] = '\0'; // seguro preventivo por si strcpy funciona mal
 	strcpy(linea,unString.c_str());
