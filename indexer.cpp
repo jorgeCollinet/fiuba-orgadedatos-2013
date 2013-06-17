@@ -42,17 +42,17 @@ void indexer::indexar(const char* archivo_fuente,string& nombre_repositorio) {
 	nombreoffsets += ".offsets";
 	Doc_offsets docs(nombreoffsets.c_str());
 
-	int cant_docs;
-	int frec;
-	int doc;
-	int pos;
+	size_t cant_docs;
+	size_t frec;
+	size_t doc;
+	size_t pos;
 
 	while(!fuente.eof()){
 
 		// leo una palabra
 		string palabra;
 		fuente >> palabra;
-		//cout<< palabra << " ";
+		// cout<<endl<< palabra << "\n";
 		// la mando a front codding
 		fc_codder.agregar_palabra(palabra);
 
@@ -62,7 +62,7 @@ void indexer::indexar(const char* archivo_fuente,string& nombre_repositorio) {
 		docs.add_cant_doc(cant_docs);
 
 		// por cada documeto
-		for(int i=0;i<cant_docs;i++){
+		for(size_t i=0;i<cant_docs;i++){
 
 			// leo el num de doc
 			fuente >> doc;
@@ -75,7 +75,7 @@ void indexer::indexar(const char* archivo_fuente,string& nombre_repositorio) {
 			// cout<< "frec" << " ";
 
 			//tomo cada aparicion
-			for (int j = 0; j < frec; j++) {
+			for (size_t j = 0; j < frec; j++) {
 				fuente >> pos;
 				docs.add_offset(pos);
 			}

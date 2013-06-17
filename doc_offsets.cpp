@@ -20,21 +20,26 @@ Doc_offsets::~Doc_offsets() {
 	delete(unTraductor);
 }
 
-void Doc_offsets::add_cant_doc(int cant){
+void Doc_offsets::add_cant_doc(size_t cant){
 	unTraductor->write_delta(cant);
 }
 
-void Doc_offsets::add_num_doc(int doc){
+void Doc_offsets::add_num_doc(size_t doc){
 	unTraductor->write_delta(doc);
 }
 
-void Doc_offsets::add_frec(int frec){
+void Doc_offsets::add_frec(size_t frec){
 	unTraductor->write_delta(frec);
-	ant = 0;
+	// ant = 0;
 }
 
 void Doc_offsets::add_offset(size_t offset){
-	unTraductor->write_delta(offset-ant);
-	ant = offset;
+	// ant += offset;
+
+	// cout << "\n pos " << ant;
+	// cout << "\n dis " << (offset);
+	//if((offset-ant)<0)throw ios::failure(" erooreererer");
+	unTraductor->write_delta(offset);//offset-ant);
+	// ant = offset;
 }
 
