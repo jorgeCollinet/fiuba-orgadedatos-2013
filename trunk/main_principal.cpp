@@ -100,12 +100,12 @@ vector<size_t> cargar_terminos_y_resolver_consulta(string& nombre_repositorio, c
 	vector<Termino> terminos;
 	int term;
 	for (size_t i = 0; i < consulta_parc.size(); i++) {
-		if((term = unCargador.buscar_termino(consulta_parc[i])==-1)){
+		if((term = unCargador.buscar_termino(consulta_parc[i])) == -1){
 			cout<<"El termino: "<<consulta_parc[i]<<" no aparece en ningun documento"<<endl;
 			vector<size_t> vacio;
 			return vacio;
 		}
-		terminos.push_back( unCargador.devolver_ocurrencias_termino(static_cast<unsigned int>(term)));
+		terminos.push_back( unCargador.devolver_ocurrencias_termino(term));
 	}
 	//Aca el resolvedor tendria que hacer la magia y escupir el resultado.
 

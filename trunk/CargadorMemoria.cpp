@@ -129,7 +129,7 @@ Termino CargadorMemoria::devolver_ocurrencias_termino(unsigned int n_term) {
 }
 
 int CargadorMemoria::buscar_termino(string unTermino) {
-	int Iarriba = lexico.size()-1;
+	/*int Iarriba = lexico.size()-1;
 	int Iabajo = 0;
 	int Icentro;
 	while (Iabajo <= Iarriba)
@@ -145,6 +145,13 @@ int CargadorMemoria::buscar_termino(string unTermino) {
 				Iabajo=(Icentro+1);
 		}
 	}
-	//cout << "No lo encontre";
+	//cout << "No lo encontre";*/
+	for (unsigned int i=0; i < lexico.size(); i++) {
+		if (lexico[i].first == unTermino) {
+			return i;
+			cout <<i << endl;
+		}
+	}
+	cout << "No lo encontre";
 	return -1;
 }
