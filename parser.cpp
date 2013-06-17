@@ -168,7 +168,7 @@ void Parseador::acomodador(std::ofstream& of){
 	string palabraanterior; // para comparar con la palabra actual
 	int frec = 1;
 	int contador=0;
-	int doc;
+	int doc=0;
 	//Itero toda la lista
 	for(it=this->milista.begin();it != this->milista.end(); ++it){
 
