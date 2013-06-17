@@ -29,7 +29,7 @@ void crear_repositorio(string& dir_archivos, string& nombre_repositorio) {
 	// ruta donde están los archivos a trabajar
 	// se buscan los archivos con los cuales trabajaremos
 	Lector_directorios lector;
-	string auxiliar("nombres."+nombre_repositorio);
+	string auxiliar(nombre_repositorio+".nombres");
 	ManejadorNombreArchivo manejadorNombres(auxiliar.c_str());
 	vector<string>& archivos = lector.leer_dir(dir_archivos.c_str());
 
@@ -64,7 +64,9 @@ void crear_repositorio(string& dir_archivos, string& nombre_repositorio) {
 	indexer _idx;
 	_idx.indexar(aux_path_merge.c_str(),nombre_repositorio);
 	cout << "Se indexaron los archivos." << endl;
-
+	string nombreMerge(nombre_repositorio);
+	nombreMerge+=".merge";
+		remove(nombreMerge.c_str());
 	// genero un archivo auxiliar para guardar la cantidad de documentos
 	string nombre_aux = nombre_repositorio;
 	nombre_aux += ".metadatos";
@@ -161,8 +163,8 @@ int main(int args, char* argv[]) {
 	if(doc_encontrados.size() == 0){
 		cout<<"Ninguno";
 	}
-	string nombres("nombres.");
-	nombres += argv[2];
+	string nombres(argv[2]);
+	nombres += ".nombres";
 	ManejadorNombreArchivo manejadorNombre(nombres.c_str());
 	manejadorNombre.cargar_nombres();
 	for(size_t i=0; i<doc_encontrados.size();++i){
