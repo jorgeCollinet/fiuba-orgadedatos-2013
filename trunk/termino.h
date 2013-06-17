@@ -47,14 +47,14 @@ class ResolvedorDeConsultas {
 	}
 
 	void recursive_comprobar_precedencia(bool& exito,std::vector<Termino>& terminos, size_t nro_termino, size_t nro_doc, std::vector<size_t> estado) {
-		std::cout<<"dando vueltas"<<std::endl;
+		//std::cout<<"dando vueltas"<<std::endl;
 		if(exito == true){
 			return;
 		}
 		Termino& termino_act = terminos[nro_termino];
-		std::cout<<"encontro true??"<<std::endl;
+		//std::cout<<"encontro true??"<<std::endl;
 		if (nro_termino == terminos.size() - 2) {
-			std::cout<<"casi casi, nro_termino: "<<nro_termino<<std::endl;
+			//std::cout<<"casi casi, nro_termino: "<<nro_termino<<std::endl;
 			size_t lugar_match; // no me importa no lo uso
 			for(size_t i=0;i<termino_act.get_cant_offsets(nro_doc);i++) {
 				if (termino_act.antecede(terminos[nro_termino + 1], nro_doc, i,lugar_match)) {
@@ -63,9 +63,9 @@ class ResolvedorDeConsultas {
 					return;
 				}
 			}
-			std::cout<<"no, vuelvo para atras"<<std::endl;
+			//std::cout<<"no, vuelvo para atras"<<std::endl;
 		}else{
-			std::cout<<"no, hago for"<<std::endl;
+			//std::cout<<"no, hago for"<<std::endl;
 			std::vector<size_t> estado_aux = estado;
 			for(size_t i=estado[nro_termino]; i< termino_act.get_cant_offsets(nro_doc); i++) {
 				//aca deveria hacer chequeo de precedencia antes de llamar
@@ -85,11 +85,11 @@ class ResolvedorDeConsultas {
 			throw std::ios_base::failure("ResolvedorDeConsultas.comprobar_precedencia: He loco me mandaste un vector<Termino> vacio !!! ");
 		}
 		std::vector<size_t> estado (terminos.size(),0);
-		std::cout<<"estado inicial vector estado: ";
+		//std::cout<<"estado inicial vector estado: ";
 		for(size_t i=0;i<estado.size();i++){
-			std::cout<<estado[i];
+			//std::cout<<estado[i];
 		}
-		std::cout<<std::endl;
+		//std::cout<<std::endl;
 		size_t nro_termino = 0;
 		bool exito = false;
 		recursive_comprobar_precedencia(exito, terminos, nro_termino, nro_doc, estado);
@@ -101,12 +101,12 @@ public:
 		std::vector<size_t> solucion;
 		for(size_t i=1;i<cant_total_docs+1;++i) {
 			if(todos_tienen_el_documento(terminos,i)) {
-				std::cout<<"wiii todos los terminos tienen al doc: "<<i<<std::endl;
+				std::cout<<"Todos los terminos tienen al doc: "<<i<<"se verificara frase en ese doc"<<std::endl;
 				if(terminos.size()==1 || comprobar_precedencia(terminos,i)) {
 					solucion.push_back(i);
 				}
 			}else{
-				std::cout<<"No todos los terminos tienen al doc: "<<i<<std::endl;
+				//std::cout<<"No todos los terminos tienen al doc: "<<i<<std::endl;
 			}
 		}
 		return solucion;
